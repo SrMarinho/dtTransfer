@@ -1,13 +1,18 @@
-from entities.venda import Venda
+from entities.titulos_com_notas import TitulosComNotas
+from entities.regras_excessao_sku_regra import RegrasExcessaoSkuRegra
 
 class QueryableFactory:
     def __init__(self):
         ...
 
     @staticmethod
-    def getInstance(queryName):
+    def getInstance(queryName, params):
         entities_list = {
-            'venda': Venda
+            'regras_excessao_sku_regra': RegrasExcessaoSkuRegra,
+            'titulos_com_notas': TitulosComNotas
         }
 
-        return entities_list[queryName]() if queryName in entities_list else None
+        if queryName in entities_list:
+            return entities_list[queryName](params)
+        else:
+            raise "Tabela não registrada!"
