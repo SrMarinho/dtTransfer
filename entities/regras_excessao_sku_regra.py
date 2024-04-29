@@ -31,6 +31,7 @@ class RegrasExcessaoSkuRegra(Queryable):
                                """)
 
                 conn.commit()
+                conn.close()
                 print(f"Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
             else:
                 raise "Tabela não existe!"
