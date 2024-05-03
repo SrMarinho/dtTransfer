@@ -4,34 +4,50 @@ from factories.queryable_factory import QueryableFactory
 from factories.database_factory import DatabaseFactory
 from factories.database_driver_factory import DatabaseDriverFactory
 import processes as init
-
+import time
 
 class RegularQuery(Process):
     def __init__(self, params):
         self.params = params
+        self.insertedRows = 0
+        self.startTime = time.time()
 
     def run(self):
-        tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
+        try:
+            tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
 
-        originalQuery = tableInstance.getQuery()
+            originalQuery = tableInstance.getQuery()
+            
 
-        fromCursor = fromConnection.cursor()
-        fromCursor.execute(currentQuery)
+            fromConnection = tableInstance.fromDriver.connection()
 
-        fromConnection = tableInstance.fromDriver.connection()
+            fromCursor = fromConnection.cursor()
+            fromCursor.execute(originalQuery)
+            
 
-        numOfRows = 0
+            if "truncate" in self.params:
+                if self.params["truncate"]: tableInstance.truncate()
 
-        while True:
-            rows = fromCursor.fetchmany(init.ROWSNUM)
-            if not rows:
-                break
+            numOfRows = 0
 
-            numOfRows += len(rows)
+            while True:
+                rows = fromCursor.fetchmany(init.ROWSNUM)
+                if not rows:
+                    break
 
-            print(numOfRows, end="\r")
+                numOfRows += len(rows)
 
-            tableInstance.insert(rows)
+                print(numOfRows, end="\r")
 
-        fromCursor.close()
-        fromConnection.close()
+                tableInstance.insert(rows)
+
+            fromCursor.close()
+            fromConnection.close()
+            
+            endTime = time.time()
+            totalTime = endTime - self.startTime
+            
+            print(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
+            print(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
+        except Exception as e:
+            raise e

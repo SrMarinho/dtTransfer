@@ -31,6 +31,7 @@ class RegrasExcessaoSkuRegra(Queryable):
                                """)
 
                 conn.commit()
+                cursor.close()
                 conn.close()
                 print(f"Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
             else:
