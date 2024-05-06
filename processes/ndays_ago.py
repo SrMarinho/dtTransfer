@@ -57,7 +57,7 @@ class nDaysAgo(Process):
             fromCursor.close()
             connection.close()
         except Exception as e:
-            ...
+            print(e)
 
     def executeDays(self, tableInstance, originalQuery, start, days):
         for day in range(days):
