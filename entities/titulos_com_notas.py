@@ -6,7 +6,7 @@ class TitulosComNotas(Queryable):
     def __init__(self, params):
         self.params = params
         self.fromDB = 'Senior'
-        self.toDB = 'biMktNaz'
+        self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
         self.tableName = 'titulos_com_notas'
