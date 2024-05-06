@@ -15,7 +15,7 @@ class ClientesRedes(Queryable):
         with open('sqls/consulta_clientes_redes.sql', 'r') as file:
             return file.read()
 
-    def deleteDateBetween(self, startDate, endDate):
+    def deleteDay(self, startDate, endDate):
         ...
 
     def createTable(self):

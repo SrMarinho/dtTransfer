@@ -15,7 +15,7 @@ class VansProjetos(Queryable):
         with open('sqls/consulta_vans_projetos.sql', 'r') as file:
             return file.read()
 
-    def deleteDateBetween(self, startDate, endDate):
+    def deleteDay(self, startDate, endDate):
         ...
 
     def createTable(self):

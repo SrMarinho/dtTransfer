@@ -15,7 +15,7 @@ class TitulosComNotas(Queryable):
         with open('sqls/consulta_titulos_com_notas.sql', 'r') as file:
             return file.read()
 
-    def deleteDateBetween(self, startDate, endDate):
+    def deleteDay(self, startDate, endDate):
         try:
             if (self.existsTable()):
                 conn = self.toDriver.connection()

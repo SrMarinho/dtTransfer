@@ -39,7 +39,7 @@ SELECT DISTINCT
        	WHEN E001TNS.RECTPB  = 'PG' THEN 'Pagamento'
        	WHEN E001TNS.RECTPB = 'DV' THEN 'Devolução'
        	WHEN E001TNS.RECTPB = 'AB' THEN 'Abatimento'
-       	WHEN E001TNS.RECTPB = 'CA' THEN 'Cancelamento'
+        WHEN E001TNS.RECTPB = 'CA' THEN 'Cancelamento'
        	WHEN E001TNS.RECTPB = 'CR' THEN 'Baixa Crédito'
        	WHEN E001TNS.RECTPB = 'CP' THEN 'Compensação'
        	WHEN E001TNS.RECTPB = 'LP' THEN 'Lucos e Perdas'
@@ -74,4 +74,5 @@ WHERE
   	AND E301TCR.CODEMP = 5
   	AND E001TNS.LISMOD <> 'CRP'
   	AND E301TCR.SITTIT <> 'CA'
-	AND E301TCR.DATENT = TO_DATE('REPLACE_DATE_HERE', 'dd/mm/yyyy')
+	AND E301TCR.DATENT = TO_DATE('REPLACE_START_DATE', 'yyyy-mm-dd')
+

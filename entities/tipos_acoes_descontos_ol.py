@@ -15,7 +15,7 @@ class TiposAcoesDescontosOl(Queryable):
         with open('sqls/consulta_tipos_acoes_descontos_ol.sql', 'r') as file:
             return file.read()
 
-    def deleteDateBetween(self, startDate, endDate):
+    def deleteDay(self, startDate, endDate):
         ...
 
     def createTable(self):

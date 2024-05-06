@@ -15,7 +15,7 @@ class ConfiguracoesOlExcecoesUnidades(Queryable):
         with open('sqls/consulta_configuracoes_ol_excecoes_unidades.sql', 'r') as file:
             return file.read()
 
-    def deleteDateBetween(self, startDate, endDate):
+    def deleteDay(self, startDate, endDate):
         ...
 
     def createTable(self):
