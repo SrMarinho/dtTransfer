@@ -92,7 +92,7 @@ class nDaysAgo(Process):
         end_time = time.time()
         totalTime = end_time - self.start_time
 
-        print("Tempo de execução:", totalTime, "segundos")
+        print(f"Tempo de execução: {totalTime:.2f} segundos")
         print("Total de itens inseridos:", self.insertedRows, "itens")
-        print(f"Itens inseridos por segundo: {self.insertedRows / totalTime}")
+        print(f"Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
 
