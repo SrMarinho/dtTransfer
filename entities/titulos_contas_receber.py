@@ -6,7 +6,7 @@ class TitulosContasReceber(Queryable):
     def __init__(self, params):
         self.params = params
         self.fromDB = 'Senior'
-        self.toDB = 'biMktNaz'
+        self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
         self.tableName = 'titulos_contas_receber'
@@ -16,7 +16,15 @@ class TitulosContasReceber(Queryable):
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        ...
+        print(f"Apagando registros entre os dias {startDate} e {endDate} na tabela {self.tableName}...")
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute("DELETE FROM {} WHERE entrada BETWEEN '{}' AND '{}'".format(self.tableName, startDate, endDate))
+                print(f"Registros apagados com sucesso entre os dias {startDate} e {endDate} na tabela {self.tableName}!")
+        except Exception as e:
+            print(f"Erro ao tentar apagar registros entre os dias {startDate} e {endDate} na tabela {self.tableName}!")
+            raise e
 
     def createTable(self):
         creationQuery = """
