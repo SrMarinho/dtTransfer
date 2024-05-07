@@ -16,14 +16,14 @@ class TitulosContasReceber(Queryable):
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        print(f"Apagando registros entre os dias {startDate} e {endDate} na tabela {self.tableName}...")
+        print(f"Apagando registros no dia {startDate} na tabela {self.tableName}...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("DELETE FROM {} WHERE entrada BETWEEN '{}' AND '{}'".format(self.tableName, startDate, endDate))
-                print(f"Registros apagados com sucesso entre os dias {startDate} e {endDate} na tabela {self.tableName}!")
+                    cursor.execute("DELETE FROM {} A WHERE A.entrada = '{}';".format(self.tableName, startDate))
+                print(f"Registros apagados com sucesso no dia {startDate} na tabela {self.tableName}!")
         except Exception as e:
-            print(f"Erro ao tentar apagar registros entre os dias {startDate} e {endDate} na tabela {self.tableName}!")
+            print(f"Erro ao tentar apagar registros no dia {startDate} na tabela {self.tableName}!")
             raise e
 
     def createTable(self):
