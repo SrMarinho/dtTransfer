@@ -35,7 +35,7 @@ class nDaysAgo(Process):
             tableInstance.deleteDay(str(currentDay), str(nextDay))
 
             currentQuery = originalQuery.replace('REPLACE_START_DATE', str(currentDay)).replace('REPLACE_END_DATE', str(nextDay))
-
+            
             fromCursor = connection.cursor()
             fromCursor.execute(currentQuery)
             
@@ -65,7 +65,7 @@ class nDaysAgo(Process):
             try:
                 self.oneDay(tableInstance, originalQuery, start, day)
             except Exception as e:
-                ...
+                print(e)
 
     def run(self):
         tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
