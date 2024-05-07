@@ -40,19 +40,20 @@ class nDaysAgo(Process):
             fromCursor.execute(currentQuery)
             
             totalRows = 0
+
             while True:
                 rows = fromCursor.fetchmany(init.ROWSNUM)
                 if not rows:
                     break
-
+                
                 self.insertedRows += len(rows)
                 totalRows += len(rows)
 
                 tableInstance.insert(rows)
-
+            
             print(f"Numero de linhas inseridas na tabela {tableInstance.tableName} no dia {currentDay}: {str(totalRows)}")
             totalTime = time.time() - start_time
-            print(f"Itens inseridos por segundo: {totalRows / totalTime}")
+            print(f"Itens inseridos por segundo: {(totalRows / totalTime):.2f}")
 
             fromCursor.close()
             connection.close()
