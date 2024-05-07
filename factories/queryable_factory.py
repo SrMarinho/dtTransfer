@@ -13,6 +13,7 @@ from entities.vans_projetos import VansProjetos
 from entities.clientes_redes import ClientesRedes
 from entities.tipos_acoes_descontos_ol import TiposAcoesDescontosOl
 from entities.titulos_contas_receber import TitulosContasReceber
+from entities.acopanhamento_solicitacoes_compras import AcompanhamentoSolicitacoesCompras
 
 class QueryableFactory:
     def __init__(self):
@@ -35,7 +36,8 @@ class QueryableFactory:
             'vans_projetos': VansProjetos,
             'clientes_redes': ClientesRedes,
             'tipos_acoes_descontos_ol': TiposAcoesDescontosOl,
-            'titulos_contas_receber': TitulosContasReceber
+            'titulos_contas_receber': TitulosContasReceber,
+            'acopanhamento_solicitacoes_compras': AcompanhamentoSolicitacoesCompras
         }
 
         if queryName in entities_list:

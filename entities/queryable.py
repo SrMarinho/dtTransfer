@@ -10,7 +10,7 @@ class Queryable(ABC):  # Classe abstrata Animal
         if(len(rows) == 0):
             print("Sem dados para serem inseridos!")
             return
-
+        print('aqui')
         try:
             conn = self.toDriver.connection()
 
