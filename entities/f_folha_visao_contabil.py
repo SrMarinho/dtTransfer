@@ -19,7 +19,7 @@ class FfolhaVisaoContabil(Queryable):
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("DELETE FROM {} A WHERE A.data_lancamento = '{}';".format(self.tableName, startDate))
+                    cursor.execute("DELETE FROM {} A WHERE A.data_lancamento = TO_CHAR('{}'::DATE, 'DD/MM/YYYY');".format(self.tableName, startDate))
                 print(f"Registros apagados com sucesso no dia {startDate} na tabela {self.tableName}!")
         except Exception as e:
             print(f"Erro ao tentar apagar registros no dia {startDate} na tabela {self.tableName}!")

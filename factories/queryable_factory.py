@@ -15,6 +15,7 @@ from entities.tipos_acoes_descontos_ol import TiposAcoesDescontosOl
 from entities.titulos_contas_receber import TitulosContasReceber
 from entities.acopanhamento_solicitacoes_compras import AcompanhamentoSolicitacoesCompras
 from entities.f_folha_visao_contabil import FfolhaVisaoContabil
+from entities.estoque_usu_consumo import EstoqueUsuConsumo
 
 class QueryableFactory:
     def __init__(self):
@@ -39,7 +40,8 @@ class QueryableFactory:
             'tipos_acoes_descontos_ol': TiposAcoesDescontosOl,
             'titulos_contas_receber': TitulosContasReceber,
             'acopanhamento_solicitacoes_compras': AcompanhamentoSolicitacoesCompras,
-            'f_folha_visao_contabil': FfolhaVisaoContabil
+            'f_folha_visao_contabil': FfolhaVisaoContabil,
+            'estoque_usu_consumo': EstoqueUsuConsumo
         }
 
         if queryName in entities_list:
