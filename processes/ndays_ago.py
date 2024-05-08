@@ -66,7 +66,7 @@ class nDaysAgo(Process):
                 self.oneDay(tableInstance, originalQuery, start, day)
             except Exception as e:
                 print(e)
-
+    
     def run(self):
         tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
 
