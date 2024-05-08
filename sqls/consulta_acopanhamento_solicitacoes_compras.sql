@@ -63,7 +63,7 @@ SELECT
 		INNER JOIN SAPIENS_PROD.R999USU ru 
 				ON ru.CODUSU = c.USUCOT
 	WHERE 
-		S.codemp=2 
+		S.codemp in (2, 5)
     AND S.DATSOL >= TO_DATE('2024-01-01', 'yyyy-mm-dd')
     AND S.DATSOL = TO_DATE('REPLACE_START_DATE', 'yyyy-mm-dd')
 
@@ -134,7 +134,7 @@ SELECT
 		INNER JOIN SAPIENS_PROD.R999USU ru 
 				ON ru.CODUSU = c.USUCOT 
 	WHERE 
-		S.codemp=2 
+		S.codemp in (2, 5)
 	  	AND S.DATSOL >= TO_DATE('2024-01-01', 'yyyy-mm-dd')
     AND S.DATSOL = TO_DATE('REPLACE_START_DATE', 'yyyy-mm-dd')
 	  	
