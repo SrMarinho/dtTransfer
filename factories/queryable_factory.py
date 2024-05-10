@@ -24,6 +24,7 @@ from entities.folha_controladoria import FolhaControladoria
 from entities.d_filiais import Dfiliais
 from entities.d_custos import Dcusto
 from entities.d_historico_filial import DhistoricoFilial
+from entities.d_eventos import DEventos
 
 
 class QueryableFactory:
@@ -58,8 +59,8 @@ class QueryableFactory:
             'folha_controladoria': FolhaControladoria,
             'd_filiais': Dfiliais,
             'd_custos': Dcusto,
-            'd_historico_filial': DhistoricoFilial
-
+            'd_historico_filial': DhistoricoFilial,
+            'd_eventos': DEventos
         }
 
         if queryName in entities_list:
