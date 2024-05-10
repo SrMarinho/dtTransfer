@@ -1,28 +1,27 @@
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
 
-class PlanoContasContabeis(Queryable):
+class Dcusto(Queryable):
     def __init__(self, params):
         self.params = params
         self.fromDB = 'Senior'
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'plano_contas_contabeis'
+        self.tableName = 'd_custos'
     
     def getQuery(self) -> str:
-        with open('sqls/consulta_plano_contas_contabeis.sql', 'r') as file:
+        with open('sqls/consulta_d_custos.sql', 'r') as file:
             return file.read()
 
     def createTable(self):
         creationQuery = """
-            CREATE TABLE plano_contas_contabeis (
+            CREATE TABLE d_custos (
                 empresa INTEGER,
-                red INTEGER,
-                descricao VARCHAR(250),
-                mascara VARCHAR(40),
-                classificacao VARCHAR(30),
-                tipo VARCHAR(12),
-                natureza VARCHAR(1)
+                cod_custo VARCHAR(9),
+                descr_custo VARCHAR(80),
+                tipo VARCHAR(1),
+                aceita_rat CHAR(3),
+                data_alt VARCHAR(10)
             );
         """

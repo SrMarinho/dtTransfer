@@ -22,6 +22,7 @@ from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
 from entities.plano_contas_contabeis import PlanoContasContabeis
 from entities.folha_controladoria import FolhaControladoria
 from entities.d_filiais import Dfiliais
+from entities.d_custos import Dcusto
 
 
 class QueryableFactory:
@@ -54,7 +55,8 @@ class QueryableFactory:
             'f_titulos_com_notas_produtos': FTitulosComNotasProdutos,
             'plano_contas_contabeis': PlanoContasContabeis,
             'folha_controladoria': FolhaControladoria,
-            'd_filiais': Dfiliais
+            'd_filiais': Dfiliais,
+            'd_custos': Dcusto
         }
 
         if queryName in entities_list:
