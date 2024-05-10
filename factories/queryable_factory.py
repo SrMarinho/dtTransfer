@@ -21,6 +21,8 @@ from entities.f_titulos_com_notas_servicos import FtitulosComNotasServicos
 from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
 from entities.plano_contas_contabeis import PlanoContasContabeis
 from entities.folha_controladoria import FolhaControladoria
+from entities.d_filiais import Dfiliais
+
 
 class QueryableFactory:
     def __init__(self):
@@ -51,7 +53,8 @@ class QueryableFactory:
             'f_titulos_com_notas_servicos': FtitulosComNotasServicos,
             'f_titulos_com_notas_produtos': FTitulosComNotasProdutos,
             'plano_contas_contabeis': PlanoContasContabeis,
-            'folha_controladoria': FolhaControladoria
+            'folha_controladoria': FolhaControladoria,
+            'd_filiais': Dfiliais
         }
 
         if queryName in entities_list:
