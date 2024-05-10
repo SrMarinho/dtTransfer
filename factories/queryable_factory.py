@@ -20,6 +20,7 @@ from entities.titulos_sem_notas import TitulosSemNotas
 from entities.f_titulos_com_notas_servicos import FtitulosComNotasServicos
 from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
 from entities.plano_contas_contabeis import PlanoContasContabeis
+from entities.folha_controladoria import FolhaControladoria
 
 class QueryableFactory:
     def __init__(self):
@@ -49,7 +50,8 @@ class QueryableFactory:
             'titulos_sem_notas': TitulosSemNotas,
             'f_titulos_com_notas_servicos': FtitulosComNotasServicos,
             'f_titulos_com_notas_produtos': FTitulosComNotasProdutos,
-            'plano_contas_contabeis': PlanoContasContabeis
+            'plano_contas_contabeis': PlanoContasContabeis,
+            'folha_controladoria': FolhaControladoria
         }
 
         if queryName in entities_list:
