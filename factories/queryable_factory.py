@@ -19,6 +19,7 @@ from entities.estoque_usu_consumo import EstoqueUsuConsumo
 from entities.titulos_sem_notas import TitulosSemNotas
 from entities.f_titulos_com_notas_servicos import FtitulosComNotasServicos
 from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
+from entities.plano_contas_contabeis import PlanoContasContabeis
 
 class QueryableFactory:
     def __init__(self):
@@ -47,7 +48,8 @@ class QueryableFactory:
             'estoque_usu_consumo': EstoqueUsuConsumo,
             'titulos_sem_notas': TitulosSemNotas,
             'f_titulos_com_notas_servicos': FtitulosComNotasServicos,
-            'f_titulos_com_notas_produtos': FTitulosComNotasProdutos
+            'f_titulos_com_notas_produtos': FTitulosComNotasProdutos,
+            'plano_contas_contabeis': PlanoContasContabeis
         }
 
         if queryName in entities_list:
