@@ -18,6 +18,7 @@ from entities.f_folha_visao_contabil import FfolhaVisaoContabil
 from entities.estoque_usu_consumo import EstoqueUsuConsumo
 from entities.titulos_sem_notas import TitulosSemNotas
 from entities.f_titulos_com_notas_servicos import FtitulosComNotasServicos
+from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
 
 class QueryableFactory:
     def __init__(self):
@@ -45,7 +46,8 @@ class QueryableFactory:
             'f_folha_visao_contabil': FfolhaVisaoContabil,
             'estoque_usu_consumo': EstoqueUsuConsumo,
             'titulos_sem_notas': TitulosSemNotas,
-            'f_titulos_com_notas_servicos': FtitulosComNotasServicos
+            'f_titulos_com_notas_servicos': FtitulosComNotasServicos,
+            'f_titulos_com_notas_produtos': FTitulosComNotasProdutos
         }
 
         if queryName in entities_list:
