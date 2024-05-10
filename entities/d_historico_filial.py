@@ -1,7 +1,8 @@
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
 
-class Dcusto(Queryable):
+
+class DhistoricoFilial(Queryable):
     def __init__(self, params):
         self.params = params
         self.fromDB = 'Senior'
@@ -16,12 +17,55 @@ class Dcusto(Queryable):
 
     def createTable(self):
         creationQuery = """
-            CREATE TABLE d_custos (
-                empresa INTEGER,
-                cod_custo VARCHAR(9),
-                descr_custo VARCHAR(80),
-                tipo VARCHAR(1),
-                aceita_rat CHAR(3),
-                data_alt VARCHAR(10)
+            CREATE TABLE d_historico_filial (
+                numemp INTEGER,
+                tipcol INTEGER,
+                numcad INTEGER,
+                datalt DATE NOT NULL,
+                empatu INTEGER,
+                codtap INTEGER,
+                estpos INTEGER,
+                postra VARCHAR(24),
+                codfil INTEGER,
+                taborg INTEGER,
+                numloc INTEGER,
+                cadatu INTEGER,
+                codccu VARCHAR(18),
+                natdes INTEGER,
+                tipadm INTEGER,
+                ficreg INTEGER,
+                contov VARCHAR(1),
+                staacc INTEGER,
+                motpos INTEGER,
+                estcar INTEGER,
+                codcar VARCHAR(24),
+                codmot INTEGER,
+                codesc INTEGER,
+                codtma INTEGER,
+                turint INTEGER,
+                horbas INTEGER,
+                horsab INTEGER,
+                horsem INTEGER,
+                hordsr INTEGER,
+                codmts INTEGER,
+                codest INTEGER,
+                valsal NUMERIC(13,4),
+                cplsal NUMERIC(13,4),
+                tipsal INTEGER,
+                tipest INTEGER,
+                clasal VARCHAR(5),
+                nivsal VARCHAR(5),
+                perdes NUMERIC(5,2),
+                perrea NUMERIC(8,5),
+                codsin INTEGER,
+                numcra NUMERIC(12,0),
+                stahis INTEGER,
+                confin INTEGER,
+                codvin INTEGER,
+                carvag VARCHAR(24),
+                socsin VARCHAR(1),
+                admeso INTEGER,
+                trabhr INTEGER,
+                codbhr INTEGER
             );
         """

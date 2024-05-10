@@ -1,6 +1,55 @@
 SELECT
-	*
+  numemp,
+  tipcol,
+  numcad,
+  datalt,
+  empatu,
+  codtap,
+  estpos,
+  postra,
+  codfil,
+  taborg,
+  numloc,
+  cadatu,
+  codccu,
+  natdes,
+  tipadm,
+  ficreg,
+  contov,
+  staacc,
+  motpos,
+  estcar,
+  codcar,
+  codmot,
+  codesc,
+  codtma,
+  turint,
+  horbas,
+  horsab,
+  horsem,
+  hordsr,
+  codmts,
+  codest,
+  valsal,
+  cplsal,
+  tipsal,
+  tipest,
+  clasal,
+  nivsal,
+  perdes,
+  perrea,
+  codsin,
+  numcra,
+  stahis,
+  confin,
+  codvin,
+  carvag,
+  socsin,
+  admeso,
+  trabhr,
+  codbhr
 FROM
-	R038HFI
+	VETORH_PROD.R038HFI
 WHERE
-	NUMEMP = :EMPRESA;
+	NUMEMP IN (2, 5)
+

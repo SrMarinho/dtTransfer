@@ -23,6 +23,7 @@ from entities.plano_contas_contabeis import PlanoContasContabeis
 from entities.folha_controladoria import FolhaControladoria
 from entities.d_filiais import Dfiliais
 from entities.d_custos import Dcusto
+from entities.d_historico_filial import DhistoricoFilial
 
 
 class QueryableFactory:
@@ -56,7 +57,9 @@ class QueryableFactory:
             'plano_contas_contabeis': PlanoContasContabeis,
             'folha_controladoria': FolhaControladoria,
             'd_filiais': Dfiliais,
-            'd_custos': Dcusto
+            'd_custos': Dcusto,
+            'd_historico_filial': DhistoricoFilial
+
         }
 
         if queryName in entities_list:
