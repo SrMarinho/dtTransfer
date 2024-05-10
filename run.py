@@ -21,6 +21,9 @@ def init_args():
     if 'mode' not in params:
         params['mode'] = 'cli'
 
+    if 'process' not in params:
+        params['process'] = 'regular'
+
     return params
 
 def main():

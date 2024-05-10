@@ -12,4 +12,5 @@ class ProcessFactory:
 
         if name in processes_instances:
             return processes_instances[name](params)
+
         raise "Processo não encontrado!"
