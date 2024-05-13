@@ -13,7 +13,7 @@ from entities.vans_projetos import VansProjetos
 from entities.clientes_redes import ClientesRedes
 from entities.tipos_acoes_descontos_ol import TiposAcoesDescontosOl
 from entities.titulos_contas_receber import TitulosContasReceber
-from entities.acopanhamento_solicitacoes_compras import AcompanhamentoSolicitacoesCompras
+from entities.acompanhamento_solicitacoes_compras import AcompanhamentoSolicitacoesCompras
 from entities.f_folha_visao_contabil import FfolhaVisaoContabil
 from entities.estoque_usu_consumo import EstoqueUsuConsumo
 from entities.titulos_sem_notas import TitulosSemNotas
@@ -49,7 +49,7 @@ class QueryableFactory:
             'clientes_redes': ClientesRedes,
             'tipos_acoes_descontos_ol': TiposAcoesDescontosOl,
             'titulos_contas_receber': TitulosContasReceber,
-            'acopanhamento_solicitacoes_compras': AcompanhamentoSolicitacoesCompras,
+            'acompanhamento_solicitacoes_compras': AcompanhamentoSolicitacoesCompras,
             'f_folha_visao_contabil': FfolhaVisaoContabil,
             'estoque_usu_consumo': EstoqueUsuConsumo,
             'titulos_sem_notas': TitulosSemNotas,
