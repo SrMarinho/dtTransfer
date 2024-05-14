@@ -101,7 +101,7 @@
 		                                     AND RT1.NUMTIT = RT.NUMTIT 
 		                                     AND RT1.CODTPT = RT.CODTPT 
 		                                     AND RT1.CODFOR = RT.CODFOR)
-	AND T.CODEMP = 5 --Empresa Drogaria Globo
+	AND T.CODEMP IN (2, 5) --Empresa Drogaria Globo
 	AND T.USUGER <> 388 --Usuário LINX mercadaria para revenda, não são despesas
 	AND RT.CTARED >=536 --Contas contábis entre 536 até 1010 são despesas 
 	AND RT.CTARED <=1010
