@@ -25,6 +25,7 @@ from entities.d_filiais import Dfiliais
 from entities.d_custos import Dcusto
 from entities.d_historico_filial import DhistoricoFilial
 from entities.d_eventos import DEventos
+from entities.f_mapear_contas_lanc_contabil import FMapearContasLancContabil
 
 
 class QueryableFactory:
@@ -60,7 +61,8 @@ class QueryableFactory:
             'd_filiais': Dfiliais,
             'd_custos': Dcusto,
             'd_historico_filial': DhistoricoFilial,
-            'd_eventos': DEventos
+            'd_eventos': DEventos,
+            'f_mapear_contas_lanc_contabil': FMapearContasLancContabil
         }
 
         if queryName in entities_list:
