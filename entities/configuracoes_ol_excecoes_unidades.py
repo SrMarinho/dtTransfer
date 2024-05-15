@@ -1,6 +1,5 @@
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
-from config.databases.biMktNaz import BiMktNaz
 
 class ConfiguracoesOlExcecoesUnidades(Queryable):
     def __init__(self, params):
@@ -20,7 +19,7 @@ class ConfiguracoesOlExcecoesUnidades(Queryable):
 
     def createTable(self):
         creationQuery = """
-            CREATE TABLE IF NOT EXISTS configuracoes_ol_unidades
+            CREATE TABLE IF NOT configuracoes_ol_excecoes_unidades
             (
                 configuracao_ol_unidade numeric(15,0),
                 formulario_origem numeric(6,0),
