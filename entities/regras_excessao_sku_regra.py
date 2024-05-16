@@ -1,3 +1,4 @@
+from config.logger.logging import logger
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
 
@@ -33,12 +34,12 @@ class RegrasExcessaoSkuRegra(Queryable):
                 conn.commit()
                 cursor.close()
                 conn.close()
-                print(f"Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
+                logger.info(f"{self.tableName} - Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
             else:
-                raise "Tabela não existe!"
+                logger.info("{self.tableName} - Tabela não existe!")
             
         except Exception as e:
-            print("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.tableName, startDate, endDate))
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.tableName, startDate, endDate))
             raise e
 
     def createTable(self):

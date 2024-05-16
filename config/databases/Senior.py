@@ -1,4 +1,4 @@
-
+from config.logger.logging import logger
 import os
 from dotenv import load_dotenv
 from config.databases.connections.oracle_connection import OracleDB
@@ -29,5 +29,5 @@ class Senior():
                         self.encoding
                     )
         except Exception as e:
-            print("Erro ao tentar conectar ao driver {} no banco {}".format(self.driver, self.serviceName))
+            logger.info("Erro ao tentar conectar ao driver {} no banco {}".format(self.driver, self.serviceName))
             raise e

@@ -6,7 +6,7 @@ from factories.database_driver_factory import DatabaseDriverFactory
 import processes as init
 import time
 import threading
-
+from config.logger.logging import logger
 
 class nDaysAgo(Process):
     def __init__(self, params):
@@ -24,13 +24,14 @@ class nDaysAgo(Process):
                 except Exception as e:
                     tries += 1
                     time.sleep(30 * tries)
-                    print(f"Erro ao tentar criar conexao, tentando novamente em {30 * tries} segundos")
+
+                    logger.warning(f"{tableInstance.tableName} - Erro ao tentar criar conexao, tentando novamente em {30 * tries} segundos")
                     
             start_time = time.time()
             currentDay = today - timedelta(days=nday)
             nextDay = currentDay + timedelta(days=1)
 
-            print(currentDay)
+            logger.debug(currentDay)
 
             tableInstance.deleteDay(str(currentDay), str(nextDay))
 
@@ -51,21 +52,21 @@ class nDaysAgo(Process):
 
                 tableInstance.insert(rows)
             
-            print(f"Numero de linhas inseridas na tabela {tableInstance.tableName} no dia {currentDay}: {str(totalRows)}")
+            logger.debug(f"{tableInstance.tableName} - Numero de linhas inseridas na tabela {tableInstance.tableName} no dia {currentDay}: {str(totalRows)}")
             totalTime = time.time() - start_time
-            print(f"Itens inseridos por segundo: {(totalRows / totalTime):.2f}")
+            logger.debug(f"{tableInstance.tableName} - Itens inseridos por segundo: {(totalRows / totalTime):.2f}")
 
             fromCursor.close()
             connection.close()
         except Exception as e:
-            print(e)
+            logger.debug(e)
 
     def executeDays(self, tableInstance, originalQuery, start, days):
         for day in range(days):
             try:
                 self.oneDay(tableInstance, originalQuery, start, day)
             except Exception as e:
-                print(e)
+                logger.debug(e)
     
     def run(self):
         tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
@@ -93,7 +94,7 @@ class nDaysAgo(Process):
         end_time = time.time()
         totalTime = end_time - self.start_time
 
-        print(f"Tempo de execução: {totalTime:.2f} segundos")
-        print("Total de itens inseridos:", self.insertedRows, "itens")
-        print(f"Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
+        logger.info(f"{tableInstance.tableName} - Tempo de execução: {totalTime:.2f} segundos")
+        logger.info(f"{tableInstance.tableName} - Total de itens inseridos: {self.insertedRows} itens")
+        logger.info(f"{tableInstance.tableName} - Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
 

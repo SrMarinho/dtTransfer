@@ -1,3 +1,4 @@
+from config.logger.logging import logger
 import os
 from dotenv import load_dotenv
 from config.databases.connections.postgres_connection import PostgresDB
@@ -27,6 +28,6 @@ class BiMktNaz():
                         self.port
                     )
         except Exception as e:
-            print("Erro ao tentar conectar ao driver {} no banco {}".format(self.driver, self.database))
+            logger.info("Erro ao tentar conectar ao driver {} no banco {}".format(self.driver, self.database))
             raise e
     
