@@ -5,6 +5,7 @@ from factories.database_factory import DatabaseFactory
 from factories.database_driver_factory import DatabaseDriverFactory
 import processes as init
 import time
+from config.logger.logging import logger
 
 class RegularQuery(Process):
     def __init__(self, params):
@@ -37,8 +38,6 @@ class RegularQuery(Process):
 
                 numOfRows += len(rows)
 
-                print(numOfRows, end="\r")
-
                 tableInstance.insert(rows)
 
             fromCursor.close()
@@ -47,7 +46,7 @@ class RegularQuery(Process):
             endTime = time.time()
             totalTime = endTime - self.startTime
             
-            print(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
-            print(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
+            logger.info(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
+            logger.info(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
         except Exception as e:
-            raise e
+            logger.debug(e)

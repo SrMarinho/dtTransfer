@@ -1,3 +1,4 @@
+from config.logger.logging import logger
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
 from config.databases.biMktNaz import BiMktNaz
@@ -18,14 +19,16 @@ class TitulosComNotas(Queryable):
     def deleteDay(self, startDate, endDate):
         try:
             if (self.existsTable()):
-                conn = self.toDriver.connection()
-                cursor = conn.cursor()
-                cursor.execute("DELETE FROM {} WHERE data_entrada_titulo BETWEEN '{}' AND '{}'".format(self.tableName, startDate, endDate))
+                with self.toDriver.connection() as conn:
+                    with conn.cursor() as cursor:
+                        cursor.execute("DELETE FROM {} WHERE data_entrada_titulo = TO_CHAR('{}'::DATE, 'DD/MM/YYYY')".format(self.tableName, startDate))
+                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
             else:
+                logger.info("Tabela não existe!")
                 raise "Tabela não existe!"
             
         except Exception as e:
-            print("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}".format(self.tableName, startDate, endDate))
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}".format(self.tableName, startDate, endDate))
             raise e
 
     def createTable(self):

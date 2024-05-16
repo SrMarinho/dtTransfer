@@ -1,4 +1,4 @@
-# import cx_Oracle
+from config.logger.logging import logger
 from config.databases.connections.database import Database
 import oracledb
 
@@ -10,13 +10,12 @@ class OracleDB(Database):
         try:
             oracledb.init_oracle_client()
         except Exception as e:
-            # print("Erro ao iniciar cliente oracle")
             ...
         
         try:
             return  oracledb.connect(user = user, password = password, host = host, port = port, service_name = serviceName)
         except Exception as e:
-            print("Erro ao tentar criar conexão com banco de dados oracle host '{}' na porta '{}'!".format(host, port))
+            logger.info("Erro ao tentar criar conexão com banco de dados oracle host '{}' na porta '{}'!".format(host, port))
             raise e
 
     def getCursor(self):

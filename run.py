@@ -1,7 +1,7 @@
 import argparse
 import factories.mode_factory as mf
 from factories.mode_factory import ModeFactory 
-
+from config.logger.logging import logger
 
 def init_args():
     parser = argparse.ArgumentParser()

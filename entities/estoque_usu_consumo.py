@@ -1,3 +1,4 @@
+from config.logger.logging import logger
 from entities.queryable import Queryable
 from factories.database_factory import DatabaseFactory 
 
@@ -15,14 +16,14 @@ class EstoqueUsuConsumo(Queryable):
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        print(f"Apagando registros no dia {startDate} na tabela {self.tableName}...")
+        logger.info(f"{self.tableName} - Apagando registros no dia {startDate} ...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute(f"DELETE FROM {self.tableName} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
-                print(f"Registros apagados com sucesso no dia {startDate} na tabela {self.tableName}!")
+                    cursor.execute(f"{self.tableName} - DELETE FROM {self.tableName} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
+                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            print(f"Erro ao tentar apagar registros no dia {startDate} na tabela {self.tableName}!")
+            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):

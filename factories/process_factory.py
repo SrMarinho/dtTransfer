@@ -1,6 +1,6 @@
 from processes.ndays_ago import nDaysAgo
 from processes.regular_query import RegularQuery
-
+from config.logger.logging import logger
 
 class ProcessFactory:
     @staticmethod
@@ -13,4 +13,4 @@ class ProcessFactory:
         if name in processes_instances:
             return processes_instances[name](params)
 
-        raise "Processo não encontrado!"
+        logger.info("Processo não encontrado!") 
