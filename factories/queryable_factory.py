@@ -35,7 +35,8 @@ class QueryableFactory:
             'd_historico_filial': DhistoricoFilial,
             'd_eventos': DEventos,
             'f_mapear_contas_lanc_contabil': FMapearContasLancContabil,
-            'rescisoes': Rescisoes
+            'rescisoes': Rescisoes,
+            'fgts_sem_rescisoes': FgtsSemRescisoes
         }
 
         if queryName in entities_list:
