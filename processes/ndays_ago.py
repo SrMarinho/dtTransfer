@@ -42,6 +42,7 @@ class nDaysAgo(Process):
             
             totalRows = 0
 
+            logger.debug(f"{tableInstance.tableName} - Inserindo linhas na tabela no dia {currentDay}...")
             while True:
                 rows = fromCursor.fetchmany(init.ROWSNUM)
                 if not rows:
@@ -52,7 +53,7 @@ class nDaysAgo(Process):
 
                 tableInstance.insert(rows)
             
-            logger.debug(f"{tableInstance.tableName} - Numero de linhas inseridas na tabela {tableInstance.tableName} no dia {currentDay}: {str(totalRows)}")
+            logger.info(f"{tableInstance.tableName} - Numero de linhas inseridas na tabela no dia {currentDay}: {str(totalRows)}")
             totalTime = time.time() - start_time
             logger.debug(f"{tableInstance.tableName} - Itens inseridos por segundo: {(totalRows / totalTime):.2f}")
 
@@ -94,7 +95,7 @@ class nDaysAgo(Process):
         end_time = time.time()
         totalTime = end_time - self.start_time
 
-        logger.info(f"{tableInstance.tableName} - Tempo de execução: {totalTime:.2f} segundos")
-        logger.info(f"{tableInstance.tableName} - Total de itens inseridos: {self.insertedRows} itens")
-        logger.info(f"{tableInstance.tableName} - Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
+        logger.debug(f"{tableInstance.tableName} - Tempo de execução: {totalTime:.2f} segundos")
+        logger.debug(f"{tableInstance.tableName} - Total de itens inseridos: {self.insertedRows} itens")
+        logger.debug(f"{tableInstance.tableName} - Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
 

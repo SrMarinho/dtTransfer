@@ -17,6 +17,7 @@ class TitulosComNotas(Queryable):
             return file.read()
 
     def deleteDay(self, startDate, endDate):
+        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
         try:
             if (self.existsTable()):
                 with self.toDriver.connection() as conn:
@@ -26,7 +27,6 @@ class TitulosComNotas(Queryable):
             else:
                 logger.info("Tabela não existe!")
                 raise "Tabela não existe!"
-            
         except Exception as e:
             logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}".format(self.tableName, startDate, endDate))
             raise e
