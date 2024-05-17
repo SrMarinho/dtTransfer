@@ -16,14 +16,14 @@ class AcompanhamentoSolicitacoesCompras(Queryable):
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        logger.info(f"Apagando registros no dia {startDate} na tabela {self.tableName}...")
+        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute("DELETE FROM {} A WHERE A.data_solicitacao = '{}';".format(self.tableName, startDate))
-                logger.info(f"Registros apagados com sucesso no dia {startDate} na tabela {self.tableName}!")
+                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            logger.info(f"Erro ao tentar apagar registros no dia {startDate} na tabela {self.tableName}!")
+            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):
