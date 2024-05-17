@@ -1,32 +1,4 @@
-from entities.titulos_com_notas import TitulosComNotas
-from entities.configuracoes_ol import ConfiguracoesOl
-from entities.configuracoes_ol_excecoes import ConfiguracoesOlExcecoes
-from entities.configuracoes_ol_excecoes_clientes import ConfiguracoesOlExcecoesClientes
-from entities.configuracoes_ol_excecoes_descontos import ConfiguracoesOlExcecoesDescontos
-from entities.configuracoes_ol_excecoes_marcas import ConfiguracoesOlExcecoesMarcas
-from entities.configuracoes_ol_excecoes_ols import ConfiguracoesOlExcecoesOls
-from entities.configuracoes_ol_excecoes_produtos import ConfiguracoesOlExcecoesProdutos
-from entities.configuracoes_ol_excecoes_unidades import ConfiguracoesOlExcecoesUnidades
-from entities.identificadores import Identificadores
-from entities.grupos_clientes import GruposClientes
-from entities.vans_projetos import VansProjetos
-from entities.clientes_redes import ClientesRedes
-from entities.tipos_acoes_descontos_ol import TiposAcoesDescontosOl
-from entities.titulos_contas_receber import TitulosContasReceber
-from entities.acompanhamento_solicitacoes_compras import AcompanhamentoSolicitacoesCompras
-from entities.f_folha_visao_contabil import FfolhaVisaoContabil
-from entities.estoque_usu_consumo import EstoqueUsuConsumo
-from entities.titulos_sem_notas import TitulosSemNotas
-from entities.f_titulos_com_notas_servicos import FtitulosComNotasServicos
-from entities.f_titulos_com_notas_produtos import FTitulosComNotasProdutos
-from entities.plano_contas_contabeis import PlanoContasContabeis
-from entities.folha_controladoria import FolhaControladoria
-from entities.d_filiais import Dfiliais
-from entities.d_custos import Dcusto
-from entities.d_historico_filial import DhistoricoFilial
-from entities.d_eventos import DEventos
-from entities.f_mapear_contas_lanc_contabil import FMapearContasLancContabil
-
+from entities import *
 
 class QueryableFactory:
     def __init__(self):
@@ -62,7 +34,8 @@ class QueryableFactory:
             'd_custos': Dcusto,
             'd_historico_filial': DhistoricoFilial,
             'd_eventos': DEventos,
-            'f_mapear_contas_lanc_contabil': FMapearContasLancContabil
+            'f_mapear_contas_lanc_contabil': FMapearContasLancContabil,
+            'rescisoes': Rescisoes
         }
 
         if queryName in entities_list:

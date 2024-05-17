@@ -53,6 +53,8 @@ class nDaysAgo(Process):
 
                 tableInstance.insert(rows)
             
+            connection.commit()
+            
             logger.info(f"{tableInstance.tableName} - Numero de linhas inseridas na tabela no dia {currentDay}: {str(totalRows)}")
             totalTime = time.time() - start_time
             logger.debug(f"{tableInstance.tableName} - Itens inseridos por segundo: {(totalRows / totalTime):.2f}")
