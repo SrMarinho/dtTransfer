@@ -20,7 +20,7 @@ class EstoqueUsuConsumo(Queryable):
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute(f"{self.tableName} - DELETE FROM {self.tableName} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
+                    cursor.execute(f"DELETE FROM {self.tableName} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
                 logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
             logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
