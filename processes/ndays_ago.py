@@ -13,22 +13,22 @@ class nDaysAgo(Process):
         self.params = params
         self.insertedRows = 0
         self.start_time = time.time()
+        self.days_list = []
+        self.lock = threading.Lock()
 
-    def oneDay(self, tableInstance, originalQuery, today, nday):
+    def oneDay(self, tableInstance, originalQuery, currentDay):
         tries = 0
         try:
             connection = None
-            while connection == None:
+            while connection is None:
                 try:
                     connection = tableInstance.fromDriver.connection()
                 except Exception as e:
                     tries += 1
                     time.sleep(30 * tries)
-
                     logger.warning(f"{tableInstance.tableName} - Erro ao tentar criar conexao, tentando novamente em {30 * tries} segundos")
-                    
+
             start_time = time.time()
-            currentDay = today - timedelta(days=nday)
             nextDay = currentDay + timedelta(days=1)
 
             logger.debug(currentDay)
@@ -48,7 +48,8 @@ class nDaysAgo(Process):
                 if not rows:
                     break
                 
-                self.insertedRows += len(rows)
+                with self.lock:
+                    self.insertedRows += len(rows)
                 totalRows += len(rows)
 
                 tableInstance.insert(rows)
@@ -64,35 +65,40 @@ class nDaysAgo(Process):
         except Exception as e:
             logger.debug(e)
 
-    def executeDays(self, tableInstance, originalQuery, start, days):
-        for day in range(days):
+    def get_next_day(self):
+        with self.lock:
+            if self.days_list:
+                return self.days_list.pop(0)
+            else:
+                return None
+
+    def worker(self, tableInstance, originalQuery):
+        while True:
+            currentDay = self.get_next_day()
+            if currentDay is None:
+                break
             try:
-                self.oneDay(tableInstance, originalQuery, start, day)
+                self.oneDay(tableInstance, originalQuery, currentDay)
             except Exception as e:
                 logger.debug(e)
-    
+
     def run(self):
         tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
-
         originalQuery = tableInstance.getQuery()
-
         today = date.today()
         
-        daysPerThread = 1
-
-        if int(self.params['days']) > init.THREADSNUM:
-            daysPerThread = (int(self.params['days'])) // init.THREADSNUM
+        for day in range(int(self.params['days'])):
+            dayToProcess = today - timedelta(days=day + 1)
+            self.days_list.append(dayToProcess)
 
         threads = []
-        for day in range(0, int(self.params['days']), daysPerThread):
-            currentDay = today - timedelta(days=day + 1)
-            thread = threading.Thread(target=self.executeDays, args=(tableInstance, originalQuery, currentDay, daysPerThread))
+        for _ in range(init.THREADSNUM):
+            thread = threading.Thread(target=self.worker, args=(tableInstance, originalQuery))
             threads.append(thread)
-            time.sleep(1)
             thread.start()
 
-        for th in threads:
-            th.join()
+        for thread in threads:
+            thread.join()
 
         end_time = time.time()
         totalTime = end_time - self.start_time
@@ -100,4 +106,3 @@ class nDaysAgo(Process):
         logger.debug(f"{tableInstance.tableName} - Tempo de execução: {totalTime:.2f} segundos")
         logger.debug(f"{tableInstance.tableName} - Total de itens inseridos: {self.insertedRows} itens")
         logger.debug(f"{tableInstance.tableName} - Itens inseridos por segundo: {(self.insertedRows / totalTime):.2f}")
-

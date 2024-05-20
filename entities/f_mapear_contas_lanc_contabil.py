@@ -30,16 +30,12 @@ class FMapearContasLancContabil(Queryable):
         creationQuery = """
             CREATE TABLE f_mapear_contas_lanc_contabil (
                 empresa INTEGER,
-                num_lancam INTEGER,
-                origem VARCHAR(3),
                 filial INTEGER,
                 data_lancamento VARCHAR(10),
-                debito INTEGER,
-                valor NUMERIC(14,2),
+                conta_reduzida INTEGER,
+                descr_conta_rdz VARCHAR(250),
+                valor NUMERIC(38,2),
                 lote INTEGER,
-                cod_historico INTEGER,
-                descr_historico VARCHAR(80),
-                cpllct VARCHAR(250),
                 cod_custo VARCHAR(9),
                 descr_custo VARCHAR(80),
                 deb_cred VARCHAR(1)
