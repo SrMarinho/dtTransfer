@@ -46,7 +46,7 @@ class RegularQuery(Process):
             endTime = time.time()
             totalTime = endTime - self.startTime
             
-            logger.info(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
-            logger.info(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
+            logger.debug(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
+            logger.debug(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
         except Exception as e:
             logger.debug(e)
