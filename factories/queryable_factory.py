@@ -36,7 +36,8 @@ class QueryableFactory:
             'd_eventos': DEventos,
             'f_mapear_contas_lanc_contabil': FMapearContasLancContabil,
             'rescisoes': Rescisoes,
-            'fgts_sem_rescisoes': FgtsSemRescisoes
+            'fgts_sem_rescisoes': FgtsSemRescisoes,
+            'pedidos_vendas_produtos': PedidosVendasProdutos
         }
 
         if queryName in entities_list:

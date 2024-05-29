@@ -28,3 +28,4 @@ from .d_eventos import DEventos
 from .f_mapear_contas_lanc_contabil import FMapearContasLancContabil
 from .rescisoes import Rescisoes
 from .fgts_sem_rescisoes import FgtsSemRescisoes
+from .pedidos_vendas_produtos import PedidosVendasProdutos
