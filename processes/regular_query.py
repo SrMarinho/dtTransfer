@@ -22,6 +22,7 @@ class RegularQuery(Process):
 
             fromConnection = tableInstance.fromDriver.connection()
 
+            logger.info(f"Buscando da consulta...")
             fromCursor = fromConnection.cursor()
             fromCursor.execute(originalQuery)
             
@@ -31,6 +32,7 @@ class RegularQuery(Process):
 
             numOfRows = 0
 
+            logger.info(f"Inserindo dados na tabela...")
             while True:
                 rows = fromCursor.fetchmany(init.ROWSNUM)
                 if not rows:
