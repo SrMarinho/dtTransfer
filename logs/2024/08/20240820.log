@@ -1,9 +1,0 @@
-2024-08-20 13:09:21,803 - INFO - grupos_compras - O truncamento da tabela foi bem-sucedido.
-2024-08-20 13:09:21,804 - INFO - grupos_compras - Inserindo dados...
-2024-08-20 13:09:23,855 - INFO - grupos_compras - Processo finalizado com sucesso!
-2024-08-20 13:46:43,206 - INFO - Erro! ('22007', '[22007] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Falha ao converter data e/ou hora da cadeia de caracteres. (241) (SQLExecDirectW)')
-2024-08-20 13:47:55,775 - INFO - vendas_imagem - O truncamento da tabela foi bem-sucedido.
-2024-08-20 13:47:55,776 - INFO - vendas_imagem - Inserindo dados...
-2024-08-20 13:52:41,643 - INFO - vendas_imagem - O truncamento da tabela foi bem-sucedido.
-2024-08-20 13:52:41,644 - INFO - vendas_imagem - Inserindo dados...
-2024-08-20 13:55:35,635 - INFO - vendas_imagem - Processo finalizado com sucesso!

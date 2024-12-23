@@ -1,6 +1,0 @@
-2024-08-08 13:47:51,941 - INFO - Erro! ORA-00942: table or view does not exist
-2024-08-08 13:55:05,354 - INFO - cfop_fiscal - O truncamento da tabela foi bem-sucedido.
-2024-08-08 13:55:05,356 - INFO - cfop_fiscal - Inserindo dados...
-2024-08-08 13:55:12,127 - INFO - cfop_fiscal - Processo finalizado com sucesso!
-2024-08-08 14:37:02,989 - INFO - cfop_fiscal - O truncamento da tabela foi bem-sucedido.
-2024-08-08 14:37:02,990 - INFO - cfop_fiscal - Inserindo dados...
