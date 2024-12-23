@@ -8,7 +8,45 @@ class DEventos(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'd_eventos'
+        self.name = 'd_eventos'
+        self.columns =[
+            "codtab",
+            "codeve",
+            "deseve",
+            "crteve",
+            "codcrt",
+            "horuti",
+            "rgreve",
+            "rgresp",
+            "tipeve",
+            "nateve",
+            "sinsel",
+            "codsel",
+            "valcal",
+            "valtet",
+            "codclc",
+            "alfaev",
+            "tipinf",
+            "dimnor",
+            "gereve",
+            "prjeve",
+            "pereve",
+            "codsin",
+            "rateve",
+            "tiprat",
+            "remcag",
+            "evedpo",
+            "evedne",
+            "arrval",
+            "arrpre",
+            "arresp",
+            "rempat",
+            "rubhom",
+            "obseve",
+            "inival",
+            "fimval",
+            "descom"
+        ] 
     
     def getQuery(self) -> str:
         with open('sqls/consulta_d_eventos.sql', 'r') as file:

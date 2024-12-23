@@ -9,7 +9,21 @@ class ConfiguracoesOlExcecoesProdutos(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'configuracoes_ol_excecoes_produtos'
+        self.name = 'configuracoes_ol_excecoes_produtos'
+        self.columns = [
+            "configuracao_ol_excecao_prod",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "configuracao_ol_excecao",
+            "produto",
+            "desconto_para",
+            "tipo_acao_desconto",
+            "desconto_para_distribuidora",
+            "desconto_para_industria",
+            "contador_f4"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_configuracoes_ol_excecoes_produtos.sql', 'r') as file:

@@ -10,9 +10,13 @@ load_dotenv()
 class StandardLogger(ILogger):
     def __init__(self):
         self.logger = logging.getLogger('dtTransfer')
-        
-        log_level = logging.DEBUG if os.getenv("ENV_TYPE") == 'homolog' else logging.INFO
-        self.logger.setLevel(log_level)
+
+        self.logger.setLevel(
+            getattr(
+                logging, 
+                os.getenv("LOG_LEVEL", "INFO").upper()
+            )
+        )
 
         log_filepath = self.create_log_directory()
 

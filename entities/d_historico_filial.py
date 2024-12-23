@@ -9,7 +9,58 @@ class DhistoricoFilial(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'd_historico_filial'
+        self.name = 'd_historico_filial'
+        self.columns = [
+            "numemp",
+            "tipcol",
+            "numcad",
+            "datalt",
+            "empatu",
+            "codtap",
+            "estpos",
+            "postra",
+            "codfil",
+            "taborg",
+            "numloc",
+            "cadatu",
+            "codccu",
+            "natdes",
+            "tipadm",
+            "ficreg",
+            "contov",
+            "staacc",
+            "motpos",
+            "estcar",
+            "codcar",
+            "codmot",
+            "codesc",
+            "codtma",
+            "turint",
+            "horbas",
+            "horsab",
+            "horsem",
+            "hordsr",
+            "codmts",
+            "codest",
+            "valsal",
+            "cplsal",
+            "tipsal",
+            "tipest",
+            "clasal",
+            "nivsal",
+            "perdes",
+            "perrea",
+            "codsin",
+            "numcra",
+            "stahis",
+            "confin",
+            "codvin",
+            "carvag",
+            "socsin",
+            "admeso",
+            "trabhr",
+            "codbhr"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_d_historico_filial.sql', 'r') as file:

@@ -6,8 +6,8 @@ from factories.database_driver_factory import DatabaseDriverFactory
 class PerUnit(Process):
     @staticmethod
     def run(table):
-        tableInstance = QueryableFactory.getInstance(table)
-        fromDriver = DatabaseDriverFactory(tableInstance.fromDatabaseDriver)
-        query tableInstance.getQuery()
+        table = QueryableFactory.getInstance(table)
+        fromDriver = DatabaseDriverFactory(table.fromDatabaseDriver)
+        query = table.getQuery()
 
         

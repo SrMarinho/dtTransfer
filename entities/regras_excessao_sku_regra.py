@@ -9,7 +9,7 @@ class RegrasExcessaoSkuRegra(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'regras_excessao_sku_regra'
+        self.name = 'regras_excessao_sku_regra'
     
     def getQuery(self) -> str:
         try:
@@ -26,7 +26,7 @@ class RegrasExcessaoSkuRegra(Queryable):
                 cursor.execute(f"""
                                DELETE 
                                FROM
-                                {self.tableName}
+                                {self.name}
                                WHERE
                                 data_hora BETWEEN '{startDate}' AND '{endDate}';
                                """)
@@ -34,12 +34,12 @@ class RegrasExcessaoSkuRegra(Queryable):
                 conn.commit()
                 cursor.close()
                 conn.close()
-                logger.info(f"{self.tableName} - Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
+                logger.info(f"{self.name} - Foram deletados {cursor.rowcount} registro no dia {startDate} ao dia {endDate}.")
             else:
-                logger.info("{self.tableName} - Tabela não existe!")
+                logger.info("{self.name} - Tabela não existe!")
             
         except Exception as e:
-            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.tableName, startDate, endDate))
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.name, startDate, endDate))
             raise e
 
     def createTable(self):

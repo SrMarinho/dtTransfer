@@ -1,5 +1,6 @@
 from processes.ndays_ago import nDaysAgo
 from processes.regular_query import RegularQuery
+from processes.nMonths_ago import nMonthsAgo
 from config.logger.logging import logger
 
 class ProcessFactory:
@@ -7,7 +8,8 @@ class ProcessFactory:
     def getInstance(name, params):
         processes_instances = {
             'regular': RegularQuery,
-            'nDaysAgo': nDaysAgo
+            'nDaysAgo': nDaysAgo,
+            'nMonthsAgo': nMonthsAgo
         }
 
         if name in processes_instances:

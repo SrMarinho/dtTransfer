@@ -9,7 +9,15 @@ class TiposAcoesDescontosOl(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'tipos_acoes_descontos_ol'
+        self.name = 'tipos_acoes_descontos_ol'
+        self.columns = [
+            "tipo_acao_desconto",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_tipos_acoes_descontos_ol.sql', 'r') as file:

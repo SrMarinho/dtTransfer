@@ -1,9 +1,7 @@
 from entities import *
+from config.logger.logging import logger
 
 class QueryableFactory:
-    def __init__(self):
-        ...
-
     @staticmethod
     def getInstance(queryName, params):
         entities_list = {
@@ -37,10 +35,52 @@ class QueryableFactory:
             'f_mapear_contas_lanc_contabil': FMapearContasLancContabil,
             'rescisoes': Rescisoes,
             'fgts_sem_rescisoes': FgtsSemRescisoes,
-            'pedidos_vendas_produtos': PedidosVendasProdutos
+            'pedidos_vendas_produtos': PedidosVendasProdutos,
+            'acompanhamento_solicitacoes_compras_eng_globo': AcompanhamentoSolicitacoesComprasEngGlobo,
+            'conferencia_de_tributacao_de_produtos': ConferenciaDeTributacaoDeProdutos,
+            'conciliacao_bancaria': ConciliacaoBancaria,
+            'titulos_contas_pagar': TitulosContasPagar,
+            'espelho': Espelho,
+            'f_folha_visao_dp': FFolhaVisaoDp,
+            'banco_horas': BancoHoras,
+            'ajuste_ponto': AjustePonto,
+            'marcacoes_ponto': MarcacoesPonto,
+            'acompanhamento_orcamento_compras': AcompanhamentoOrcamentoCompras,
+            'grupos_tributarios_entrada': GruposTributariosEntrada,
+            'grupos_tributarios_entrada_parametros': GruposTributariosEntradaParametros,
+            'produto': Produto,
+            'grupos_tributarios': GruposTributarios,
+            'grupos_tributarios_parametros': GruposTributariosParametros,
+            'grupos_compras': GruposCompras,
+            'cfop_fiscal': CfopFiscal,
+            'venda': Venda,
+            'notas_canceladas': NotasCanceladas,
+            'pedidos_vendas': PedidosVendas,
+            'campanhas': Campanhas,
+            'campanhas_empresas': CampanhasEmpresas,
+            'campanhas_participantes': CampanhasParticipantes,
+            'vendas_imagem': VendasImagem,
+            'metas_vendas': MetasVendas,
+            'metas_vendas_empresas': MetasVendasEmpresas,
+            'metas_vendas_vendedores': MetasVendasVendedores,
+            'wms_follow_tempos_checkout': WmsFollowTemposCheckout,
+            'wms_follow_separacoes_data_tipo_produtos': WmsFollowSeparacoesDataTipoProdutos,
+            'cliente': Cliente,
+            'cliente_vendedor': ClienteVendedor,
+            'nf_compra': NfCompra,
+            'nf_compra_produtos': NfCompraProdutos,
+            'pedidos_compras_produtos': PedidosComprasProdutos,
+            'produtos_endereco': ProdutosEndereco,
+            'titulos_edocs': TitulosEdocs,
+            'laboratorios': Laboratorios,
+            'recebimentos_volumes': RecebimentosVolumes,
+            'afastamento_colaboradores': AfastamentoColaboradores,
+            'recebimentos_volumes_nf': RecebimentoVolumesNf,
+            'vendas_boletos': VendasBoletos
         }
 
         if queryName in entities_list:
             return entities_list[queryName](params)
-        else:
-            raise "Tabela não registrada!"
+
+        logger.info(f"Tabela {queryName} não registrada!")
+        raise ValueError(f"Tabela {queryName} não registrada!")

@@ -9,14 +9,26 @@ class PedidosVendasProdutos(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'pedidos_vendas_produtos'
+        self.name = 'pedidos_vendas_produtos'
+        self.columns = [
+            'pedido_venda_validacao',
+            'pedido_venda',
+            'produto',
+            'descricao_produto',
+            'motivo',
+            'valor_unitario',
+            'desconto',
+            'total_desconto',
+            'quantidade_atendida',
+            'quantidade_digitada',
+            'valor_atendido',
+            'valor_digitado',
+            'condicao_pagamento'
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_pedidos_vendas_produtos.sql', 'r') as file:
             return file.read()
-
-    def deleteDay(self, startDate, endDate):
-        ...
 
     def createTable(self):
         creationQuery = """

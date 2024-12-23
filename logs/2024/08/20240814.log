@@ -1,0 +1,561 @@
+2024-08-14 17:21:13,777 - INFO - notas_canceladas - Apagando registros no dia 2024-08-09...
+2024-08-14 17:21:13,778 - INFO - notas_canceladas - Apagando registros no dia 2024-08-12...
+2024-08-14 17:21:13,782 - INFO - notas_canceladas - Apagando registros no dia 2024-08-07...
+2024-08-14 17:21:13,784 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:21:13,791 - INFO - notas_canceladas - Apagando registros no dia 2024-08-11...
+2024-08-14 17:21:13,792 - INFO - notas_canceladas - Apagando registros no dia 2024-08-05...
+2024-08-14 17:21:13,795 - INFO - notas_canceladas - Apagando registros no dia 2024-08-08...
+2024-08-14 17:21:13,797 - INFO - notas_canceladas - Apagando registros no dia 2024-08-06...
+2024-08-14 17:21:13,799 - INFO - notas_canceladas - Apagando registros no dia 2024-08-04...
+2024-08-14 17:21:13,820 - INFO - notas_canceladas - Apagando registros no dia 2024-08-10...
+2024-08-14 17:21:13,958 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-07!
+2024-08-14 17:21:13,959 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-09!
+2024-08-14 17:21:13,963 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-12!
+2024-08-14 17:21:13,980 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:21:13,982 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-11!
+2024-08-14 17:21:13,995 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-11: 0
+2024-08-14 17:21:14,003 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-08!
+2024-08-14 17:21:14,004 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-05!
+2024-08-14 17:21:14,023 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-06!
+2024-08-14 17:21:14,031 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-04!
+2024-08-14 17:21:14,035 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-10!
+2024-08-14 17:21:14,064 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-04: 0
+2024-08-14 17:21:14,067 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-10: 0
+2024-08-14 17:21:14,097 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (6282800,3,'2024-08-07':...
+                                                       ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,099 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-07: 4
+2024-08-14 17:21:14,113 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2569927,11,'2024-08-09'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,116 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-09: 3
+2024-08-14 17:21:14,136 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,136 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (6490255,6,'2024-08-12':...
+                                                       ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,143 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:21:14,149 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-12: 3
+2024-08-14 17:21:14,154 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (6482744,6,'2024-08-06':...
+                                                       ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,154 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (1589032,10,'2024-08-08'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,155 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (4128454,9,'2024-08-05':...
+                                                       ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:21:14,156 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-06: 3
+2024-08-14 17:21:14,160 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-05: 4
+2024-08-14 17:21:14,165 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-08: 6
+2024-08-14 17:22:00,715 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:22:00,809 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:22:00,907 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:22:01,000 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:22:32,929 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:22:33,011 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:22:33,101 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:22:33,103 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:22:56,515 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:22:56,606 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:22:56,698 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:22:56,703 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:25:10,212 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:25:10,303 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:25:10,395 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:25:10,400 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:25:28,959 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:25:29,056 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:25:29,147 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:25:29,152 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:27:37,162 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:27:37,252 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:27:37,340 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:27:37,343 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:27:49,873 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:27:49,958 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:27:50,054 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:27:50,062 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:28:15,443 - INFO - info
+2024-08-14 17:28:15,443 - WARNING - warning
+2024-08-14 17:28:15,444 - CRITICAL - critical
+2024-08-14 17:28:15,799 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:28:15,882 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:28:15,991 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:28:16,003 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:28:27,785 - INFO - info
+2024-08-14 17:28:27,786 - WARNING - warning
+2024-08-14 17:28:27,787 - CRITICAL - critical
+2024-08-14 17:28:28,086 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:28:28,178 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:28:28,282 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:28:28,300 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:29:07,003 - INFO - info
+2024-08-14 17:29:07,004 - WARNING - warning
+2024-08-14 17:29:07,005 - CRITICAL - critical
+2024-08-14 17:29:07,297 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:29:07,384 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:29:07,479 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:29:07,484 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:29:22,911 - CRITICAL - critical
+2024-08-14 17:29:56,301 - CRITICAL - critical
+2024-08-14 17:30:26,514 - WARNING - warning
+2024-08-14 17:30:26,515 - CRITICAL - critical
+2024-08-14 17:30:33,839 - INFO - info
+2024-08-14 17:30:33,839 - WARNING - warning
+2024-08-14 17:30:33,840 - CRITICAL - critical
+2024-08-14 17:30:34,054 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:30:34,137 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:30:34,244 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:30:34,251 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:30:42,626 - INFO - info
+2024-08-14 17:30:42,626 - WARNING - warning
+2024-08-14 17:30:42,627 - CRITICAL - critical
+2024-08-14 17:30:42,844 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:30:42,935 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:30:43,022 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:30:43,025 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:32:04,622 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:32:04,730 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:32:04,833 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:32:04,840 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 17:32:44,239 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 17:32:44,322 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 17:32:44,418 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! column "empresa" is of type integer but expression is of type date
+LINE 1: INSERT INTO notas_canceladas VALUES (2575009,11,'2024-08-13'...
+                                                        ^
+HINT:  You will need to rewrite or cast the expression.
+
+2024-08-14 17:32:44,422 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:37:13,630 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:37:13,723 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:37:13,829 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! syntax error at or near "'nf_numero'"
+LINE 1: INSERT INTO notas_canceladas ('nf_numero', 'empresa', 'movim...
+                                      ^
+
+2024-08-14 19:37:13,837 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:38:38,039 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:38:38,116 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:38:38,197 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! syntax error at or near "'nf_numero'"
+LINE 1: INSERT INTO notas_canceladas ('nf_numero', 'empresa', 'movim...
+                                      ^
+
+2024-08-14 19:38:38,207 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:42:30,525 - INFO - venda - Apagando registros no dia 2024-08-13...
+2024-08-14 19:42:30,604 - INFO - venda - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:43:25,214 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,313 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,422 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,528 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,630 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,735 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,836 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:25,935 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,032 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,131 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,227 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,320 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,415 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,510 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,611 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,708 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,816 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:26,914 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,009 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,104 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,209 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,309 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,401 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,500 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,593 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,691 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,789 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:27,906 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,028 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,125 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,226 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,328 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,426 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,521 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,614 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,707 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,800 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,898 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:28,994 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,109 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,209 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,303 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,402 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,496 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,595 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,690 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,788 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,877 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:29,971 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,065 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,160 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,260 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,364 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,465 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,561 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,666 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,761 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,858 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:30,961 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:31,059 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:31,177 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:31,273 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:31,368 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:43:31,464 - INFO - venda - Erro ao tentar inserir registro na tabela! syntax error at or near "'codigo_cliente'"
+LINE 1: INSERT INTO venda ('codigo_cliente', 'cnpj', 'codigo_produto...
+                           ^
+
+2024-08-14 19:46:33,264 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:46:33,338 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:46:33,420 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! syntax error at or near ","
+LINE 1: INSERT INTO notas_canceladas ['nf_numero', 'empresa', 'movim...
+                                                 ^
+
+2024-08-14 19:46:33,425 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:48:05,983 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:48:06,058 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:48:06,135 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! syntax error at or near "nf_numero"
+LINE 1: INSERT INTO notas_canceladas nf_numero,empresa,movimento,jus...
+                                     ^
+
+2024-08-14 19:48:06,137 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:48:19,374 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:48:19,447 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:48:19,538 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! null value in column "id" of relation "notas_canceladas" violates not-null constraint
+DETAIL:  Failing row contains (null, 2575009, 11, 2024-08-13, ERRO DE DIGITAÇÃO DO RCA, 15240807224991001379550010025750091185314977, 2024-08-14 16:48:20, 2024-08-14 16:48:20).
+
+2024-08-14 19:48:19,541 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:48:51,030 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:48:51,104 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:48:51,190 - INFO - notas_canceladas - Erro ao tentar inserir registro na tabela! null value in column "id" of relation "notas_canceladas" violates not-null constraint
+DETAIL:  Failing row contains (null, 2575009, 11, 2024-08-13, ERRO DE DIGITAÇÃO DO RCA, 15240807224991001379550010025750091185314977, 2024-08-14 16:48:51, 2024-08-14 16:48:51).
+
+2024-08-14 19:48:51,200 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:48:54,923 - INFO - venda - Apagando registros no dia 2024-08-13...
+2024-08-14 19:48:54,997 - INFO - venda - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:51:42,507 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-13: 158175
+2024-08-14 19:53:31,171 - INFO - venda - Apagando registros no dia 2024-08-13...
+2024-08-14 19:53:36,106 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 19:53:36,180 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:53:36,316 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 19:55:00,154 - INFO - venda - Apagando registros no dia 2024-08-09...
+2024-08-14 19:55:00,155 - INFO - venda - Apagando registros no dia 2024-08-10...
+2024-08-14 19:55:00,159 - INFO - venda - Apagando registros no dia 2024-08-06...
+2024-08-14 19:55:00,161 - INFO - venda - Apagando registros no dia 2024-08-11...
+2024-08-14 19:55:00,168 - INFO - venda - Apagando registros no dia 2024-08-07...
+2024-08-14 19:55:00,170 - INFO - venda - Apagando registros no dia 2024-08-08...
+2024-08-14 19:55:00,172 - INFO - venda - Apagando registros no dia 2024-08-12...
+2024-08-14 19:55:00,193 - INFO - venda - Apagando registros no dia 2024-08-13...
+2024-08-14 19:55:00,199 - INFO - venda - Apagando registros no dia 2024-08-04...
+2024-08-14 19:55:00,212 - INFO - venda - Apagando registros no dia 2024-08-05...
+2024-08-14 19:55:00,346 - INFO - venda - Registros apagados com sucesso no dia 2024-08-10!
+2024-08-14 19:55:00,350 - INFO - venda - Registros apagados com sucesso no dia 2024-08-06!
+2024-08-14 19:55:00,351 - INFO - venda - Registros apagados com sucesso no dia 2024-08-09!
+2024-08-14 19:55:00,360 - INFO - venda - Registros apagados com sucesso no dia 2024-08-11!
+2024-08-14 19:55:00,370 - INFO - venda - Registros apagados com sucesso no dia 2024-08-07!
+2024-08-14 19:55:00,383 - INFO - venda - Registros apagados com sucesso no dia 2024-08-08!
+2024-08-14 19:55:00,395 - INFO - venda - Registros apagados com sucesso no dia 2024-08-12!
+2024-08-14 19:55:00,399 - INFO - venda - Registros apagados com sucesso no dia 2024-08-04!
+2024-08-14 19:55:00,408 - INFO - venda - Registros apagados com sucesso no dia 2024-08-05!
+2024-08-14 19:55:00,604 - INFO - venda - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 19:55:03,655 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-11: 0
+2024-08-14 19:55:04,634 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-04: 0
+2024-08-14 19:55:11,839 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-10: 6950
+2024-08-14 19:58:26,385 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-07: 136167
+2024-08-14 19:59:40,126 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-13: 158175
+2024-08-14 19:59:43,255 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-09: 138311
+2024-08-14 19:59:56,998 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-08: 143532
+2024-08-14 20:00:00,215 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-06: 150392
+2024-08-14 20:00:24,709 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-05: 176303
+2024-08-14 20:00:30,208 - INFO - venda - Numero de linhas inseridas na tabela no dia 2024-08-12: 170236
+2024-08-14 20:12:21,063 - INFO - notas_canceladas - Apagando registros no dia 2024-08-13...
+2024-08-14 20:12:21,148 - INFO - notas_canceladas - Registros apagados com sucesso no dia 2024-08-13!
+2024-08-14 20:12:21,238 - INFO - notas_canceladas - Numero de linhas inseridas na tabela no dia 2024-08-13: 5
+2024-08-14 20:13:13,172 - INFO - d_custos - Inserindo dados...
+2024-08-14 20:13:13,652 - INFO - d_custos - Processo finalizado com sucesso!
+2024-08-14 20:14:21,409 - INFO - d_custos - Inserindo dados...
+2024-08-14 20:14:21,874 - INFO - d_custos - Processo finalizado com sucesso!
+2024-08-14 20:35:31,607 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:35:31,608 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:36:48,830 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:36:48,831 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:37:13,073 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:37:13,073 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:37:32,251 - INFO - d_custos - Inserindo dados...
+2024-08-14 20:37:32,796 - INFO - d_custos - Processo finalizado com sucesso!
+2024-08-14 20:37:42,182 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:37:42,183 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:38:17,199 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:38:17,200 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:38:19,563 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:38:19,564 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:38:45,709 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:38:45,710 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:39:04,845 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:39:04,846 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:40:17,046 - INFO - Tabela pedidos_vendas não registrada!
+2024-08-14 20:40:17,047 - INFO - Erro! 'NoneType' object has no attribute 'getQuery'
+2024-08-14 20:50:09,100 - INFO - pedidos_vendas - O truncamento da tabela foi bem-sucedido.
+2024-08-14 20:50:09,101 - INFO - pedidos_vendas - Inserindo dados...
+2024-08-14 20:52:59,607 - INFO - pedidos_vendas - Processo finalizado com sucesso!

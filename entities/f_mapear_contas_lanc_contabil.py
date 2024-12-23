@@ -9,22 +9,47 @@ class FMapearContasLancContabil(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'f_mapear_contas_lanc_contabil'
+        self.name = 'f_mapear_contas_lanc_contabil'
+        self.columns = [
+            'empresa', 
+            'filial', 
+            'data_lancamento', 
+            'conta_reduzida', 
+            'descr_conta_rdz', 
+            'valor', 
+            'lote', 
+            'origem', 
+            'descr_origem', 
+            'cod_custo', 
+            'descr_custo', 
+            'deb_cred'
+        ]
+
     
     def getQuery(self) -> str:
         with open('sqls/consulta_f_mapear_contas_lanc_contabil.sql', 'r') as file:
             return file.read()
 
-    def deleteDay(self, startDate, endDate):
-        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
+    def deleteMonth(self, startDate, endDate):
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("DELETE FROM {} A WHERE A.data_lancamento = TO_CHAR('{}'::DATE, 'DD/MM/YYYY');".format(self.tableName, startDate))
-                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
+                    cursor.execute(
+                        f"""
+                            DELETE 
+                            FROM
+                                {self.name} A
+                            WHERE
+                                A.data_lancamento LIKE CONCAT('%', TO_CHAR('{startDate}'::DATE, 'mm/yyyy')::VARCHAR)
+                            """
+                        )
+                    conn.commit()
+            logger.info(f"{self.name} - Foram deletados registro no dia {startDate} ao dia {endDate}.")
+            
         except Exception as e:
-            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.name, startDate, endDate))
             raise e
+
 
     def createTable(self):
         creationQuery = """

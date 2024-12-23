@@ -8,7 +8,16 @@ class PlanoContasContabeis(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'plano_contas_contabeis'
+        self.name = 'plano_contas_contabeis'
+        self.columns = [
+            "empresa",
+            "red",
+            "descricao",
+            "mascara",
+            "classificacao",
+            "tipo",
+            "natureza"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_plano_contas_contabeis.sql', 'r') as file:

@@ -9,7 +9,15 @@ class Identificadores(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'identificadores'
+        self.name = 'identificadores'
+        self.columns = [
+            "identificador",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_identificadores.sql', 'r') as file:

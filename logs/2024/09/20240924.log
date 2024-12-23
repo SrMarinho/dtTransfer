@@ -1,0 +1,53 @@
+2024-09-24 11:39:29,156 - INFO - wms_follow_tempos_checkout - Processo iniciado!
+2024-09-24 11:39:29,157 - INFO - wms_follow_tempos_checkout - Lendo query...
+2024-09-24 11:42:28,706 - INFO - wms_follow_tempos_checkout - O truncamento da tabela foi bem-sucedido.
+2024-09-24 11:42:28,707 - INFO - wms_follow_tempos_checkout - Inserindo dados...
+2024-09-24 11:42:28,709 - INFO - Erro! No results.  Previous SQL was not a query.
+2024-09-24 11:43:48,621 - INFO - wms_follow_tempos_checkout - Processo iniciado!
+2024-09-24 11:43:48,621 - INFO - wms_follow_tempos_checkout - Lendo query...
+2024-09-24 11:47:32,912 - INFO - wms_follow_tempos_checkout - O truncamento da tabela foi bem-sucedido.
+2024-09-24 11:47:32,913 - INFO - wms_follow_tempos_checkout - Inserindo dados...
+2024-09-24 11:47:32,913 - INFO - wms_follow_tempos_checkout - Erro! No results.  Previous SQL was not a query.
+2024-09-24 11:47:43,028 - INFO - wms_follow_tempos_checkout - Processo iniciado!
+2024-09-24 11:47:43,029 - INFO - wms_follow_tempos_checkout - Lendo query...
+2024-09-24 11:50:47,986 - INFO - wms_follow_tempos_checkout - O truncamento da tabela foi bem-sucedido.
+2024-09-24 11:50:47,986 - INFO - wms_follow_tempos_checkout - Inserindo dados...
+2024-09-24 16:52:46,061 - INFO - vendas_imagem - Processo iniciado!
+2024-09-24 16:54:36,065 - INFO - vendas_imagem - Erro! ('22012', '[22012] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Erro de divisão por zero. (8134) (SQLExecDirectW)')
+2024-09-24 16:55:25,919 - INFO - vendas_imagem - Processo iniciado!
+2024-09-24 16:56:23,679 - INFO - vendas_imagem - Erro! ('22012', '[22012] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Erro de divisão por zero. (8134) (SQLExecDirectW)')
+2024-09-24 16:56:51,532 - INFO - vendas_imagem - Processo iniciado!
+2024-09-24 16:57:21,348 - INFO - vendas_imagem - Erro! ('22012', '[22012] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Erro de divisão por zero. (8134) (SQLExecDirectW)')
+2024-09-24 17:04:37,487 - INFO - vendas_imagem - Processo iniciado!
+2024-09-24 17:09:37,988 - INFO - vendas_imagem - O truncamento da tabela foi bem-sucedido.
+2024-09-24 17:09:37,989 - INFO - vendas_imagem - Inserindo dados...
+2024-09-24 17:09:38,103 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,229 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,356 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,458 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,568 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,671 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,765 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,863 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:38,967 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,059 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,152 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,249 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,344 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,441 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,541 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,633 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,727 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,827 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:39,923 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,015 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,107 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,208 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,309 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,406 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,505 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,606 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,703 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,798 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,893 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!
+2024-09-24 17:09:40,988 - INFO - vendas_imagem - Erro ao tentar inserir registro na tabela!

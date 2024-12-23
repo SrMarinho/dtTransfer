@@ -9,7 +9,21 @@ class VansProjetos(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'vans_projetos'
+        self.name = 'vans_projetos'
+        self.columns = [
+            "projeto",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao_projeto",
+            "usuario_logado",
+            "data_hora",
+            "identificador",
+            "projeto_depara",
+            "ativo",
+            "sigla_projeto_layout_edi"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_vans_projetos.sql', 'r') as file:
