@@ -15,24 +15,23 @@ class RegularQuery(Process):
 
     def run(self):
         try:
-            tableInstance = QueryableFactory.getInstance(self.params['table'], self.params)
+            table = QueryableFactory.getInstance(self.params['table'], self.params)
 
-            originalQuery = tableInstance.getQuery()
-            
+            logger.info(f"{table.name} - Processo iniciado!")
 
-            fromConnection = tableInstance.fromDriver.connection()
+            originalQuery = table.getQuery()
 
-            logger.info(f"Buscando da consulta...")
+            fromConnection = table.fromDriver.connection()
+
             fromCursor = fromConnection.cursor()
             fromCursor.execute(originalQuery)
-            
 
             if "truncate" in self.params:
-                if self.params["truncate"]: tableInstance.truncate()
+                if self.params["truncate"]: table.truncate()
 
             numOfRows = 0
 
-            logger.info(f"Inserindo dados na tabela...")
+            logger.info(f"{table.name} - Inserindo dados...")
             while True:
                 rows = fromCursor.fetchmany(init.ROWSNUM)
                 if not rows:
@@ -40,7 +39,7 @@ class RegularQuery(Process):
 
                 numOfRows += len(rows)
 
-                tableInstance.insert(rows)
+                table.insert(rows)
 
             fromCursor.close()
             fromConnection.close()
@@ -48,9 +47,8 @@ class RegularQuery(Process):
             endTime = time.time()
             totalTime = endTime - self.startTime
             
-            logger.info(f"Processo finalizado com sucesso!")
-            logger.debug(f"Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
-            logger.debug(f"Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
+            logger.info(f"{table.name} - Processo finalizado com sucesso!")
+            logger.debug(f"{table.name} - Foram inseridas {numOfRows} em {totalTime:.2f} segundo(s).")
+            logger.debug(f"{table.name} - Velocidade de {(numOfRows / totalTime):.2f} itens por segundo.")
         except Exception as e:
-            logger.debug(e)
-            logger.info(f"Erro!")
+            logger.info(f"{self.params['table']} - Erro! {e}")

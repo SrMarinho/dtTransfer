@@ -9,21 +9,93 @@ class FTitulosComNotasProdutos(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'f_titulos_com_notas_produtos'
+        self.name = 'f_titulos_com_notas_produtos'
+        self.columns = [
+            'cod_transacao',
+            'desc_transacao',
+            'data_entrada_titulo',
+            'empresa',
+            'filial_erp',
+            'nome_filial',
+            'seq_mov',
+            'filial_linx',
+            'cidade_filial',
+            'uf_filial',
+            'cod_cc_nfe',
+            'descr_cc_rat_nota',
+            'cod_contabil_nfe',
+            'descr_conta',
+            'valor_rat_nfe',
+            'data_emissao_titulo',
+            'nfe_titulo',
+            'serie_nf_entrata_titulo',
+            'venc_original',
+            'venc_prorrogada',
+            'data_pagto',
+            'cod_forma_pagto',
+            'descr_forma_pagto',
+            'situacao_titulo',
+            'titulo',
+            'tipo',
+            'descr_tipo_titulo',
+            'cod_forn',
+            'nome_fornecedor',
+            'nome_fantasia_forn',
+            'cpnj_cpf',
+            'diferencial_icms',
+            'irrf',
+            'pis_recuperar',
+            'cofins_recuperar',
+            'csll',
+            'outras_retencoes',
+            'observacao',
+            'juros',
+            'multa',
+            'engargo',
+            'acrescimo',
+            'desconto',
+            'outros_descontos',
+            'num_ordem_compra',
+            'num_contrato',
+            'data_emissao_oc',
+            'nota_fiscal',
+            'nfe_seq_produto',
+            'produto',
+            'fam_produto',
+            'descr_fam_prod',
+            'descr_produto',
+            'cod_usu_ger_oc',
+            'nome_ger_oc',
+            'cod_usu_apr_oc',
+            'nome_usu_apr_oc',
+            'nivel_aprov_ordem_compra',
+            'cod_usu_ger_contr',
+            'nome_usu_ger_contr',
+            'cod_usu_apr_contr',
+            'nome_usu_apr_contr',
+            'nivel_aprov_contrato',
+            'cod_proced_oc',
+            'procedencia_oc',
+            'tipo2',
+            'cod_sit_oc',
+            'situacao_oc',
+            'lote_contabil_titulo',
+            'lote_contabil_nota'
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_f_titulos_com_notas_produtos.sql', 'r') as file:
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("DELETE FROM {} A WHERE A.data_entrada_titulo = TO_CHAR('{}'::DATE, 'DD/MM/YYYY');".format(self.tableName, startDate))
-                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
+                    cursor.execute("DELETE FROM {} A WHERE A.data_entrada_titulo = TO_CHAR('{}'::DATE, 'DD/MM/YYYY');".format(self.name, startDate))
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):

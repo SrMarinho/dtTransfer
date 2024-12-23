@@ -9,7 +9,15 @@ class GruposClientes(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'grupos_clientes'
+        self.name = 'grupos_clientes'
+        self.columns = [
+            "grupo_cliente",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_grupos_clientes.sql', 'r') as file:

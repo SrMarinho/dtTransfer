@@ -1,0 +1,28 @@
+2024-11-08 17:32:53,246 - INFO - recebimentos_volumes - Processo iniciado!
+2024-11-08 17:32:53,420 - INFO - recebimentos_volumes - Apagando registros no dia 2024-11-07...
+2024-11-08 17:32:53,570 - INFO - recebimentos_volumes - Erro ao tentar apagar registros no dia 2024-11-07!
+2024-11-08 17:32:53,570 - INFO - column "data_emissao" does not exist
+LINE 1: DELETE FROM recebimentos_volumes WHERE data_emissao::date = ...
+                                               ^
+
+2024-11-08 17:32:53,617 - INFO - recebimentos_volumes - Processo finalizado!
+2024-11-08 17:33:52,130 - INFO - recebimentos_volumes - Processo iniciado!
+2024-11-08 17:33:52,165 - INFO - recebimentos_volumes - Apagando registros no dia 2024-11-07...
+2024-11-08 17:33:52,334 - INFO - recebimentos_volumes - Registros apagados com sucesso no dia 2024-11-07!
+2024-11-08 17:33:52,343 - INFO - ('22007', '[22007] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Falha ao converter data e/ou hora da cadeia de caracteres. (241) (SQLExecDirectW)')
+2024-11-08 17:33:52,345 - INFO - recebimentos_volumes - Processo finalizado!
+2024-11-08 17:34:46,310 - INFO - recebimentos_volumes - Processo iniciado!
+2024-11-08 17:34:46,345 - INFO - recebimentos_volumes - Apagando registros no dia 2024-11-07...
+2024-11-08 17:34:46,426 - INFO - recebimentos_volumes - Registros apagados com sucesso no dia 2024-11-07!
+2024-11-08 17:34:47,667 - INFO - recebimentos_volumes - Numero de linhas inseridas na tabela no dia 2024-11-07: 1082
+2024-11-08 17:34:47,687 - INFO - recebimentos_volumes - Processo finalizado!
+2024-11-08 17:36:05,034 - INFO - recebimentos_volumes - Processo iniciado!
+2024-11-08 17:36:05,068 - INFO - recebimentos_volumes - Apagando registros no dia 2024-11-07...
+2024-11-08 17:36:05,156 - INFO - recebimentos_volumes - Registros apagados com sucesso no dia 2024-11-07!
+2024-11-08 19:43:40,420 - INFO - Erro ao tentar deletar registros da tabela recebimentos_volumes entre as datas de 2024-11-01 e 2024-12-01.
+2024-11-08 19:43:59,683 - INFO - f_mapear_contas_lanc_contabil - Foram deletados 0 registro no dia 2024-11-01 ao dia 2024-12-01.
+2024-11-08 19:44:17,443 - INFO - f_mapear_contas_lanc_contabil - Numero de linhas inseridas na tabela no mes 2024-11: 0
+2024-11-08 19:44:54,600 - INFO - f_mapear_contas_lanc_contabil - Foram deletados 0 registro no dia 2024-11-01 ao dia 2024-12-01.
+2024-11-08 19:44:54,698 - INFO - f_mapear_contas_lanc_contabil - Numero de linhas inseridas na tabela no mes 2024-11: 0
+2024-11-08 19:44:54,846 - INFO - f_mapear_contas_lanc_contabil - Foram deletados 0 registro no dia 2024-10-01 ao dia 2024-11-01.
+2024-11-08 19:45:22,361 - INFO - f_mapear_contas_lanc_contabil - Numero de linhas inseridas na tabela no mes 2024-10: 2485

@@ -9,7 +9,19 @@ class ClientesRedes(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'clientes_redes'
+        self.name = 'clientes_redes'
+        self.columns = [
+            "cliente_rede",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao",
+            "credito_unificado",
+            "analisa_credito",
+            "rede_grupo",
+            "projeto"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_clientes_redes.sql', 'r') as file:

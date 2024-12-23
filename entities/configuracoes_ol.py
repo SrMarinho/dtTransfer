@@ -9,7 +9,43 @@ class ConfiguracoesOl(Queryable):
         self.toDB = 'biMktNaz'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'configuracoes_ol'
+        self.name = 'configuracoes_ol'
+        self.columns = [
+            "configuracao_ol",
+            "formulario_origem",
+            "tab_master_origem",
+            "reg_master_origem",
+            "reg_log_inclusao",
+            "descricao",
+            "validade_inicial",
+            "validade_final",
+            "valor_fatura_minima",
+            "quantidade_minima",
+            "numero_itens",
+            "segunda",
+            "terca",
+            "quarta",
+            "quinta",
+            "sexta",
+            "sabado",
+            "domingo",
+            "usuario_logado",
+            "data_hora",
+            "hora_inicial",
+            "hora_final",
+            "tipo_limitacao",
+            "tipo_ol",
+            "projeto",
+            "identificador",
+            "projeto_industria",
+            "canal_autorizador",
+            "condicao_comercial_canal_autorizador",
+            "sigla_industria_ca",
+            "processa_b2b",
+            "tipo_cashback_pontuacao",
+            "tipo_cashback_resgate",
+            "observacao"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_configuracoes_ol.sql', 'r') as file:

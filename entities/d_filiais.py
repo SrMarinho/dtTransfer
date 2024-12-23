@@ -8,7 +8,15 @@ class Dfiliais(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'd_filiais'
+        self.name = 'd_filiais'
+        self.columns = [
+            'empresa',
+            'filial',
+            'nome_fantasia',
+            'uf',
+            'cidade',
+            'cod_fil_sis_origem'
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_d_filiais.sql', 'r') as file:

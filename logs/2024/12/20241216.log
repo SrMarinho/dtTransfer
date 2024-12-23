@@ -1,0 +1,30 @@
+2024-12-16 13:43:57,632 - INFO - titulos_edocs - Processo iniciado!
+2024-12-16 13:43:57,754 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA8-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:43:57,755 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:44:14,877 - INFO - titulos_edocs - Processo iniciado!
+2024-12-16 13:44:15,179 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:44:15,180 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:44:45,202 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 30 segundos
+2024-12-16 13:44:45,212 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:44:45,213 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:45:45,287 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 60 segundos
+2024-12-16 13:45:45,298 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:45:45,299 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:47:15,413 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 90 segundos
+2024-12-16 13:47:15,531 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:47:15,532 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:49:15,647 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 120 segundos
+2024-12-16 13:49:15,661 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:49:15,662 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:51:45,761 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 150 segundos
+2024-12-16 13:51:45,774 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:51:45,774 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:54:45,853 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 180 segundos
+2024-12-16 13:54:45,867 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:54:45,867 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:58:15,967 - WARNING - titulos_edocs - Erro ao tentar criar conexao, tentando novamente em 210 segundos
+2024-12-16 13:58:15,979 - INFO - Erro ao tentar criar conexão com banco de dados oracle host 'NAZ-ODA9-scan.nazaria.corp' na porta '1521'!
+2024-12-16 13:58:15,980 - INFO - Erro ao tentar conectar ao driver oracle no banco senior
+2024-12-16 13:58:57,722 - INFO - titulos_edocs - Processo iniciado!
+2024-12-16 13:58:58,027 - INFO - titulos_edocs - Apagando registros no dia 2024-12-15...
+2024-12-16 13:58:58,697 - INFO - titulos_edocs - Registros apagados com sucesso no dia 2024-12-15!

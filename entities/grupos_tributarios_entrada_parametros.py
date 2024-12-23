@@ -1,0 +1,135 @@
+from entities.queryable import Queryable
+from factories.database_factory import DatabaseFactory 
+
+class GruposTributariosEntradaParametros(Queryable):
+    def __init__(self, params):
+        self.params = params
+        self.fromDB = 'PbsNazariaDados'
+        self.toDB = 'biMktNaz'
+        self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
+        self.toDriver = DatabaseFactory.getInstance(self.toDB)
+        self.name = 'grupos_tributarios_entrada_parametros'
+        self.columns = [
+            "grupo_tributario_entrada_parametro",
+            "grupo_tributario_entrada",
+            "grupo_local",
+            "tipo_icms",
+            "situacao_tributaria_entrada",
+            "situacao_tributaria_escrituracao",
+            "aliquota_icms",
+            "icms_substituto",
+            "iva",
+            "iva_ajustado",
+            "observacao_fiscal",
+            "operacao_fiscal",
+            "estado_origem",
+            "estado_destino",
+            "fator_reducao_st",
+            "icms_reducao_base",
+            "situacao_tributaria_ipi",
+            "tipo_ipi",
+            "aliquota_ipi",
+            "ipi_reducao_base",
+            "situacao_tributaria_pis",
+            "aliquota_pis",
+            "situacao_tributaria_cofins",
+            "aliquota_cofins",
+            "pis_cofins_tributado",
+            "tipo_grupo_tributario",
+            "calc_base_icms_normal",
+            "calc_base_icms_st",
+            "calc_reducao_base_icms",
+            "calc_base_icms_st_retido",
+            "calc_base_icms_st_pagar",
+            "icms_isento",
+            "icms_outros",
+            "aliquota_icms_importacao",
+            "situacao_tributaria",
+            "icms_st_pagar_fator_reducao",
+            "icms_st_pagar_iva",
+            "perc_trava_st",
+            "aliquota_pi_st_entrada",
+            "aliquota_ba_st_pmc_entrada",
+            "aliquota_ba_st_produto_entrada",
+            "utiliza_regime_especial",
+            "aliquota_pe_st_entrada",
+            "icms_reducao_base_importacao",
+            "aliquota_ce_st_ent_ind",
+            "aliquota_ce_st_ent_outros",
+            "icms_regime_precificacao",
+            "iva_precificacao",
+            "iva_precificacao_importacao",
+            "aliquota_icms_precificacao",
+            "fator_reducao_st_precificacao",
+            "icms_regime_precificacao_dist",
+            "mva_incentivo_fiscal",
+            "reducao_base_st_incentivo_fiscal",
+            "icms_destino_incentivo_fiscal"
+        ]
+    
+    def getQuery(self) -> str:
+        with open('sqls/consulta_grupos_tributarios_entrada_parametros.sql', 'r') as file:
+            return file.read()
+
+    def createTable(self):
+        creationQuery = """
+            CREATE TABLE IF NOT EXISTS grupos_tributarios_entrada_parametros
+            (
+                grupo_tributario_entrada_parametro numeric(15,0),
+                grupo_tributario_entrada numeric(15,0),
+                grupo_local numeric(15,0),
+                tipo_icms numeric(2,0),
+                situacao_tributaria_entrada character varying(2) COLLATE pg_catalog."default",
+                situacao_tributaria_escrituracao character varying(2) COLLATE pg_catalog."default",
+                aliquota_icms numeric(4,2),
+                icms_substituto numeric(11,2),
+                iva numeric(6,2),
+                iva_ajustado numeric(7,2),
+                observacao_fiscal numeric(15,0),
+                operacao_fiscal numeric(5,0),
+                estado_origem character varying(2) COLLATE pg_catalog."default",
+                estado_destino character varying(2) COLLATE pg_catalog."default",
+                fator_reducao_st numeric(6,2),
+                icms_reducao_base numeric(6,2),
+                situacao_tributaria_ipi character varying(2) COLLATE pg_catalog."default",
+                tipo_ipi numeric(2,0),
+                aliquota_ipi numeric(5,2),
+                ipi_reducao_base numeric(6,2),
+                situacao_tributaria_pis character varying(2) COLLATE pg_catalog."default",
+                aliquota_pis numeric(6,2),
+                situacao_tributaria_cofins character varying(2) COLLATE pg_catalog."default",
+                aliquota_cofins numeric(6,2),
+                pis_cofins_tributado character varying(1) COLLATE pg_catalog."default",
+                tipo_grupo_tributario numeric(15,0),
+                calc_base_icms_normal character varying(1) COLLATE pg_catalog."default",
+                calc_base_icms_st character varying(1) COLLATE pg_catalog."default",
+                calc_reducao_base_icms character varying(1) COLLATE pg_catalog."default",
+                calc_base_icms_st_retido character varying(1) COLLATE pg_catalog."default",
+                calc_base_icms_st_pagar character varying(1) COLLATE pg_catalog."default",
+                icms_isento character varying(1) COLLATE pg_catalog."default",
+                icms_outros character varying(1) COLLATE pg_catalog."default",
+                aliquota_icms_importacao numeric(6,2),
+                situacao_tributaria character varying(3) COLLATE pg_catalog."default",
+                icms_st_pagar_fator_reducao numeric(6,2),
+                icms_st_pagar_iva numeric(6,2),
+                perc_trava_st numeric(6,2),
+                aliquota_pi_st_entrada numeric(15,4),
+                aliquota_ba_st_pmc_entrada numeric(15,4),
+                aliquota_ba_st_produto_entrada numeric(15,4),
+                utiliza_regime_especial character varying(1) COLLATE pg_catalog."default",
+                aliquota_pe_st_entrada numeric(15,4),
+                icms_reducao_base_importacao numeric(15,2),
+                aliquota_ce_st_ent_ind numeric(15,4),
+                aliquota_ce_st_ent_outros numeric(15,4),
+                icms_regime_precificacao numeric(6,2),
+                iva_precificacao numeric(6,2),
+                iva_precificacao_importacao numeric(6,2),
+                aliquota_icms_precificacao numeric(15,2),
+                fator_reducao_st_precificacao numeric(6,2),
+                icms_regime_precificacao_dist numeric(6,2),
+                mva_incentivo_fiscal numeric(15,0),
+                reducao_base_st_incentivo_fiscal numeric(6,0),
+                icms_destino_incentivo_fiscal numeric(6,0),
+                created_at time with time zone DEFAULT CURRENT_TIMESTAMP
+            );
+        """

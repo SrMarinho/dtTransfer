@@ -10,21 +10,75 @@ class TitulosSemNotas(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'titulos_sem_notas'
+        self.name = 'titulos_sem_notas'
+        self.columns = [
+            'cod_transacao',
+            'desc_transacao',
+            'data_entrada_titulo',
+            'empresa',
+            'filial_erp',
+            'nome_filial',
+            'seq_mov',
+            'filial_linx',
+            'cidade_filial',
+            'uf_filial',
+            'cod_cc_titulo',
+            'descr_cc_rat_titulo',
+            'cod_contabil_titulo',
+            'descr_conta',
+            'valo_rateio_titulo',
+            'data_emissao_titulo',
+            'nfe_titulo',
+            'serie_nf_entrata_titulo',
+            'venc_original',
+            'venc_prorrogada',
+            'data_pagto',
+            'cod_forma_pagto',
+            'descr_forma_pagto',
+            'situacao_titulo',
+            'titulo',
+            'tipo',
+            'descr_tipo_titulo',
+            'cod_forn',
+            'nome_fornecedor',
+            'nome_fantasia_forn',
+            'cpnj_cpf',
+            'irrf',
+            'iss',
+            'inss',
+            'pis',
+            'cofins',
+            'csll',
+            'outras_retencoes',
+            'total_titulo',
+            'valor_aberto_titulo',
+            'observacao',
+            'juros',
+            'multa',
+            'engargo',
+            'acrescimo',
+            'desconto',
+            'outros_descontos',
+            'cod_usu_apr_oc',
+            'nome_usu_apr_oc',
+            'nivel_aprovador',
+            'tipo2',
+            'num_lote_contabil'
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_titulos_sem_notas.sql', 'r') as file:
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute(f"DELETE FROM {self.tableName} A WHERE A.data_entrada_titulo = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
-                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
+                    cursor.execute(f"DELETE FROM {self.name} A WHERE A.data_entrada_titulo = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):

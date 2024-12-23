@@ -9,21 +9,45 @@ class EstoqueUsuConsumo(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'estoque_usu_consumo'
+        self.name = 'estoque_usu_consumo'
+        self.columns = [
+            "data_movimentacao",
+            "empresa",
+            "filial",
+            "descr_filial",
+            "filial_dep",
+            "num_requisicao",
+            "produto",
+            "descr_produto",
+            "derivacao",
+            "descr_derivacao",
+            "unidade_medida",
+            "quantidade",
+            "familia_prod",
+            "desc_familia",
+            "codred",
+            "descr_codred",
+            "valor_rateio",
+            "cod_custo",
+            "descr_custo",
+            "lote_contabil",
+            "cod_usuario",
+            "nome_usuario"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_estoque_usu_consumo.sql', 'r') as file:
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        logger.info(f"{self.tableName} - Apagando registros no dia {startDate} ...")
+        logger.info(f"{self.name} - Apagando registros no dia {startDate} ...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute(f"DELETE FROM {self.tableName} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
-                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
+                    cursor.execute(f"DELETE FROM {self.name} A WHERE A.data_movimentacao = TO_CHAR('{startDate}'::DATE, 'DD/MM/YYYY');")
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):

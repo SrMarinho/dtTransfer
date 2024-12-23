@@ -8,7 +8,8 @@ class FgtsSemRescisoes(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'fgts_sem_rescisoes'
+        self.name = 'fgts_sem_rescisoes'
+        self.columns = ["empresa", "matricula", "data_vencimento", "multa", "rescisao", "indenizacao", "total"]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_fgts_sem_rescisoes.sql', 'r') as file:

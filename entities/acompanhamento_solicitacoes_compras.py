@@ -9,21 +9,58 @@ class AcompanhamentoSolicitacoesCompras(Queryable):
         self.toDB = 'biSenior'
         self.fromDriver = DatabaseFactory.getInstance(self.fromDB)
         self.toDriver = DatabaseFactory.getInstance(self.toDB)
-        self.tableName = 'acompanhamento_solicitacoes_compras'
+        self.name = 'acompanhamento_solicitacoes_compras'
+        self.columns = [
+            "produto_ou_servico",
+            "empresa",
+            "filial",
+            "deposito",
+            "num_solicitacao",
+            "produto_servico",
+            "seq",
+            "descricao_servico_produto",
+            "derivacao",
+            "qnt_solicitada",
+            "qnt_cotada",
+            "observacao_solicitacao",
+            "data_solicitacao",
+            "data_cotacao",
+            "data_emissao_ocp",
+            "data_prev_entrega_solicitacao",
+            "prev_entrega_produto_servico",
+            "num_cotacao",
+            "fornecedor",
+            "prazo_entrega",
+            "cod_cond_pag",
+            "descr_cond_pag",
+            "derivacao_cot",
+            "preco_cotado",
+            "valor_cotacao",
+            "vlrprs",
+            "valor_desconto",
+            "valor_fcp",
+            "perc_desc_cot",
+            "usuario_cotacao",
+            "nome_usuario",
+            "ciffob",
+            "num_ordem_de_comp",
+            "filial_ocp",
+            "observacao_ocp"
+        ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_acompanhamento_solicitacoes_compras.sql', 'r') as file:
             return file.read()
 
     def deleteDay(self, startDate, endDate):
-        logger.info(f"{self.tableName} - Apagando registros no dia {startDate}...")
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
         try:
             with self.toDriver.connection() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("DELETE FROM {} A WHERE A.data_solicitacao = '{}';".format(self.tableName, startDate))
-                logger.info(f"{self.tableName} - Registros apagados com sucesso no dia {startDate}!")
+                    cursor.execute("DELETE FROM {} A WHERE A.data_solicitacao = '{}';".format(self.name, startDate))
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
         except Exception as e:
-            logger.info(f"{self.tableName} - Erro ao tentar apagar registros no dia {startDate}!")
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
     def createTable(self):
