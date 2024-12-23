@@ -1,3 +1,6 @@
 .env
 sqls/*
 logs/*
+
+!sqls/.gitkeep
+!logs/.gitkeep
