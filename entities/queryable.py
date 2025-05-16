@@ -1,35 +1,62 @@
 from config.logger.logging import logger
 from abc import ABC, abstractmethod
+from io import StringIO
 
-class Queryable(ABC):  # Classe abstrata Animal
+class Queryable(ABC):
     @staticmethod
     @abstractmethod
     def getQuery() -> str:
         ...
 
     def insert(self, rows):
-        if(len(rows) == 0):
+        if len(rows) == 0:
             logger.info(f"{self.name} - Sem dados para serem inseridos!")
             return
 
         try:
             conn = self.toDriver.connection()
-
-            formatation = ['%s' for i in range(len(rows[0]))]
-
-            query = f"INSERT INTO {self.name} ({','.join(self.columns)}) VALUES ({','.join(formatation)});"
-            
+            conn.autocommit = False
             cursor = conn.cursor()
 
-            cursor.executemany(query, rows)
+            buffer = StringIO()
+            expected_columns = len(self.columns)
+            separator = "|"  # Separador único
 
+            for i, row in enumerate(rows):
+                if len(row) != expected_columns:
+                    logger.error(f"{self.name} - Linha com mais colunas do que esperado:\n{row}")
+                    continue  # Pula linhas com número errado de colunas
+
+                cleaned_row = []
+                for value in row:
+                    if value is None or value == '':
+                        cleaned_row.append("\\N")
+                    else:
+                        # Escapa \r, \n, | e agora também \
+                        str_value = str(value).replace("\\", "\\\\").replace("\r", "\\r").replace("\n", "\\n").replace("|", "\\|")
+                        cleaned_row.append(str_value)
+                line = separator.join(cleaned_row)
+                buffer.write(line + "\n")
+            
+            buffer.seek(0)
+            cursor.copy_from(
+                file=buffer,
+                table=self.name,
+                sep=separator,
+                columns=self.columns,
+                null="\\N"
+            )
+            
             conn.commit()
-
             cursor.close()
             conn.close()
             
         except Exception as e:
-            logger.info(f"{self.name} - {e}")
+            # conn.rollback()
+            logger.error(f"{self.name} - Erro ao inserir dados: {e}")
+            raise
+        finally:
+            buffer.close()
     
     def existsTable(self):
         try:

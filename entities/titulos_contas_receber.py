@@ -53,7 +53,8 @@ class TitulosContasReceber(Queryable):
             'descricao',
             'portador',
             'nome_portador',
-            'cnpj'
+            'cnpj',
+            'data_geracao'
         ]
     
     def getQuery(self) -> str:
@@ -71,52 +72,23 @@ class TitulosContasReceber(Queryable):
             logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
-    def createTable(self):
-        creationQuery = """
-            CREATE TABLE IF NOT EXISTS public.titulos_contas_receber
-            (
-                empresa integer,
-                filial numeric(5,0),
-                numero_titulo character varying(15),
-                seq_mov numeric(4,0),
-                tipo character varying(3) COLLATE pg_catalog."default",
-                cliente numeric(9,0),
-                nome_cliente character varying(100) COLLATE pg_catalog."default",
-                emissao date,
-                vencimento date,
-                prov_pagamento date,
-                ultimo_pagamento date,
-                situacao character varying(2) COLLATE pg_catalog."default",
-                forma_pagamento numeric(2,0),
-                valor_original numeric(15,2),
-                valor_aberto numeric(15,2),
-                desconto numeric(15,2),
-                total numeric(38,0),
-                desc_forma_pgto character varying(30) COLLATE pg_catalog."default",
-                entrada date,
-                vcto_original date,
-                modalidade character varying(3) COLLATE pg_catalog."default",
-                filial_nfs numeric(5,0),
-                serie_nfs character varying(3) COLLATE pg_catalog."default",
-                nf_saida numeric(9,0),
-                filial_nfentrada numeric(5,0),
-                fornecedor_nfentrada numeric(9,0),
-                serie_nfentrada character varying(3) COLLATE pg_catalog."default",
-                grupo_empresa numeric(9,0),
-                outros_descontos numeric(15,2),
-                acrescimos numeric(15,2),
-                juros_negociado numeric(15,2),
-                multa_negociada numeric(15,2),
-                descontos_negociados numeric(15,2),
-                parcela_cartao numeric(4,0),
-                autorizacao_tef character varying(100) COLLATE pg_catalog."default",
-                numeracao_tef character varying(100) COLLATE pg_catalog."default",
-                transacao character varying(5) COLLATE pg_catalog."default",
-                tipo_transacao character varying(14) COLLATE pg_catalog."default",
-                descricao character varying(60) COLLATE pg_catalog."default",
-                portador character varying(4) COLLATE pg_catalog."default",
-                nome_portador character varying(30) COLLATE pg_catalog."default",
-                cnpj numeric(14, 0),
-                created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
-            )
-        """
+    def deleteMonth(self, startDate, endDate):
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        f"""
+                            DELETE 
+                            FROM
+                                {self.name} A
+                            WHERE
+                                A.entrada::date >= '{startDate}'
+                                and A.entrada::date < '{endDate}'
+                            """
+                        )
+                    conn.commit()
+            logger.info(f"{self.name} - Foram deletados registro no dia {startDate} ao dia {endDate}.")
+            
+        except Exception as e:
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.name, startDate, endDate))
+            raise e

@@ -15,10 +15,13 @@ class PbsNazariaDados():
         self.username = os.getenv("DB_NAZARIA_SQLSERVER_USERNAME")
         self.password = os.getenv("DB_NAZARIA_SQLSERVER_PASSWORD")
     
+    def getDriver(self):
+        return DatabaseDriverFactory.getInstance(self.driver)
+
     def connection(self):
-        driver = DatabaseDriverFactory.getInstance(self.driver)
-        
+        driver = self.getDriver()
         try:
+
             return driver.connection(
                         self.database,
                         self.username,
@@ -29,3 +32,4 @@ class PbsNazariaDados():
         except Exception as e:
             logger.info("Erro ao tentar conectar ao driver {} no banco {}".format(self.driver, self.database))
             raise e
+    

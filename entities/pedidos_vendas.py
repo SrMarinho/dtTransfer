@@ -40,33 +40,13 @@ class PedidosVendas(Queryable):
         with open('sqls/consulta_pedidos_vendas.sql', 'r') as file:
             return file.read()
 
-    def createTable(self):
-        creationQuery = """
-            CREATE TABLE IF NOT EXISTS pedidos_vendas
-            (
-                pedido_venda_validacao numeric(15,0),
-                pedido_venda numeric(15,0),
-                nf_numero numeric(15,0),
-                empresa numeric(15,0),
-                data_hora timestamp without time zone,
-                entidade numeric(15,0),
-                vendedor numeric(15,0),
-                vendedor_nome character varying(60) COLLATE pg_catalog."default",
-                dono numeric(15,0),
-                dono_nome character varying(60) COLLATE pg_catalog."default",
-                condicao_comercial numeric(15,0),
-                condicao_comercial_descricao character varying(60) COLLATE pg_catalog."default",
-                codigo_condicao_comercial character varying(2) COLLATE pg_catalog."default",
-                origem_venda_canal numeric(15,0) NOT NULL,
-                origem_venda_canal_descricao character varying(60) COLLATE pg_catalog."default",
-                status_pedidos_vendas character varying(60) COLLATE pg_catalog."default",
-                configuracao_ol numeric(15,0),
-                quantidade_atendida numeric(15,2),
-                quantidade_digitada numeric(15,2),
-                valor_atendido numeric(15,2),
-                valor_digitado numeric(15,2),
-                condicao_pagamento numeric(15,0),
-                data_hora_lib timestamp without time zone,
-                created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
-            )
-        """
+    def deleteDay(self, startDate, endDate):
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(f"""DELETE FROM {self.name} WHERE data_hora::date = '{startDate}';""")
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
+        except Exception as e:
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
+            raise e

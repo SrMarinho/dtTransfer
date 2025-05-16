@@ -34,7 +34,9 @@ class Produto(Queryable):
             "cst_origem",
             "grupo_tributario",
             "grupo_tributario_entrada",
-            "grupo_tributario_importados"
+            "grupo_tributario_importados",
+            "ncm",
+            "codigo_cest"
         ]
     
     def getQuery(self) -> str:

@@ -27,6 +27,7 @@ class nDaysAgo(Process):
                     tries += 1
                     time.sleep(30 * tries)
                     logger.warning(f"{table.name} - Erro ao tentar criar conexao, tentando novamente em {30 * tries} segundos")
+                    logger.debug(f"{table.name} - {e}")
 
             start_time = time.time()
             nextDay = currentDay + timedelta(days=1)

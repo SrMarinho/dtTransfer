@@ -15,9 +15,11 @@ class BiSenior():
         self.username = os.getenv("DB_BISENIOR_POSTGRES_USERNAME")
         self.password = os.getenv("DB_BISENIOR_POSTGRES_PASSWORD")
 
-    def connection(self):
-        driver = DatabaseDriverFactory.getInstance(self.driver)
+    def getDriver(self):
+        return DatabaseDriverFactory.getInstance(self.driver)
 
+    def connection(self):
+        driver = self.getDriver()
         try:
 
             return driver.connection(

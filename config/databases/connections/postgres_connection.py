@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2.extras import execute_values
 from config.databases.connections.database import Database
 
 class PostgresDB(Database):
@@ -18,3 +19,10 @@ class PostgresDB(Database):
     
     def getCursor(self):
         return self.connection.cursor()
+
+    @staticmethod
+    def insertValues(cur, sql, argslist, template = None, page_size: int = 100, fetch: bool = False):
+        try:
+            execute_values(cur, sql, argslist, template, page_size, fetch)
+        except Exception as e:
+            raise RuntimeError(f"Error in bulk execute: {str(e)}") from e

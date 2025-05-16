@@ -24,7 +24,12 @@ class ConfiguracoesOlExcecoesMarcas(Queryable):
             "tipo_acao_desconto",
             "contador_f1",
             "desconto_de_ini",
-            "desconto_de_fim"
+            "desconto_de_fim",
+            "desconto_fabricante_01",
+            "desconto_fabricante_02",
+            "desconto_fabricante_03",
+            "desconto_fabricante_04",
+            "desconto_fabricante_05"
         ]
     
     def getQuery(self) -> str:
