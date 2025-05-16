@@ -26,6 +26,7 @@ class VendasImagem(Queryable):
             'prec_despesas_st_valor',
             'lucro_liquido',
             'receita_liquida',
+            'movimento',
             'margem'
         ]
     
@@ -33,25 +34,34 @@ class VendasImagem(Queryable):
         with open('sqls/consulta_vendas_imagem.sql', 'r') as file:
             return file.read()
 
-    def createTable(self):
-        creationQuery = """
-            CREATE TABLE IF NOT EXISTS vendas_imagem
-            (
-                nf_faturamento_produto numeric(15,0),
-                nf_faturamento numeric(15,0),
-                produto numeric(15,0),
-                prec_tipo_custo character varying(1) COLLATE pg_catalog."default",
-                quantidade_estoque numeric(15,2),
-                preco_nf_liquido numeric(15,2),
-                valor_desconto_fin_unit numeric(15,4),
-                prec_custo numeric(15,2),
-                prec_icms_valor numeric(15,2),
-                prec_pis_valor numeric(15,2),
-                prec_cofins_valor numeric(15,2),
-                prec_despesas_st_valor numeric(15,2),
-                lucro_liquido numeric(15,4),
-                receita_liquida numeric(15,4),
-                margem numeric(15, 2),
-                created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
-            );
-        """
+    def deleteDay(self, startDate, endDate):
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(f"""DELETE FROM {self.name} WHERE movimento::date = '{startDate}';""")
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
+        except Exception as e:
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
+            raise e
+    
+    def deleteMonth(self, startDate, endDate):
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        f"""
+                            DELETE 
+                            FROM
+                                {self.name} A
+                            WHERE
+                                A.movimento::date >= '{startDate}'
+                                and A.movimento::date < '{endDate}'
+                            """
+                        )
+                    conn.commit()
+            logger.info(f"{self.name} - Foram deletados registro no dia {startDate} ao dia {endDate}.")
+            
+        except Exception as e:
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.name, startDate, endDate))
+            raise e

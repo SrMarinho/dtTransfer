@@ -20,3 +20,7 @@ class OracleDB(Database):
 
     def getCursor(self):
         return self.connection.cursor()
+    
+    @staticmethod
+    def insertValues(cur, sql, argslist, template = None, page_size: int = 100, fetch: bool = False):
+        raise NotImplementedError(f"Metodo de inserção para {__name__}")

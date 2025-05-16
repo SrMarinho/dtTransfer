@@ -76,7 +76,19 @@ class QueryableFactory:
             'recebimentos_volumes': RecebimentosVolumes,
             'afastamento_colaboradores': AfastamentoColaboradores,
             'recebimentos_volumes_nf': RecebimentoVolumesNf,
-            'vendas_boletos': VendasBoletos
+            'vendas_boletos': VendasBoletos,
+            'fretes_pagar_periodo_analitico': FretesPagarPeriodoAnalitico,
+            'vendedores_procfit': VendedoresProcfit,
+            'titulos_contas_receber_por_geracao': TitulosContasReceberPorGeracao,
+            'configuracoes_ol_marcas': ConfiguracoesOlMarcas,
+            'fornecedores_descontos': FornecedoresDescontos,
+            'fornecedores_descontos_empresas': FornecedoresDescontosEmpresas,
+            'fornecedores_descontos_grupos': FornecedoresDescontosGrupos,
+            'fornecedores_descontos_importacoes': FornecedoresDescontosImportacoes,
+            'fornecedores_descontos_marcas': FornecedoresDescontosMarcas,
+            'fornecedores_descontos_produtos': FornecedoresDescontosProdutos,
+            'fornecedores_descontos_secoes': FornecedoresDescontosSecoes,
+            'vendas_feira': VendasFeira
         }
 
         if queryName in entities_list:

@@ -23,31 +23,21 @@ class PedidosVendasProdutos(Queryable):
             'quantidade_digitada',
             'valor_atendido',
             'valor_digitado',
-            'condicao_pagamento'
+            'condicao_pagamento',
+            'data_hora'
         ]
     
     def getQuery(self) -> str:
         with open('sqls/consulta_pedidos_vendas_produtos.sql', 'r') as file:
             return file.read()
-
-    def createTable(self):
-        creationQuery = """
-            CREATE TABLE IF NOT EXISTS public.pedidos_vendas_produtos
-            (
-                pedido_venda_validacao numeric(15,0),
-                pedido_venda numeric(15,0),
-                produto numeric(15,0),
-                descricao_produto character varying(255) COLLATE pg_catalog."default",
-                motivo character varying(60) COLLATE pg_catalog."default",
-                valor_unitario numeric(15,2),
-                desconto numeric(15,2),
-                total_desconto numeric(15,2),
-                quantidade_atendida numeric(15,2),
-                quantidade_digitada numeric(15,2),
-                valor_atendido numeric(15,2),
-                valor_digitado numeric(15,2),
-                condicao_pagamento numeric(15,0),
-                created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-                updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
-            );
-        """
+    
+    def deleteDay(self, startDate, endDate):
+        logger.info(f"{self.name} - Apagando registros no dia {startDate}...")
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(f"""DELETE FROM {self.name} WHERE data_hora::date = '{startDate}';""")
+                logger.info(f"{self.name} - Registros apagados com sucesso no dia {startDate}!")
+        except Exception as e:
+            logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
+            raise e

@@ -19,7 +19,7 @@ class NfCompra(Queryable):
             'data_emissao', 
             'data_entrada', 
             'chave_nfe', 
-            'condicoes_pagamento'
+            'dias'
         ]
     
     def getQuery(self) -> str:

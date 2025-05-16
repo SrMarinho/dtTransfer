@@ -71,3 +71,14 @@ from .afastamento_colaboradores import AfastamentoColaboradores
 from .vendedores_procfit import VendedoresProcfit
 from .recebimentos_volumes_nf import RecebimentoVolumesNf
 from .vendas_boletos import VendasBoletos
+from .fretes_pagar_periodo_analitico import FretesPagarPeriodoAnalitico
+from .titulos_contas_receber_por_geracao import TitulosContasReceberPorGeracao
+from .configuracoes_ol_marcas import ConfiguracoesOlMarcas
+from .fornecedores_descontos import FornecedoresDescontos
+from .fornecedores_descontos_empresas import FornecedoresDescontosEmpresas
+from .fornecedores_descontos_grupos import FornecedoresDescontosGrupos
+from .fornecedores_descontos_importacoes import FornecedoresDescontosImportacoes
+from .fornecedores_descontos_marcas import FornecedoresDescontosMarcas
+from .fornecedores_descontos_produtos import FornecedoresDescontosProdutos
+from .fornecedores_descontos_secoes import FornecedoresDescontosSecoes
+from .vendas_feira import VendasFeira

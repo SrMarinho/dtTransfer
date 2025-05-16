@@ -53,35 +53,3 @@ class Venda(Queryable):
         except Exception as e:
             logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
-
-    def createTable(self):
-        creationQuery = """
-            CREATE TABLE IF NOT EXISTS venda
-            (
-                codigo_cliente integer,
-                cnpj character varying(191),
-                codigo_produto integer,
-                ean character varying(191),
-                valor_bruto double precision NOT NULL,
-                valor_liquido double precision NOT NULL,
-                unidade_vendida integer NOT NULL,
-                data_emissao timestamp(0) without time zone,
-                nota_fiscal integer,
-                unidade integer,
-                bonificacao character varying(1) COLLATE pg_catalog."default",
-                tipo_nota integer,
-                registro_procfit numeric(15,0),
-                desconto double precision DEFAULT 0,
-                repasse double precision DEFAULT 0,
-                suframa double precision DEFAULT 0,
-                desconto_financeiro double precision DEFAULT 0,
-                desconto_arquivo double precision DEFAULT 0,
-                desconto_industria double precision DEFAULT 0,
-                desconto_distribuidora double precision DEFAULT 0,
-                desconto_industria_excecao double precision DEFAULT 0,
-                desconto_distribuidora_excecao double precision DEFAULT 0,
-                tipo_acao_desconto numeric(5,0),
-                created_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP,
-                updated_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP
-            )
-        """

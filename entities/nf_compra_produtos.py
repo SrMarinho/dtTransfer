@@ -12,7 +12,8 @@ class NfCompraProdutos(Queryable):
         self.name = 'nf_compra_produtos'
         self.columns = [
             'nf_compra_produto', 
-            'nf_compra', 'referencia', 
+            'nf_compra', 
+            'referencia', 
             'produto', 
             'ean', 
             'unidade_medida', 

@@ -9,3 +9,7 @@ class Database(ABC):
     @abstractmethod
     def getCursor():
         raise NotImplementedError()
+
+    @abstractmethod
+    def insertValues(self):
+        raise NotImplementedError()

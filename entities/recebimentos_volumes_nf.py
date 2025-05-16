@@ -43,6 +43,27 @@ class RecebimentoVolumesNf(Queryable):
             logger.info(f"{self.name} - Erro ao tentar apagar registros no dia {startDate}!")
             raise e
 
+    def deleteMonth(self, startDate, endDate):
+        try:
+            with self.toDriver.connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        f"""
+                            DELETE 
+                            FROM
+                                {self.name} A
+                            WHERE
+                                A.emissao::date >= '{startDate}'
+                                and A.emissao::date < '{endDate}'
+                            """
+                        )
+                    conn.commit()
+            logger.info(f"{self.name} - Foram deletados registros no dia {startDate} ao dia {endDate}.")
+            
+        except Exception as e:
+            logger.info("Erro ao tentar deletar registros da tabela {} entre as datas de {} e {}.".format(self.name, startDate, endDate))
+            raise e
+
     def createTable(self):
         creationQuery = """
         """
