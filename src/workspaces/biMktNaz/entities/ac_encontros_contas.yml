@@ -1,0 +1,16 @@
+$schema: ../../../../schemas/entity.json
+name: ac_encontros_contas
+target_table: ac_encontros_contas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_ac_encontros_contas.sql
+columns:
+  - ac_encontro_conta
+  - data_hora
+  - empresa
+  - movimento
+  - bonificacao
+  - processar
+  - objeto_controle
+  - ac_encontro_conta_cancelamento

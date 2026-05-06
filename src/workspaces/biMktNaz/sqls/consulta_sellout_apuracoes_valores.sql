@@ -1,0 +1,14 @@
+select
+    sellout_apuracao_valor
+    ,sellout_apuracao
+    ,entidade
+    ,empresa
+    ,total_produto
+    ,total_desconto
+    ,total_ressarcimento
+    ,total_credito
+    ,total_debito
+    ,valor_operacional_interno
+    ,valor_operacional_industria
+from
+	sellout_apuracoes_valores

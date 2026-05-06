@@ -1,0 +1,35 @@
+$schema: ../../../../schemas/entity.json
+name: acordos_comerciais_formas_pagamentos
+target_table: acordos_comerciais_formas_pagamentos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_acordos_comerciais_formas_pagamentos.sql
+columns:
+  - acordo_comercial_forma_pagamento
+  - acordo_comercial
+  - percentual
+  - modalidade
+  - titulo
+  - dias
+  - vencimento
+  - local_cobranca
+  - desconto_ate
+  - desconto_valor
+  - juros_atraso
+  - multa_atraso
+  - valor
+  - tarifa_bancaria
+  - retencao_ir
+  - retencao_darf
+  - retencao_iss
+  - retencao_gps
+  - retencao_inss
+  - retencao_pis
+  - retencao_cofins
+  - retencao_cssl
+  - retencao_copics
+  - antecipacao_receber
+  - objeto_controle
+  - classif_financeira
+  - forma_pagamento

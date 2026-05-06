@@ -1,0 +1,13 @@
+$schema: ../../../../schemas/entity.json
+name: metas_vendas_vendedores
+target_table: metas_vendas_vendedores
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_metas_vendas_vendedores.sql
+columns:
+  - meta_venda_vendedor
+  - meta_venda
+  - vendedor
+  - meta
+  - empresa

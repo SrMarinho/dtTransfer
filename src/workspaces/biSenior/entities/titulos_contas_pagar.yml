@@ -1,0 +1,43 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_contas_pagar
+target_table: titulos_contas_pagar
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: entrada
+sql_file: consulta_titulos_contas_pagar.sql
+columns:
+  - empresa
+  - titulo
+  - seq_mov
+  - tipo_titulo
+  - fornecedor
+  - cnpj_cpf_fornecedor
+  - filial
+  - situacao
+  - cfop
+  - nf_entrada
+  - chave_eletronica
+  - vencimento
+  - ultimo_pagamento
+  - entrada
+  - valor_original
+  - valor_aberto
+  - valor_movimento
+  - nome_fornecedor
+  - emissao
+  - vencimento_original
+  - data_movimento
+  - data_pagamento
+  - juros
+  - multa
+  - encargos
+  - acrescimos
+  - descontos
+  - outros_descontos
+  - grupo_empresa
+  - transacao
+  - tipo_transacao
+  - descricao
+  - serie_nf_entrada
+  - tipimp

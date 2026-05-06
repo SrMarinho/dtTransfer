@@ -1,0 +1,9 @@
+SELECT 
+    A.META_VENDA, 
+    A.DATA_HORA, 
+    A.ANO, 
+    A.MES, 
+    A.DESCRICAO, 
+    A.EMPRESA 
+FROM 
+    METAS_VENDAS A

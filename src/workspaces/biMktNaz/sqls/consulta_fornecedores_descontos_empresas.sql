@@ -1,0 +1,10 @@
+SELECT
+    fornecedor_desconto_emrpesa,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    fornecedor_desconto,
+    empresa
+FROM
+    FORNECEDORES_DESCONTOS_EMPRESAS

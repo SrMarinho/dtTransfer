@@ -1,0 +1,57 @@
+$schema: ../../../../schemas/entity.json
+name: d_historico_filial
+target_table: d_historico_filial
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_d_historico_filial.sql
+columns:
+  - numemp
+  - tipcol
+  - numcad
+  - datalt
+  - empatu
+  - codtap
+  - estpos
+  - postra
+  - codfil
+  - taborg
+  - numloc
+  - cadatu
+  - codccu
+  - natdes
+  - tipadm
+  - ficreg
+  - contov
+  - staacc
+  - motpos
+  - estcar
+  - codcar
+  - codmot
+  - codesc
+  - codtma
+  - turint
+  - horbas
+  - horsab
+  - horsem
+  - hordsr
+  - codmts
+  - codest
+  - valsal
+  - cplsal
+  - tipsal
+  - tipest
+  - clasal
+  - nivsal
+  - perdes
+  - perrea
+  - codsin
+  - numcra
+  - stahis
+  - confin
+  - codvin
+  - carvag
+  - socsin
+  - admeso
+  - trabhr
+  - codbhr

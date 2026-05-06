@@ -1,0 +1,25 @@
+SELECT
+    ac_recebimento_manual,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    data_hora,
+    descricao,
+    empresa,
+    valor,
+    emissao,
+    vencimento,
+    entidade,
+    codigo_oracle,
+    ac_tipo_recebimento,
+    cash_receipt_id,
+    fabricante_divisao,
+    ac_provisao_receber,
+    marca_entidade,
+    grupo_economico_conta,
+    numero_documento_deposito,
+    objeto_controle,
+    modalidade_credito
+FROM
+    AC_RECEBIMENTOS_MANUAIS arm

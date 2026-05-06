@@ -1,0 +1,29 @@
+$schema: ../../../../schemas/entity.json
+name: ac_recebimentos
+target_table: ac_recebimentos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_ac_recebimentos.sql
+columns:
+  - ac_recebimento
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - registro_controle
+  - registro_controle_ii
+  - empresa
+  - numero_documento
+  - emissao
+  - valor
+  - vencimento
+  - entidade
+  - origem_controle
+  - pedido_compra
+  - acordo_comercial
+  - fabricante_divisao
+  - cash_receipt_id
+  - ac_tipo_recebimento
+  - grupo_economico_conta
+  - objeto_controle

@@ -1,0 +1,23 @@
+$schema: ../../../../schemas/entity.json
+name: sellout_apuracoes
+target_table: sellout_apuracoes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_sellout_apuracoes.sql
+columns:
+  - sellout_apuracao
+  - data_hora
+  - empresa
+  - entidade_filtro
+  - processar
+  - finalizar
+  - movimento
+  - movimento_ini
+  - movimento_fim
+  - gerar_parcelas
+  - data_limite_fechamento
+  - status_controladoria
+  - observacao_aprovacao
+  - registro_aprovacao
+  - data_hora_aprovacao

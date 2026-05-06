@@ -1,0 +1,27 @@
+$schema: ../../../../schemas/entity.json
+name: acompanhamento_orcamento_compras
+target_table: acompanhamento_orcamento_compras
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: data_orcamento
+sql_file: consulta_acompanhamento_orcamento_compras.sql
+columns:
+  - id
+  - mes
+  - ano
+  - comprador
+  - comprador_nome
+  - grupo_compra
+  - grupo_compra_descricao
+  - valor_orcamento
+  - valor_limite_extra
+  - total_orcamento
+  - total_compra_pedidos_original
+  - total_compras
+  - total_entrada_pedidos
+  - total_entrada_outros_pedidos
+  - p_meta
+  - saldo_compras_original
+  - saldo_compras
+  - total_entrada_geral

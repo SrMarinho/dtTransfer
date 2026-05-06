@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: clientes_datas
+target_table: clientes_datas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_clientes_datas.sql
+columns:
+  - classificacao
+  - descricao_classificacao
+  - tipo_restricao
+  - grupo_produto
+  - descricao_grupo_produto
+  - limite_disponivel
+  - data_hora_inclusao

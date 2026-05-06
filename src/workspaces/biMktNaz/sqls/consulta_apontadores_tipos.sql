@@ -1,0 +1,5 @@
+SELECT
+	A.TIPO_OL AS tipo_apontador,
+	A.DESCRICAO AS descricao
+FROM
+	TIPOS_OLS AS A

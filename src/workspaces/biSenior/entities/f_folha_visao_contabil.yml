@@ -1,0 +1,25 @@
+$schema: ../../../../schemas/entity.json
+name: f_folha_visao_contabil
+target_table: f_folha_visao_contabil
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_lancamento
+sql_file: consulta_f_folha_visao_contabil.sql
+columns:
+  - empresa
+  - filial
+  - nome_filial
+  - data_lancamento
+  - cod_opcao_contabilidade
+  - opcao_contabilidade
+  - cod_historico
+  - valor
+  - cod_custo
+  - descr_custo
+  - codred_debito
+  - codred_credito
+  - lig_contabil
+  - descr_cod_lig_conta_contabil
+  - debcre
+  - lote_contabil

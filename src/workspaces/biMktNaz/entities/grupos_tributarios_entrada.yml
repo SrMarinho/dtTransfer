@@ -1,0 +1,25 @@
+$schema: ../../../../schemas/entity.json
+name: grupos_tributarios_entrada
+target_table: grupos_tributarios_entrada
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_grupos_tributarios_entrada.sql
+columns:
+  - grupo_tributario_entrada
+  - descricao
+  - data_hora
+  - usuario_logado
+  - tipo_ipi
+  - aliquota_ipi
+  - aliquota_pis
+  - aliquota_cofins
+  - classif_fiscal_codigo
+  - pis_cofins_tributado
+  - cadastro_ativo
+  - lista_pnu
+  - situacao_tributaria_cofins
+  - situacao_tributaria_pis
+  - situacao_tributaria
+  - ipi_reducao_base
+  - grupo_fiscal

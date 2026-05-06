@@ -1,0 +1,13 @@
+$schema: ../../../../schemas/entity.json
+name: pedidos_compras_encerramento_produtos
+target_table: pedidos_compras_encerramento_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_pedidos_compras_encerramento_produtos.sql
+columns:
+  - id
+  - pedido_compra_encerramento
+  - pedido_compra
+  - produto
+  - quantidade

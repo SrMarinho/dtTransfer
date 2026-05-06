@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: fornecedores_descontos_empresas
+target_table: fornecedores_descontos_empresas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_fornecedores_descontos_empresas.sql
+columns:
+  - fornecedor_desconto_emrpesa
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - fornecedor_desconto
+  - empresa

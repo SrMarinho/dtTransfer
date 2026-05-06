@@ -1,0 +1,24 @@
+$schema: ../../../../schemas/entity.json
+name: recebimentos_volumes_nf
+target_table: recebimentos_volumes_nf
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: emissao
+sql_file: consulta_recebimentos_volumes_nf.sql
+columns:
+  - recebimento_nf
+  - recebimento
+  - chave_nfe
+  - entidade
+  - nf_compra
+  - nf_numero
+  - nf_serie
+  - total_geral
+  - inscricao_federal
+  - volumes
+  - status_volume
+  - emissao
+  - nf_faturamento
+  - tipo_nf
+  - registro_nf

@@ -1,0 +1,9 @@
+SELECT
+    modalidade_acordo_comercial,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    descricao
+FROM
+    MODALIDADES_ACORDOS_COMERCIAIS

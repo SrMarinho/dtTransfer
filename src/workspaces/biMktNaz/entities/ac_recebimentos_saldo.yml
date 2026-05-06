@@ -1,0 +1,16 @@
+$schema: ../../../../schemas/entity.json
+name: ac_recebimentos_saldo
+target_table: ac_recebimentos_saldo
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_ac_recebimentos_saldo.sql
+columns:
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - ac_recebimento
+  - objeto_controle
+  - saldo
+  - situacao

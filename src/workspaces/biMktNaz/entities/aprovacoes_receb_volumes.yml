@@ -1,0 +1,12 @@
+$schema: ../../../../schemas/entity.json
+name: aprovacoes_receb_volumes
+target_table: aprovacoes_receb_volumes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_aprovacoes_receb_volumes.sql
+columns:
+  - empresa
+  - data_hora
+  - recebimento
+  - entidade

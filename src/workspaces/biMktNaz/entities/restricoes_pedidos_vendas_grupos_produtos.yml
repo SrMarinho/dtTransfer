@@ -1,0 +1,12 @@
+$schema: ../../../../schemas/entity.json
+name: restricoes_pedidos_vendas_grupos_produtos
+target_table: restricoes_pedidos_vendas_grupos_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_restricoes_pedidos_vendas_grupos_produtos.sql
+columns:
+  - restricao_pedido_venda_grupo_produto
+  - restricao_pedido_venda
+  - grupo_produto
+  - tipo_restricao

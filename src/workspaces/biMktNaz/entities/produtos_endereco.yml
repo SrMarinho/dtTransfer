@@ -1,0 +1,20 @@
+$schema: ../../../../schemas/entity.json
+name: produtos_endereco
+target_table: produtos_endereco
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_produtos_endereco.sql
+columns:
+  - produto
+  - descricao
+  - ean
+  - corredor
+  - embalagem_industria
+  - fator_embalagem
+  - localizador
+  - capacidade_cubagem
+  - capacidade_cubagem_minimo
+  - estoque_total
+  - curva
+  - centro_estoque

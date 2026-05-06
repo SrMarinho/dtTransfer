@@ -1,0 +1,81 @@
+$schema: ../../../../schemas/entity.json
+name: espelho
+target_table: espelho
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_espelho.sql
+columns:
+  - nf_compra_produto
+  - nf_compra
+  - produto
+  - operacao_fiscal
+  - fator_embalagem
+  - quantidade
+  - quantidade_estoque
+  - markup
+  - iva
+  - icms_substituto
+  - aliquota_icms
+  - icms_venda
+  - ipi_compra
+  - icms_compra
+  - desconto_compra
+  - fabrica
+  - venda_sugerida
+  - total_custo
+  - preco_maximo
+  - desconto_padrao
+  - preco_venda
+  - rentabilidade
+  - desconto_financeiro
+  - desconto_total
+  - diferenca
+  - nf_numero
+  - nf_serie
+  - nf_especie
+  - entidade
+  - empresa
+  - filial
+  - movimento
+  - total_produtos
+  - total_ipi
+  - total_despesas
+  - total_frete
+  - total_seguro
+  - total_substituicao
+  - total_repasse
+  - total_servicos
+  - total_geral
+  - icms_base_calculo
+  - icms_valor
+  - valor_unitario
+  - total_vendor
+  - fator_vendor
+  - iva_ajustado
+  - icms_subst_valor
+  - icms_subst_valor_pagar
+  - valor_produto_liquido
+  - valor_ipi
+  - icms_credito
+  - icms_decreto_35346
+  - despesas
+  - frete
+  - seguro
+  - repasse
+  - valor_pis
+  - valor_cofins
+  - custo
+  - custo_sem_bonif
+  - custo_anterior
+  - quantidade_embalagem
+  - iva_inter_estadual
+  - custo_final_liquido
+  - custo_unitario_conhecimento_frete
+  - custo_sem_frete
+  - nf_compra_anterior
+  - icms_desonerado_unit
+  - icms_st_retido_valor
+  - icms_valor_fpobreza_st
+  - custo_validacao
+  - estado

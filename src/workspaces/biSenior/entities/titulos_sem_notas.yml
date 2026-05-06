@@ -1,0 +1,59 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_sem_notas
+target_table: titulos_sem_notas
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_entrada_titulo
+sql_file: consulta_titulos_sem_notas.sql
+columns:
+  - cod_transacao
+  - desc_transacao
+  - data_entrada_titulo
+  - empresa
+  - filial_erp
+  - nome_filial
+  - seq_mov
+  - filial_linx
+  - cidade_filial
+  - uf_filial
+  - cod_cc_titulo
+  - descr_cc_rat_titulo
+  - cod_contabil_titulo
+  - descr_conta
+  - valo_rateio_titulo
+  - data_emissao_titulo
+  - nfe_titulo
+  - serie_nf_entrata_titulo
+  - venc_original
+  - venc_prorrogada
+  - data_pagto
+  - cod_forma_pagto
+  - descr_forma_pagto
+  - situacao_titulo
+  - titulo
+  - tipo
+  - descr_tipo_titulo
+  - cod_forn
+  - nome_fornecedor
+  - nome_fantasia_forn
+  - cpnj_cpf
+  - irrf
+  - iss
+  - inss
+  - pis
+  - cofins
+  - csll
+  - outras_retencoes
+  - total_titulo
+  - valor_aberto_titulo
+  - observacao
+  - juros
+  - multa
+  - engargo
+  - acrescimo
+  - desconto
+  - outros_descontos
+  - cod_usu_apr_oc
+  - nome_usu_apr_oc
+  - nivel_aprovador

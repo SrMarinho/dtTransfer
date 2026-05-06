@@ -1,0 +1,10 @@
+select
+    sellout_apuracao_ciclo
+    ,sellout_apuracao
+    ,acordo_comercial
+    ,acordo_comercial_pai
+    ,ciclo
+    ,data_fechamento_inicial
+    ,data_fechamento_final
+from
+	sellout_apuracoes_ciclos

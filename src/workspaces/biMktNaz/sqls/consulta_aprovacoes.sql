@@ -1,0 +1,12 @@
+SELECT
+    aprovacao,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    data_hora,
+    usuario_logado,
+    descricao,
+    processar
+FROM
+    APROVACOES

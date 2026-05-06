@@ -1,0 +1,15 @@
+SELECT
+    ac_encontro_conta_nota_debito,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    ac_encontro_conta,
+    ac_provisao_receber,
+    ac_provisao_receber_valor,
+    ac_recebimento,
+    ac_recebimento_valor,
+    data_aplicacao,
+    valor_aplicado
+FROM
+    AC_ENCONTROS_CONTAS_NOTAS_DEBITOS

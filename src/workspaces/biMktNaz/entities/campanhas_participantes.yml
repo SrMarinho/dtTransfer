@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: campanhas_participantes
+target_table: campanhas_participantes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_campanhas_participantes.sql
+columns:
+  - id_campanha
+  - subcampanha
+  - codigo_universo
+  - descricao
+  - observacao
+  - tipo_restricao
+  - tipo

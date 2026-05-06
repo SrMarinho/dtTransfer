@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: wms_follow_tempos_checkout
+target_table: wms_follow_tempos_checkout
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_wms_follow_tempos_checkout.sql
+columns:
+  - checkout
+  - operador
+  - nome
+  - embalagem_separacao
+  - emp_cd
+  - separado
+  - volumes
+  - menor_data_hora_ini_separacao
+  - maior_data_hora_fim_separacao

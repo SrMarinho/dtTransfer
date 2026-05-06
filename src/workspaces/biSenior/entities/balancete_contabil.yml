@@ -1,0 +1,25 @@
+$schema: ../../../../schemas/entity.json
+name: balancete_contabil
+target_table: balancete_contabil
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_lancamento
+sql_file: consulta_balancete_contabil.sql
+columns:
+  - empresa
+  - data_lancamento
+  - fil_erp
+  - fil_sis_origem
+  - nome_filial
+  - grupo
+  - descr_grupo
+  - classificacao
+  - mascara
+  - conta
+  - descr_conta
+  - salant
+  - debmes
+  - cremes
+  - salmes
+  - movimento

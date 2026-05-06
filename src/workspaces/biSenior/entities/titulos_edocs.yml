@@ -1,0 +1,39 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_edocs
+target_table: titulos_edocs
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_emissao
+sql_file: consulta_titulos_edocs.sql
+columns:
+  - empresa
+  - filial_erp
+  - cnpj
+  - filial_linx
+  - nome_filial
+  - cnpj_fornecedor
+  - nome_fornecedor
+  - data_emissao
+  - numero
+  - valor_nota
+  - cfop
+  - produto_erp
+  - codigo_produto_forn
+  - valor_bruto_produto
+  - desc_produto
+  - icms_st_produto
+  - ipi_produto
+  - frete_produto
+  - seguro_produto
+  - embalagem_produto
+  - encargos_produto
+  - outros_desp_produto
+  - valor_liquido_produto
+  - cod_barra_produto
+  - chave
+  - filial_nfe_entrada
+  - forn_nfe_entrada
+  - numero_nfe_entrada
+  - titulo
+  - cancelado

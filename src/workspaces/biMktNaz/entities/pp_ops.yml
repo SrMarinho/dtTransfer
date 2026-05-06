@@ -1,0 +1,28 @@
+$schema: ../../../../schemas/entity.json
+name: pp_ops
+target_table: pp_ops
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: data_hora
+sql_file: consulta_pp_ops.sql
+columns:
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - registro_procift
+  - nf_numero
+  - empresa
+  - emissao
+  - operacao_fiscal
+  - data_hora
+  - chave_nfe
+  - usuario
+  - usuario_nome
+  - status
+  - produto
+  - descricao_produto
+  - quantidade
+  - total_produto
+  - total_produtos
+  - total_geral

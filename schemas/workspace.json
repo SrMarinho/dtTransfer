@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "workspace.json",
+  "title": "Workspace",
+  "description": "Schema for src/workspaces/<id>/workspace.yml",
+  "type": "object",
+  "required": ["id", "kind", "target"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_\\-]*$",
+      "description": "Slug unico do workspace. Deve comecar com letra, conter apenas letras, digitos, '_' ou '-'"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["yaml"],
+      "description": "Tipo do workspace. Apenas 'yaml' para workspaces baseados em YAML"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Se false, o workspace e ignorado pelo loader (entities, schedules e migrations desativados)"
+    },
+    "target": {
+      "$ref": "#/definitions/ConnectionRef",
+      "description": "Conexao de destino (target DATABASE)"
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ConnectionRef" },
+      "description": "Conexoes de origem (sources DATABASE)"
+    }
+  },
+  "definitions": {
+    "ConnectionRef": {
+      "type": "object",
+      "required": ["driver", "env_prefix"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome amigavel da conexao (referenciado nas entidades)"
+        },
+        "driver": {
+          "type": "string",
+          "enum": ["postgres", "sqlserver", "oracle", "sqlite", "fake"],
+          "description": "Driver do banco de dados"
+        },
+        "env_prefix": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Prefixo das variaveis de ambiente para credenciais. Ex: DB_MYSERVER_HOST, DB_MYSERVER_PORT, DB_MYSERVER_DATABASE, DB_MYSERVER_USERNAME, DB_MYSERVER_PASSWORD"
+        },
+        "options": {
+          "type": "object",
+          "description": "Opcoes extras de conexao (ex: encoding, timeout)"
+        }
+      }
+    }
+  }
+}

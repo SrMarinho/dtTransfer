@@ -1,0 +1,19 @@
+$schema: ../../../../schemas/entity.json
+name: rebaixas_apuracoes_ciclos
+target_table: rebaixas_apuracoes_ciclos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_rebaixas_apuracoes_ciclos.sql
+columns:
+  - rebaixa_apuracao_ciclo
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - rebaixa_apuracao
+  - acordo_comercial
+  - acordo_comercial_pai
+  - ciclo
+  - data_fechamento_inicial
+  - data_fechamento_final

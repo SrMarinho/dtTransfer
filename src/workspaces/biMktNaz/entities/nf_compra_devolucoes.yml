@@ -1,0 +1,16 @@
+$schema: ../../../../schemas/entity.json
+name: nf_compra_devolucoes
+target_table: nf_compra_devolucoes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_nf_compra_devolucoes.sql
+columns:
+  - nf_compra_devolucao
+  - data_hora
+  - nf_compra
+  - empresa
+  - nf_numero
+  - emissao
+  - movimento
+  - saida

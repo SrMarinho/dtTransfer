@@ -1,0 +1,10 @@
+$schema: ../../../../schemas/entity.json
+name: acordo_comercial_status
+target_table: acordo_comercial_status
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_acordo_comercial_status.sql
+columns:
+  - status_acordo_comercial
+  - descricao

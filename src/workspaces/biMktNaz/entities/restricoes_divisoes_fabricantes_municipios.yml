@@ -1,0 +1,12 @@
+$schema: ../../../../schemas/entity.json
+name: restricoes_divisoes_fabricantes_municipios
+target_table: restricoes_divisoes_fabricantes_municipios
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_restricoes_divisoes_fabricantes_municipios.sql
+columns:
+  - restricao_divisao_fabricante_municipio
+  - restricao_divisao_fabricante
+  - municipio
+  - tipo_restricao

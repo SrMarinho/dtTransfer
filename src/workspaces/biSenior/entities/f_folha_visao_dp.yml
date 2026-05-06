@@ -1,0 +1,7 @@
+$schema: ../../../../schemas/entity.json
+name: f_folha_visao_dp
+target_table: f_folha_visao_dp
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_f_folha_visao_dp.sql

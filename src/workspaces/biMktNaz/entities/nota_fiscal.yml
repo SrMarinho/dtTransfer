@@ -1,0 +1,23 @@
+$schema: ../../../../schemas/entity.json
+name: nota_fiscal
+target_table: nota_fiscal
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: data_emissao
+sql_file: consulta_nota_fiscal.sql
+columns:
+  - unidade
+  - nota_fiscal
+  - data_emissao
+  - tipo_nota
+  - vendedor
+  - setor
+  - codigo_cliente
+  - data_pedido
+  - pedido_venda
+  - origem_venda_canal
+  - origem_venda_canal_descricao
+  - apontador
+  - status_nota
+  - dt_liberacao

@@ -1,0 +1,10 @@
+$schema: ../../../../schemas/entity.json
+name: tipos_titulo
+target_table: tipos_titulo
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_tipos_titulo.sql
+columns:
+  - tipo_titulo_id
+  - descricao

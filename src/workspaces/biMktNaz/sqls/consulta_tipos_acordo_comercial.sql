@@ -1,0 +1,21 @@
+SELECT
+    tipo_acordo_comercial,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    descricao,
+    fechamento,
+    classif_financeira,
+    gerar_financeiro_pelo_acordo_comercial,
+    tipo_transacao,
+    conta_contabil_integracao,
+    centro_custo_integracao,
+    serie_integracao,
+    centro_custo,
+    objeto_controle,
+    sellin,
+    credito_apuracao,
+    obrigatorio_sugestao_compra
+FROM
+    tipos_acordo_comercial

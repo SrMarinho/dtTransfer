@@ -1,0 +1,26 @@
+$schema: ../../../../schemas/entity.json
+name: nf_compra_produtos
+target_table: nf_compra_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_nf_compra_produtos.sql
+columns:
+  - nf_compra_produto
+  - nf_compra
+  - referencia
+  - produto
+  - ean
+  - unidade_medida
+  - operacao_fiscal
+  - quantidade
+  - quantidade_embalagem
+  - quantidade_multiplo
+  - valor_unitario
+  - valor_desconto
+  - data_fabricacao
+  - data_validade
+  - lote
+  - data_fabric_digitado
+  - data_valid_digitado
+  - valor_repasse

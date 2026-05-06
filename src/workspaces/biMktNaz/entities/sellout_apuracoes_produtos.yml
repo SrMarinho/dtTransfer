@@ -1,0 +1,27 @@
+$schema: ../../../../schemas/entity.json
+name: sellout_apuracoes_produtos
+target_table: sellout_apuracoes_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_sellout_apuracoes_produtos.sql
+columns:
+  - sellout_apuracao_produto
+  - sellout_apuracao
+  - empresa
+  - nf_numero
+  - pedido_venda
+  - configuracao_ol
+  - produto
+  - quantidade
+  - valor_unitario
+  - total_produto
+  - total_desconto
+  - percentual_reembolso
+  - valor_ressarcimento
+  - margem
+  - desconto_arquivo
+  - total_credito
+  - total_debito
+  - custo_operacional
+  - total_desconto_produto

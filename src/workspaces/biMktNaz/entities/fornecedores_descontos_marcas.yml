@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: fornecedores_descontos_marcas
+target_table: fornecedores_descontos_marcas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_fornecedores_descontos_marcas.sql
+columns:
+  - fornecedor_desconto_marca
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - fornecedor_desconto
+  - marca
+  - percentual_desconto
+  - tipo

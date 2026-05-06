@@ -1,0 +1,33 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_por_portador_cp_cr
+target_table: titulos_por_portador_cp_cr
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_provavel_pg
+sql_file: consulta_titulos_por_portador_cp_cr.sql
+columns:
+  - tipo_descricao
+  - empresa
+  - fil_erp
+  - fil_sis_origem
+  - nome_filial_origem
+  - data_provavel_pg
+  - portador
+  - nome_portador
+  - carteira
+  - nome_carteira
+  - cod_cliente
+  - nome_cliente
+  - grupo_empresa
+  - nome_gp_emp
+  - titulo
+  - tipo
+  - representante
+  - contrato
+  - valor_original
+  - valor_aberto
+  - perc_multa
+  - perc_juros
+  - tipo_juros
+  - desconto

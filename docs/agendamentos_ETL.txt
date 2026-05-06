@@ -1,0 +1,416 @@
+#
+# For details see man 4 crontabs
+#
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+
+CRON_TZ=America/Fortaleza
+
+0  8  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py logs errors
+
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/cliente --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/cliente_vendedor --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas_empresas --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas_participantes --truncate
+0  0-7/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 10 --threads 10 && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 10 --threads 10
+30  1-7/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 10 --threads 10 && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 10 --threads 10
+30  7-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 1 --current-day && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 1 --current-day
+0  9-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 1 --current-day && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 1 --current-day
+0  6  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra --truncate
+0  6  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_produtos --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_produtos --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/recebimentos_volumes --days 10
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biMktNaz/recebimentos_volumes_nf --months 4
+0  0-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas --days 11 --current-day
+30  1-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas --days 11 --current-day
+0  *  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produtos_endereco --truncate
+#0  */4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_tempos_checkout --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  18  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_boletos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_marcas --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_clientes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_descontos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_marcas --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_ols --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_produtos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_unidades --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_clientes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/identificadores --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acoes_descontos_ol --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vans_projetos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/clientes_redes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_entrada --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_entrada_parametros --truncate
+0  */12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produto --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_parametros --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_compras --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biMktNaz/vendas_imagem --months 6
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas_empresas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas_vendedores --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/laboratorios --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendedores_procfit --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/fretes_pagar_periodo_analitico --days 1
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_empresas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_grupos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_importacoes --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_marcas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_produtos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_secoes --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_feira --truncate
+0  0-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas_produtos --days 10 --current-day --truncate
+30  1-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas_produtos --days 10 --current-day --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/gerentes_vendas_procfit --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/supervisores_vendas_procfit --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produto_curva --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/temp_grupo_prod --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_encerramento --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_encerramento_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_receb_volumes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/paletes_alocacoes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_clientes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_grupos_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_uf --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/condicoes_pagamento --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores_tipos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_devolucoes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_devolucoes_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/nf_faturamento_produtos_lote_validade --days 10
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pp_ops --days 31 --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/base_segregado --days 1 --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_parcelas --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/gerentes_vendas_procfit --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_clientes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_codigos_divisoes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_empresas --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_municipios --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_supervisores --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_uf --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_vendedores --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/nota_fiscal --days 11 --current-day
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/cliente_vendedor --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas_empresas --truncate
+0  5,12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/campanhas_participantes --truncate
+0  0-7/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 10 --threads 10 && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 10 --threads 10
+30  1-7/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 10 --threads 10 && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 10 --threads 10
+30  7-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 1 --current-day && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 1 --current-day
+0  9-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/venda --days 1 --current-day && source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/notas_canceladas --days 1 --current-day
+0  6  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra --truncate
+0  6  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_produtos --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_produtos --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/recebimentos_volumes --days 10
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biMktNaz/recebimentos_volumes_nf --months 4
+0  0-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas --days 11 --current-day
+30  1-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas --days 11 --current-day
+0  *  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produtos_endereco --truncate
+#0  */4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_tempos_checkout --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  18  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/wms_follow_separacoes_data_tipo_produtos --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_boletos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_marcas --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_clientes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_descontos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_marcas --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_ols --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_produtos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/configuracoes_ol_excecoes_unidades --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_clientes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/identificadores --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acoes_descontos_ol --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vans_projetos --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/clientes_redes --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_entrada --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_entrada_parametros --truncate
+0  */12  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produto --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_tributarios_parametros --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_compras --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biMktNaz/vendas_imagem --months 6
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas_empresas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/metas_vendas_vendedores --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/laboratorios --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendedores_procfit --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/fretes_pagar_periodo_analitico --days 1
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_empresas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_grupos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_importacoes --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_marcas --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_produtos --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/fornecedores_descontos_secoes --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_feira --truncate
+0  0-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas_produtos --days 10 --current-day --truncate
+30  1-23/3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pedidos_vendas_produtos --days 10 --current-day --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/gerentes_vendas_procfit --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/supervisores_vendas_procfit --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produto_curva --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/temp_grupo_prod --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_encerramento --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_compras_encerramento_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_receb_volumes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/paletes_alocacoes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_clientes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_grupos_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_pedidos_vendas_uf --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/condicoes_pagamento --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores_tipos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apontadores_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_devolucoes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/nf_compra_devolucoes_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/nf_faturamento_produtos_lote_validade --days 10
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/pp_ops --days 31 --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/base_segregado --days 1 --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vendas_parcelas --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/gerentes_vendas_procfit  --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_clientes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_codigos_divisoes --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_empresas --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_municipios --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_supervisores --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_uf --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/restricoes_divisoes_fabricantes_vendedores --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biMktNaz/nota_fiscal --days 11 --current-day
+
+# Agendamento biMktNaz
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biNazaria/produtos --truncate
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biNazaria/curva
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biNazaria/estoque_minimo
+0 2 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biNazaria/demanda
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais_empresas --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais_fechamentos_ciclos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais_formas_pagamentos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais_marcas --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordo_comercial_status --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comeciais_sellout_ol --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/acordos_comerciais_sellouts_ol_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_acordos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_ciclos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_parcelas --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_produtos --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_totais --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellout_apuracoes_valores --truncate
+0 1 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_vendas_validacoes_produtos --truncate
+0 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/pedidos_vendas_validacoes_produtos_historicos --truncate
+0 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/motivos_validacoes_pedidos_vendas --truncate
+30 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produtos_parametros_empresas --truncate
+30 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/produtos_vendas --truncate
+30 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_precos_empresas --truncate
+15 4 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/vw_produtos_precos_descontos_compras_produto_empresa_precificac --truncate
+15 1 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_economicos --truncate
+# AC, Aprovações e Apurações - 00h, 10h, 13h, 16h
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas_notas_debitos --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_saldo --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_transacoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_manuais --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_saldo --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_transacoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_antecipacoes_icms --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_sellin_bonificados --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/desconto_adicional_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/estoques_excedentes_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_economicos_contas --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_acordos_comerciais --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_creditos --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/objetos_controle --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebaixas_apuracoes_ciclos --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebate_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/remanejamentos_cds_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_avulsos_apuracoes --truncate
+0 0 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acordo_comercial --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas_notas_debitos --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_saldo --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_transacoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_manuais --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_saldo --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_transacoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_antecipacoes_icms --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_sellin_bonificados --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/desconto_adicional_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/estoques_excedentes_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_economicos_contas --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_acordos_comerciais --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_creditos --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/objetos_controle --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebaixas_apuracoes_ciclos --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebate_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/remanejamentos_cds_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_avulsos_apuracoes --truncate
+0 10 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acordo_comercial --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas_notas_debitos --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_saldo --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_transacoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_manuais --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_saldo --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_transacoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_antecipacoes_icms --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_sellin_bonificados --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/desconto_adicional_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/estoques_excedentes_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_economicos_contas --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_acordos_comerciais --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_creditos --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/objetos_controle --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebaixas_apuracoes_ciclos --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebate_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/remanejamentos_cds_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_avulsos_apuracoes --truncate
+0 13 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acordo_comercial --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_encontros_contas_notas_debitos --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_saldo --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_provisoes_receber_transacoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_manuais --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_saldo --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/ac_recebimentos_transacoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/aprovacoes_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_antecipacoes_icms --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/apuracoes_sellin_bonificados --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/desconto_adicional_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/estoques_excedentes_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/grupos_economicos_contas --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_acordos_comerciais --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/modalidades_creditos --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/objetos_controle --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebaixas_apuracoes_ciclos --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/rebate_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/remanejamentos_cds_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/sellin_avulsos_apuracoes --truncate
+0 16 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/tipos_acordo_comercial --truncate
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/clientes_datas --truncate
+
+# Estoque
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 2
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 3
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 4
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 5
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 6
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 7
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 8
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 9
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 10
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 11
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 13
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 14
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 15
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 16
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 17
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 18
+0 3 * * * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load unit --table biMktNaz/estoque --unit 19
+
+
+# Agendamentos para senior
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/f_folha_visao_contabil --days 90
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/estoque_usu_consumo --days 2
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_sem_notas --days 2
+0  3  *  *  1 source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_sem_notas --days 30
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/f_titulos_com_notas_servicos --days 2
+0  3  *  *  1 source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/f_titulos_com_notas_servicos --days 30
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/f_titulos_com_notas_produtos --days 2
+0  3  *  *  1 source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/f_titulos_com_notas_produtos --days 30
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/folha_controladoria --days 2
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/plano_contas_contabeis
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/d_filiais --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/d_custos --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/d_historico_filial --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/d_eventos --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biSenior/f_mapear_contas_lanc_contabil --months 12
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/acompanhamento_solicitacoes_compras --days 7
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/rescisoes --days 2
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/fgts_sem_rescisoes --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/acompanhamento_solicitacoes_compras_eng_globo --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biMktNaz/espelho --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/f_folha_visao_dp --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/banco_horas --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/ajuste_ponto --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/marcacoes_ponto --truncate
+0  3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biMktNaz/acompanhamento_orcamento_compras --months 12
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/cfop_fiscal --truncate
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/rescisoes --truncate
+0  5  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_edocs --days 10 --current-day
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_contas_pagar --days 732
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/conciliacao_bancaria --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biSenior/titulos_contas_receber --months 13
+0  */3  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_contas_receber_por_geracao --days 1 --current-day
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/afastamento_colaboradores --days 30
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/razao_contabil --days 30
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/dados_colaboradores
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/demissoes --days 60
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/extratos_bancarios --days 30
+0  4  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/tempo_selecao --truncate
+0  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biSenior/possicao_baixo_contas_receber --months 24
+30  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_por_portador_cp_cr --days 366
+30  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/conciliacao_bancaria_completa --days 366
+30  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biSenior/balancete_contabil --months 12
+31  1  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load monthly --table biSenior/razao_por_fornecedores --months 3
+
+# biSenior - Fluxo de Caixa - Fatos (incremental)
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_receber --days 366
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/titulos_pagar --days 366
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/notas_fiscais_saida --days 366
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load incremental --table biSenior/notas_fiscais_entrada --days 366
+
+# biSenior - Fluxo de Caixa - Dimensões (truncate)
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/transacoes --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/clientes --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/tipos_titulo --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/filiais --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/portadores --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/carteiras_cobranca --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/grupos_empresa --truncate
+0  2  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py load full --table biSenior/fornecedores --truncate
+
+# Telegram — verificação de erros nos logs
+*/30  *  *  *  * source ~/.bashrc && cd /opt/nzretlconnect/biMktNaz && /opt/nzretlconnect/biMktNaz/bimktnaz/bin/python run.py logs errors

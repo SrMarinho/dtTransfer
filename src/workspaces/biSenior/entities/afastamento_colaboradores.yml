@@ -1,0 +1,20 @@
+$schema: ../../../../schemas/entity.json
+name: afastamento_colaboradores
+target_table: afastamento_colaboradores
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_afastamento
+sql_file: consulta_afastamento_colaboradores.sql
+columns:
+  - data_afastamento
+  - empresa
+  - cod_filial
+  - nome_filial
+  - uf
+  - tipo
+  - nome_tipo
+  - matricula
+  - situacao
+  - desc_situacao
+  - qta_dias

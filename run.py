@@ -1,34 +1,38 @@
-import argparse
-import factories.mode_factory as mf
-from factories.mode_factory import ModeFactory 
-from config.logger.logging import logger
+"""DataReplicator CLI entry point.
 
-def init_args():
-    parser = argparse.ArgumentParser()
+Command structure (kubectl-style subcommand groups):
+    workspace list|validate|new
+    entity    list|new
+    migrate   upgrade|status|validate|create|stamp|rollback
+    load      full|incremental|monthly|unit
+    logs      errors
+"""
 
-    parser.add_argument('--params', nargs='*', default=[], type=str,
-                        help='Argumentos no formato +key1 value1 +key2 value2 ...',
-                        metavar='+key value', dest='params')
+import sys
+from pathlib import Path
 
-    args = parser.parse_args()
-    
-    params = {
-            "mode": "cli",
-            "process": "regular"
-        }
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-    if args.params:
-        for i in range(0, len(args.params), 2):
-            if i + 1 < len(args.params):
-                params[args.params[i].lstrip('+')] = args.params[i + 1]
+import typer
 
-    return params
+from src.engine.workspace.bootstrap import bootstrap
 
-def main():
-    params = init_args()
+bootstrap()
 
-    mode = ModeFactory.getInstance(params['mode'], params)
-    mode.run()
+from src.interfaces.cli.groups.workspace import app as workspace_app
+from src.interfaces.cli.groups.entity import app as entity_app
+from src.interfaces.cli.groups.logs import app as logs_app
+from src.interfaces.cli.commands.load import app as load_app
+from src.interfaces.cli.commands.migrate import app as migrate_app
+
+
+app = typer.Typer(help="DataReplicator — engine ETL declarativa", no_args_is_help=True)
+
+app.add_typer(workspace_app, name="workspace", help="Gerencia workspaces (list, validate, new)")
+app.add_typer(entity_app, name="entity", help="Gerencia entidades (list, new)")
+app.add_typer(migrate_app, name="migrate", help="Migrations Alembic por workspace")
+app.add_typer(load_app, name="load", help="Executa processos ETL (full, incremental, monthly, unit)")
+app.add_typer(logs_app, name="logs", help="Inspeciona logs (errors)")
 
 if __name__ == "__main__":
-    main()
+    app()

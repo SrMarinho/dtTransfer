@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: grupos_clientes
+target_table: grupos_clientes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_grupos_clientes.sql
+columns:
+  - grupo_cliente
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - descricao

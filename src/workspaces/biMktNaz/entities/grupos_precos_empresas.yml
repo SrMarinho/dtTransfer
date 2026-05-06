@@ -1,0 +1,11 @@
+$schema: ../../../../schemas/entity.json
+name: grupos_precos_empresas
+target_table: grupos_precos_empresas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_grupos_precos_empresas.sql
+columns:
+  - grupo_preco_empresa
+  - grupo_preco
+  - empresa_usuaria

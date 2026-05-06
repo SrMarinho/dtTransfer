@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: vendas_boletos
+target_table: vendas_boletos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_vendas_boletos.sql
+columns:
+  - venda_boleto
+  - registro_procfit
+  - dias
+  - vencimento
+  - percentual
+  - valor
+  - titulo

@@ -1,0 +1,22 @@
+$schema: ../../../../schemas/entity.json
+name: vw_produtos_precos_descontos_compras_produto_empresa_precificac
+target_table: vw_produtos_precos_descontos_compras_produto_empresa_precificac
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_vw_produtos_precos_descontos_compras_produto_empresa_precificac.sql
+columns:
+  - produto
+  - entidade
+  - referencia
+  - percentual_desconto
+  - valor_unitario
+  - fornecedor_desconto
+  - quantidade_minima
+  - tipo
+  - percentual_repasse
+  - pratica_desconto_cascata
+  - empresa
+  - tipo_fornecedor
+  - data_validade_ini
+  - data_validade_fim

@@ -1,0 +1,8 @@
+$schema: ../../../../schemas/entity.json
+name: clientes
+target_table: clientes
+source: biMktNaz
+target: local
+process_type: incremental
+sql_file: consulta_clientes.sql
+columns: []

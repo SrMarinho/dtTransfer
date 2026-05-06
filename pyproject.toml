@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data_replicator"
+version = "1.0.0"
+description = "DataReplicator ETL"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: tests that connect to real databases",
+    "e2e: tests that run the full ETL pipeline",
+]

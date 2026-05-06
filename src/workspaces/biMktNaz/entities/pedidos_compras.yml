@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: pedidos_compras
+target_table: pedidos_compras
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_pedidos_compras.sql
+columns:
+  - unidade
+  - pedido_compra
+  - entidade
+  - data_pedido
+  - data_entrega
+  - cod_comprador
+  - condicao_pagamento
+  - tipo_pedido_compra
+  - unidade_destino_crossdocking

@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: d_custos
+target_table: d_custos
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_d_custos.sql
+columns:
+  - empresa
+  - cod_custo
+  - descr_custo
+  - tipo
+  - aceita_rat
+  - data_alt
+  - tipo_custo
+  - descr_tipo_custo
+  - custo_pai

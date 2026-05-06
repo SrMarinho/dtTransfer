@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: restricoes_divisoes_fabricantes
+target_table: restricoes_divisoes_fabricantes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_restricoes_divisoes_fabricantes.sql
+columns:
+  - restricao_divisao_fabricante
+  - codigo_divisao
+  - data_hora
+  - descricao
+  - observacao
+  - movimento_inicial
+  - movimento_final

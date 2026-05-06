@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: condicoes_pagamento
+target_table: condicoes_pagamento
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_condicoes_pagamento.sql
+columns:
+  - condicao_pagamento
+  - descricao
+  - venda
+  - compra
+  - validar_limite
+  - sigla
+  - tipo_condicao_pagamento

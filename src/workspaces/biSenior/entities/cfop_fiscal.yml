@@ -1,0 +1,21 @@
+$schema: ../../../../schemas/entity.json
+name: cfop_fiscal
+target_table: cfop_fiscal
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_cfop_fiscal.sql
+columns:
+  - tipo
+  - empresa
+  - filial_erp
+  - filial_linx
+  - cfop
+  - transacao
+  - valor_contabil
+  - base_icms
+  - valor_icms
+  - valor_isento_icms
+  - valor_outros_icms
+  - total
+  - data_evento

@@ -1,0 +1,120 @@
+SELECT
+    p.PRODUTO,
+    ean.EAN,
+    REPLACE (p.DESCRICAO, '''', '') AS DESCRICAO,
+    p.UNIDADE_MEDIDA, --
+    p.UNIDADE_MEDIDA_FATOR, --
+    p.FATOR_EMBALAGEM, --
+    p.EMBALAGEM_INDUSTRIA, --
+    REPLACE (cpe.DESCRICAO, '''', '') AS CLAS_PROD_EST,
+    REPLACE (sp.DESCRICAO, '''', '') AS SESSAO_PROD,
+    REPLACE (gp.DESCRICAO, '''', '') AS GRUPO_PRODUTO,
+    REPLACE (sgp.DESCRICAO, '''', '') AS SUB_GRP_PROD,
+    REPLACE (cp.DESCRICAO, '''', '') AS CLASSE_PROD,
+    REPLACE (fp.DESCRICAO, '''', '') AS FABRICANTE,
+    m.MARCA AS CD_MARCA, --
+    REPLACE (m.DESCRICAO, '''', '') AS MARCA,
+    sts.DESCRICAO AS STS_PROD, --
+    UPPER(stscompra.DESCRICAO) AS STS_PROD_COMPRA, --
+    c.NOME AS COMPRADOR, --
+    REPLACE (LEGENDAS_PRODUTOS.DESCRICAO, '''', '') AS LEGENDA,
+    CATEGORIAS_PRODUTOS.DESCRICAO as DIVISAO, --
+    pr.DESCRICAO as PROD_RESUMO
+FROM
+    PRODUTOS p
+WITH
+    (NOLOCK)
+    LEFT JOIN CLASSIFICACOES_PRODUTOS_ESTOQUE cpe
+WITH
+    (NOLOCK) ON p.CLASSIFICACAO_PRODUTO_ESTOQUE = cpe.CLASSIFICACAO_PRODUTO_ESTOQUE
+    LEFT JOIN SECOES_PRODUTOS sp
+WITH
+    (NOLOCK) ON p.SECAO_PRODUTO = sp.SECAO_PRODUTO
+    LEFT JOIN GRUPOS_PRODUTOS gp
+WITH
+    (NOLOCK) ON p.GRUPO_PRODUTO = gp.GRUPO_PRODUTO
+    LEFT JOIN SUBGRUPOS_PRODUTOS sgp
+WITH
+    (NOLOCK) ON p.SUBGRUPO_PRODUTO = sgp.SUBGRUPO_PRODUTO
+    LEFT JOIN CLASSES_PRODUTOS cp
+WITH
+    (NOLOCK) ON p.CLASSE_PRODUTO = cp.CLASSE_PRODUTO
+    LEFT JOIN FABRICANTES_PRODUTOS fp
+WITH
+    (NOLOCK) ON p.FABRICANTE_PRODUTO = fp.FABRICANTE_PRODUTO
+    LEFT JOIN MARCAS m
+WITH
+    (NOLOCK) ON p.MARCA = m.MARCA
+    LEFT JOIN SITUACOES_PRODUTOS sts
+WITH
+    (NOLOCK) ON p.SITUACAO_PRODUTO = sts.SITUACAO_PRODUTO
+    LEFT JOIN CATEGORIAS_PRODUTOS
+WITH
+    (NOLOCK) ON p.CATEGORIA_PRODUTO = CATEGORIAS_PRODUTOS.CATEGORIA_PRODUTO
+    LEFT JOIN STATUS_COMPRA stscompra
+WITH
+    (NOLOCK) ON p.SITUACAO_PRODUTO_COMPRA = stscompra.STATUS_COMPRA
+    LEFT JOIN (
+        SELECT DISTINCT
+            gcm.MARCA,
+            c.NOME
+        FROM
+            GRUPOS_COMPRAS_MARCAS gcm
+        WITH
+            (NOLOCK)
+            LEFT JOIN GRUPOS_COMPRAS gc
+        WITH
+            (NOLOCK) ON gc.GRUPO_COMPRA = gcm.GRUPO_COMPRA
+            LEFT JOIN COMPRADORES c
+        with
+            (NOLOCK) ON gc.COMPRADOR = c.COMPRADOR
+        WHERE
+            c.COMPRADOR not in (1, 3, 12, 21, 19, 18, 17, 16)
+    ) c ON c.MARCA = p.MARCA
+    LEFT JOIN (
+        SELECT
+            t1.PRODUTO,
+            t1.LEGENDA
+        FROM
+            (
+                SELECT
+                    asi.PRODUTO,
+                    asp.LEGENDA,
+                    asp.ALTERACAO_STATUS_PRODUTO
+                FROM
+                    ALTERACOES_STATUS_ITENS asi
+                with
+                    (NOLOCK)
+                    INNER JOIN ALTERACOES_STATUS_PRODUTOS asp
+                with
+                    (NOLOCK) ON asi.ALTERACAO_STATUS_PRODUTO = asp.ALTERACAO_STATUS_PRODUTO
+            ) AS t1
+            LEFT JOIN (
+                SELECT
+                    asi.PRODUTO,
+                    MAX(asp.ALTERACAO_STATUS_PRODUTO) AS ALTERACAO_STATUS_PRODUTO
+                FROM
+                    ALTERACOES_STATUS_ITENS asi
+                with
+                    (NOLOCK)
+                    INNER JOIN ALTERACOES_STATUS_PRODUTOS asp
+                with
+                    (NOLOCK) ON asi.ALTERACAO_STATUS_PRODUTO = asp.ALTERACAO_STATUS_PRODUTO
+                GROUP BY
+                    asi.PRODUTO
+            ) t2 ON t1.PRODUTO = t2.PRODUTO
+            AND t1.ALTERACAO_STATUS_PRODUTO = t2.ALTERACAO_STATUS_PRODUTO
+        WHERE
+            t2.PRODUTO IS NOT NULL
+    ) legendas ON p.PRODUTO = legendas.PRODUTO
+    LEFT JOIN LEGENDAS_PRODUTOS ON LEGENDAS_PRODUTOS.LEGENDA = legendas.LEGENDA
+    LEFT JOIN (
+        SELECT
+            PRODUTO,
+            EAN
+        FROM
+            PRODUTOS_EAN
+        WHERE
+            EAN_PRINCIPAL = 'S'
+    ) ean ON p.PRODUTO = ean.PRODUTO
+    LEFT JOIN PRODUTOS_RESUMO pr ON p.PRODUTO_RESUMO = pr.PRODUTO_RESUMO

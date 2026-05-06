@@ -1,0 +1,11 @@
+$schema: ../../../../schemas/entity.json
+name: produto_curva
+target_table: produto_curva
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_produto_curva.sql
+columns:
+  - produto
+  - empresa
+  - curva

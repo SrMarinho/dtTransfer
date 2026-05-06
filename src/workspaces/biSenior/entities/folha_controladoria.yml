@@ -1,0 +1,24 @@
+$schema: ../../../../schemas/entity.json
+name: folha_controladoria
+target_table: folha_controladoria
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_lancamento
+sql_file: consulta_folha_controladoria.sql
+columns:
+  - empresa
+  - filial
+  - nome_filial
+  - data_lancamento
+  - cod_opcao_contabilidade
+  - opcao_contabilidade
+  - cod_historico
+  - valor
+  - cod_custo
+  - descr_custo
+  - codred_debito
+  - codred_credito
+  - descr_cod_lig_conta_contabil
+  - debcre
+  - lote_contabil

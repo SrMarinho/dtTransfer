@@ -1,0 +1,4 @@
+SELECT
+    CODCRT AS carteira_id,
+    DESCRT AS descricao
+FROM SAPIENS_PROD.E033CRT

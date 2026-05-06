@@ -1,0 +1,28 @@
+SELECT
+    ac_provisao_receber,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    registro_controle,
+    registro_controle_ii,
+    empresa,
+    entidade,
+    valor,
+    numero_documento,
+    emissao,
+    movimento,
+    vencimento,
+    modalidade,
+    classif_financeira,
+    objeto_controle,
+    log_data_hora,
+    log_host_name,
+    log_app_name,
+    log_user_name,
+    acordo_comercial,
+    empresa_organizacao_oracle,
+    modalidade_gera_financeiro,
+    grupo_economico_conta
+FROM
+    AC_PROVISOES_RECEBER

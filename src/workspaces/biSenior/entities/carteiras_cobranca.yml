@@ -1,0 +1,10 @@
+$schema: ../../../../schemas/entity.json
+name: carteiras_cobranca
+target_table: carteiras_cobranca
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_carteiras_cobranca.sql
+columns:
+  - carteira_id
+  - descricao

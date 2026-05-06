@@ -1,0 +1,13 @@
+$schema: ../../../schemas/workspace.json
+id: biNazaria
+kind: yaml
+
+sources:
+  - name: PbsNazariaDados
+    driver: sqlserver
+    env_prefix: DB_NAZARIA_SQLSERVER
+
+target:
+  name: biNazaria
+  driver: postgres
+  env_prefix: DB_BINAZARIA_POSTGRES

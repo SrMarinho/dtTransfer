@@ -1,0 +1,16 @@
+$schema: ../../../../schemas/entity.json
+name: vendedores_procfit
+target_table: vendedores_procfit
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_vendedores_procfit.sql
+columns:
+  - codigo_vendedor
+  - nome_vendedor
+  - tipo_vendedor
+  - codigo_supervisor
+  - cargo_comercial
+  - cargo_comercial_descricao
+  - comissao_liquidez
+  - comissao_venda

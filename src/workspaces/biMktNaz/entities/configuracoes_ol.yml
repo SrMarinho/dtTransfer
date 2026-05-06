@@ -1,0 +1,42 @@
+$schema: ../../../../schemas/entity.json
+name: configuracoes_ol
+target_table: configuracoes_ol
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_configuracoes_ol.sql
+columns:
+  - configuracao_ol
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - descricao
+  - validade_inicial
+  - validade_final
+  - valor_fatura_minima
+  - quantidade_minima
+  - numero_itens
+  - segunda
+  - terca
+  - quarta
+  - quinta
+  - sexta
+  - sabado
+  - domingo
+  - usuario_logado
+  - data_hora
+  - hora_inicial
+  - hora_final
+  - tipo_limitacao
+  - tipo_ol
+  - projeto
+  - identificador
+  - projeto_industria
+  - canal_autorizador
+  - condicao_comercial_canal_autorizador
+  - sigla_industria_ca
+  - processa_b2b
+  - tipo_cashback_pontuacao
+  - tipo_cashback_resgate
+  - observacao

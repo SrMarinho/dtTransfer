@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: identificadores
+target_table: identificadores
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_identificadores.sql
+columns:
+  - identificador
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - descricao

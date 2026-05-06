@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: transacoes
+target_table: transacoes
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_transacoes.sql
+columns:
+  - empresa_id
+  - codigo_transacao
+  - modulo
+  - descricao_transacao
+  - cfop_codigo
+  - tipo_operacao

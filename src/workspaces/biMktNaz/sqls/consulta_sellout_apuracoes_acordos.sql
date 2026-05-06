@@ -1,0 +1,9 @@
+select
+    sellout_apuracao_acordo
+    ,sellout_apuracao
+    ,ac_sellout
+    ,grupo_economico_conta
+    ,premiacao
+    ,modalidade_acordo_comercial
+from
+	sellout_apuracoes_acordos

@@ -1,0 +1,10 @@
+$schema: ../../../../schemas/entity.json
+name: apontadores_tipos
+target_table: apontadores_tipos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_apontadores_tipos.sql
+columns:
+  - tipo_apontador
+  - descricao

@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: campanhas_empresas
+target_table: campanhas_empresas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_campanhas_empresas.sql
+columns:
+  - id_campanha
+  - meta_cnpj
+  - meta_quantidade
+  - meta_valor
+  - subcampanha
+  - empresa

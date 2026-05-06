@@ -1,0 +1,9 @@
+SELECT
+	A.RESTRICAO_DIVISAO_FABRICANTE AS restricao_divisao_fabricante,
+	A.CODIGO_DIVISAO AS codigo_divisao,
+	A.DATA_HORA AS data_hora,
+	A.DESCRICAO AS descricao,
+	A.OBSERVACAO AS observacao,
+	A.MOVIMENTO_INICIAL AS movimento_inicial,
+	A.MOVIMENTO_FINAL AS movimento_final
+FROM RESTRICOES_DIVISOES_FABRICANTES AS A

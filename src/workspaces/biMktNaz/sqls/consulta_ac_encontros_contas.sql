@@ -1,0 +1,11 @@
+SELECT
+    ac_encontro_conta,
+    data_hora,
+    empresa,
+    movimento,
+    bonificacao,
+    processar,
+    objeto_controle,
+    ac_encontro_conta_cancelamento
+FROM
+    AC_ENCONTROS_CONTAS

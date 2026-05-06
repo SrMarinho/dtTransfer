@@ -1,0 +1,18 @@
+select
+    sellout_apuracao
+    ,data_hora
+    ,empresa
+    ,entidade_filtro
+    ,processar
+    ,finalizar
+    ,movimento
+    ,movimento_ini
+    ,movimento_fim
+    ,gerar_parcelas
+    ,data_limite_fechamento
+    ,status_controladoria
+    ,observacao_aprovacao
+    ,registro_aprovacao
+    ,data_hora_aprovacao
+from
+	sellout_apuracoes 

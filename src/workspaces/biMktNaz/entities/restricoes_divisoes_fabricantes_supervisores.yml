@@ -1,0 +1,13 @@
+$schema: ../../../../schemas/entity.json
+name: restricoes_divisoes_fabricantes_supervisores
+target_table: restricoes_divisoes_fabricantes_supervisores
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_restricoes_divisoes_fabricantes_supervisores.sql
+columns:
+  - restricao_divisao_fabricante_supervisor
+  - restricao_divisao_fabricante
+  - supervisor
+  - tipo_restricao
+  - empresa

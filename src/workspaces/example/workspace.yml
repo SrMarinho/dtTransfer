@@ -1,0 +1,11 @@
+$schema: ../../../schemas/workspace.json
+id: example
+kind: yaml
+target:
+  name: target_pg
+  driver: sqlite
+  env_prefix: DB_EXAMPLE_SQLITE
+sources:
+  - name: source_pg
+    driver: sqlite
+    env_prefix: DB_EXAMPLE_SOURCE_SQLITE

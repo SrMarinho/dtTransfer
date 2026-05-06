@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: demanda
+target_table: demanda
+source: PbsNazariaDados
+target: biNazaria
+process_type: full
+sql_file: consulta_demanda.sql
+columns:
+  - produto
+  - demanda_dia_ponderada_original
+  - demanda_dia_ponderada
+  - mes
+  - ano
+  - data

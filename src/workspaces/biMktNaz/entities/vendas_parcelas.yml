@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: vendas_parcelas
+target_table: vendas_parcelas
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_vendas_parcelas.sql
+columns:
+  - venda_parcela
+  - registro_procfit
+  - dias
+  - vencimento
+  - percentual
+  - valor
+  - titulo

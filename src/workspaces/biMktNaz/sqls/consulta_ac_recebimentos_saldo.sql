@@ -1,0 +1,11 @@
+SELECT
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    ac_recebimento,
+    objeto_controle,
+    saldo,
+    situacao
+FROM
+    AC_RECEBIMENTOS_SALDO

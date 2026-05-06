@@ -1,0 +1,11 @@
+$schema: ../../../../schemas/entity.json
+name: sample
+target_table: sample
+source: source_pg
+target: target_pg
+process_type: incremental
+sql_file: sample.sql
+columns:
+  - id
+  - nome
+  - criado_em

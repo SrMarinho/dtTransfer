@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: plano_contas_contabeis
+target_table: plano_contas_contabeis
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_plano_contas_contabeis.sql
+columns:
+  - empresa
+  - red
+  - descricao
+  - mascara
+  - classificacao
+  - tipo

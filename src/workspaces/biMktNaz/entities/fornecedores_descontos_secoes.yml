@@ -1,0 +1,16 @@
+$schema: ../../../../schemas/entity.json
+name: fornecedores_descontos_secoes
+target_table: fornecedores_descontos_secoes
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_fornecedores_descontos_secoes.sql
+columns:
+  - fornecedor_desconto_secao
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - fornecedor_desconto
+  - secao_produto
+  - tipo

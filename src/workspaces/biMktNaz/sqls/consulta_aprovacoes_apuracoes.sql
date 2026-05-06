@@ -1,0 +1,17 @@
+SELECT
+    aprovacao_apuracao,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    aprovacao,
+    tab_origem_apuracao,
+    apuracao,
+    acordo_comercial,
+    valor_apurado_debito,
+    valor_apurado_credito,
+    status_controladoria,
+    observacao,
+    tipo_avulso
+FROM
+    APROVACOES_APURACOES

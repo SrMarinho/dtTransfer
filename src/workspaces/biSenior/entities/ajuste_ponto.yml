@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: ajuste_ponto
+target_table: ajuste_ponto
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_ajuste_ponto.sql
+columns:
+  - empresa
+  - tipo
+  - matricula
+  - situacao_excecao
+  - cod_situacao
+  - descr_situacao
+  - observacao
+  - data_apuracao
+  - marcacao

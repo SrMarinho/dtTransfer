@@ -1,0 +1,23 @@
+SELECT
+    estoque_excedente_apuracao,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    data_hora,
+    usuario_logado,
+    empresa,
+    entidade_filtro,
+    processar,
+    finalizar,
+    movimento,
+    movimento_ini,
+    movimento_fim,
+    gerar_parcelas,
+    data_limite_fechamento,
+    status_controladoria,
+    observacao_aprovacao,
+    registro_aprovacao,
+    data_hora_aprovacao
+FROM
+    ESTOQUES_EXCEDENTES_APURACOES

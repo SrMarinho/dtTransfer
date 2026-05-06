@@ -1,0 +1,134 @@
+WITH BASE AS (
+    SELECT
+        R.CODEMP,
+        R.NUMLCT,
+        R.CTARED,
+        R.VLRRAT,
+        R.DEBCRE,
+        R.CODCCU,
+        L.CODFIL,
+        L.DATLCT,
+        L.NUMLOT,
+        L.ORILCT,
+        L.CTADEB,
+        L.CTACRE,
+        L.SITLCT,
+        P.GRUCTA,
+        P.DESCTA,
+        C.DESCCU
+    FROM SAPIENS_PROD.E640RAT R
+        JOIN SAPIENS_PROD.E640LCT L 
+            ON L.CODEMP = R.CODEMP 
+           AND L.NUMLCT = R.NUMLCT
+        JOIN SAPIENS_PROD.E045PLA P 
+            ON P.CODEMP = R.CODEMP 
+           AND P.CTARED = R.CTARED
+        LEFT JOIN SAPIENS_PROD.E044CCU C 
+            ON C.CODEMP = R.CODEMP 
+           AND C.CODCCU = R.CODCCU
+    WHERE
+        R.CODEMP IN (2, 5)
+        AND R.FILRAT >= 1
+        AND R.FILRAT <= 999
+        AND L.SITLCT = 2
+        AND L.NUMLOT IS NOT NULL
+        AND L.NUMLOT <> 0
+        AND L.DATLCT >= TO_DATE('REPLACE_START_DATE','YYYY-MM-DD') 
+        AND L.DATLCT < TO_DATE('REPLACE_END_DATE','YYYY-MM-DD')
+),
+FORN_LNF AS (
+    SELECT
+        N.CODEMP,
+        N.NUMLCT,
+        MAX(NULLIF(N.CODFOR,0)) AS CODFOR
+    FROM SAPIENS_PROD.E644LNF N
+    GROUP BY N.CODEMP, N.NUMLCT
+),
+FORN_LTI AS (
+    SELECT
+        N.CODEMP,
+        N.NUMLCT,
+        MAX(NULLIF(N.CODFOR,0)) AS CODFOR
+    FROM SAPIENS_PROD.E644LTI N
+    GROUP BY N.CODEMP, N.NUMLCT
+),
+CLI_VENDA AS (
+    SELECT
+        N.CODEMP,
+        N.NUMLCT,
+        MAX(NULLIF(X.CODCLI,0)) AS CODCLI
+    FROM SAPIENS_PROD.E644LNF N
+        JOIN SAPIENS_PROD.E140NFV X
+            ON X.CODEMP = N.CODEMP
+           AND X.CODFIL = N.CODFIL
+           AND X.NUMNFV = N.NUMNFI
+           AND X.CODSNF = N.CODSNF
+    GROUP BY N.CODEMP, N.NUMLCT
+)
+SELECT
+    /* Código da pessoa resolvido corretamente */
+    CASE 
+        WHEN B.ORILCT = 'VEN'
+            THEN C.CODCLI
+        ELSE
+            COALESCE(F.CODFOR, FT.CODFOR)
+    END AS COD_PESSOA,
+    /* Nome */
+    COALESCE(CL.NOMCLI, F2.APEFOR) AS NOME,
+    /* Documento */
+    COALESCE(CL.CGCCPF, F2.CGCCPF) AS CNPJ_CPF,
+    B.GRUCTA AS GRUPO,
+    B.CODEMP AS EMPRESA,
+    B.CODFIL AS FILIAL,
+    CASE
+        WHEN (B.CTADEB IN (528,532,575,515)
+           OR B.CTACRE IN (528,532,575,515))
+        THEN TO_CHAR(TRUNC(B.DATLCT,'MM'),'YYYY-MM-DD')
+        ELSE TO_CHAR(B.DATLCT,'YYYY-MM-DD')
+    END AS DATA_LANCAMENTO,
+    B.CTARED AS CONTA_REDUZIDA,
+    B.DESCTA AS DESCR_CONTA_RDZ,
+    TO_CHAR(
+        CASE
+            WHEN B.DEBCRE = 'C' THEN -B.VLRRAT
+            ELSE B.VLRRAT
+        END,
+        'FM999G999G990D00',
+        'NLS_NUMERIC_CHARACTERS='',.'''
+    ) AS VALOR,
+    B.NUMLOT AS LOTE,
+    B.ORILCT AS ORIGEM,
+    CASE B.ORILCT
+        WHEN 'CPR' THEN 'Suprimentos-NF Entradas'
+        WHEN 'PAG' THEN 'Contas Pagar-Movimentos'
+        WHEN 'VEN' THEN 'Mercado-NF Saidas'
+        WHEN 'MAN' THEN 'Manual'
+        ELSE 'Outros'
+    END AS DESCR_ORIGEM,
+    B.CODCCU AS COD_CUSTO,
+    B.DESCCU AS DESCR_CUSTO,
+    B.DEBCRE AS DEB_CRED
+FROM BASE B
+    LEFT JOIN FORN_LNF F
+        ON F.CODEMP = B.CODEMP 
+       AND F.NUMLCT = B.NUMLCT
+    LEFT JOIN FORN_LTI FT
+        ON FT.CODEMP = B.CODEMP 
+       AND FT.NUMLCT = B.NUMLCT
+    LEFT JOIN CLI_VENDA C
+        ON C.CODEMP = B.CODEMP 
+       AND C.NUMLCT = B.NUMLCT
+    /* JOIN fornecedor somente quando não for VEN */
+    LEFT JOIN SAPIENS_PROD.E095FOR F2
+        ON F2.CODFOR = COALESCE(F.CODFOR, FT.CODFOR)
+    /* JOIN cliente somente quando for VEN */
+    LEFT JOIN SAPIENS_PROD.E085CLI CL
+        ON CL.CODCLI = C.CODCLI
+WHERE
+    (
+        (B.ORILCT IN ('CPR','PAG','VEN') AND B.GRUCTA = 4)
+        OR
+        (B.ORILCT IN ('PAG','TES')
+            AND (B.CTACRE = 515 OR B.CTADEB = 515)
+            AND B.GRUCTA = 3)
+    )

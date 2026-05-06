@@ -1,0 +1,23 @@
+$schema: ../../../../schemas/entity.json
+name: pedidos_vendas_produtos
+target_table: pedidos_vendas_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: data_hora
+sql_file: consulta_pedidos_vendas_produtos.sql
+columns:
+  - pedido_venda_validacao
+  - pedido_venda
+  - produto
+  - descricao_produto
+  - motivo
+  - valor_unitario
+  - desconto
+  - total_desconto
+  - quantidade_atendida
+  - quantidade_digitada
+  - valor_atendido
+  - valor_digitado
+  - condicao_pagamento
+  - data_hora

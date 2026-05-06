@@ -1,0 +1,23 @@
+SELECT
+    sellin_apuracao,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    data_hora,
+    usuario_logado,
+    empresa,
+    movimento,
+    movimento_ini,
+    movimento_fim,
+    entidade_filtro,
+    gerar_parcelas,
+    processar,
+    finalizar,
+    cancelada,
+    status_controladoria,
+    observacao_aprovacao,
+    registro_aprovacao,
+    data_hora_aprovacao
+FROM
+    sellin_apuracoes

@@ -1,0 +1,30 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_pagar
+target_table: titulos_pagar
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_vencimento_original
+sql_file: consulta_titulos_pagar.sql
+columns:
+  - empresa_id
+  - filial_id
+  - fornecedor_id
+  - codigo_transacao
+  - tipo_titulo_id
+  - numero_nf
+  - numero_titulo
+  - data_emissao
+  - data_vencimento_original
+  - data_pagamento_previsto
+  - data_ultimo_pagamento
+  - portador_id
+  - carteira_id
+  - numero_contrato
+  - status_titulo
+  - valor_original
+  - valor_aberto
+  - percentual_multa
+  - percentual_juros
+  - tipo_juros
+  - valor_desconto

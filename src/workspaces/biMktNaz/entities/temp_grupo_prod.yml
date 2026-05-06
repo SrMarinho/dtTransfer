@@ -1,0 +1,11 @@
+$schema: ../../../../schemas/entity.json
+name: temp_grupo_prod
+target_table: temp_grupo_prod
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_temp_grupo_prod.sql
+columns:
+  - produto
+  - grupo
+  - subgrupo

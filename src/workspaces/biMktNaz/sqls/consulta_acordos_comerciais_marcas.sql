@@ -1,0 +1,9 @@
+select
+    acordo_comercial_marca
+    ,acordo_comercial
+    ,marca
+    ,desconto_padrao
+    ,porcentagem_verba
+    ,desconto_adicional
+from
+	acordos_comerciais_marcas

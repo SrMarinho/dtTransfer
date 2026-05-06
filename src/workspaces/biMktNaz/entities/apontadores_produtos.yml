@@ -1,0 +1,13 @@
+$schema: ../../../../schemas/entity.json
+name: apontadores_produtos
+target_table: apontadores_produtos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_apontadores_produtos.sql
+columns:
+  - apontador
+  - produto
+  - desconto_total
+  - desconto_distribuidora
+  - desconto_industria

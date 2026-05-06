@@ -1,0 +1,63 @@
+$schema: ../../../../schemas/entity.json
+name: grupos_tributarios_entrada_parametros
+target_table: grupos_tributarios_entrada_parametros
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_grupos_tributarios_entrada_parametros.sql
+columns:
+  - grupo_tributario_entrada_parametro
+  - grupo_tributario_entrada
+  - grupo_local
+  - tipo_icms
+  - situacao_tributaria_entrada
+  - situacao_tributaria_escrituracao
+  - aliquota_icms
+  - icms_substituto
+  - iva
+  - iva_ajustado
+  - observacao_fiscal
+  - operacao_fiscal
+  - estado_origem
+  - estado_destino
+  - fator_reducao_st
+  - icms_reducao_base
+  - situacao_tributaria_ipi
+  - tipo_ipi
+  - aliquota_ipi
+  - ipi_reducao_base
+  - situacao_tributaria_pis
+  - aliquota_pis
+  - situacao_tributaria_cofins
+  - aliquota_cofins
+  - pis_cofins_tributado
+  - tipo_grupo_tributario
+  - calc_base_icms_normal
+  - calc_base_icms_st
+  - calc_reducao_base_icms
+  - calc_base_icms_st_retido
+  - calc_base_icms_st_pagar
+  - icms_isento
+  - icms_outros
+  - aliquota_icms_importacao
+  - situacao_tributaria
+  - icms_st_pagar_fator_reducao
+  - icms_st_pagar_iva
+  - perc_trava_st
+  - aliquota_pi_st_entrada
+  - aliquota_ba_st_pmc_entrada
+  - aliquota_ba_st_produto_entrada
+  - utiliza_regime_especial
+  - aliquota_pe_st_entrada
+  - icms_reducao_base_importacao
+  - aliquota_ce_st_ent_ind
+  - aliquota_ce_st_ent_outros
+  - icms_regime_precificacao
+  - iva_precificacao
+  - iva_precificacao_importacao
+  - aliquota_icms_precificacao
+  - fator_reducao_st_precificacao
+  - icms_regime_precificacao_dist
+  - mva_incentivo_fiscal
+  - reducao_base_st_incentivo_fiscal
+  - icms_destino_incentivo_fiscal

@@ -1,0 +1,20 @@
+SELECT 
+	A.RECEBIMENTO_NF AS recebimento_nf,
+	A.RECEBIMENTO AS recebimento,
+	A.CHAVE_NFE AS chave_nfe,
+	A.ENTIDADE AS entidade,
+	A.NF_COMPRA AS nf_compra,
+	A.NF_NUMERO AS nf_numero,
+	A.NF_SERIE AS nf_serie,
+	A.TOTAL_GERAL AS total_geral,
+	A.INSCRICAO_FEDERAL AS inscricao_federal,
+	A.VOLUMES AS volumes,
+	A.STATUS_VOLUME AS status_volume,
+	A.EMISSAO AS emissao,
+	A.NF_FATURAMENTO AS nf_faturamento,
+	A.TIPO_NF AS tipo_nf,
+	A.REGISTRO_NF AS registro_nf
+FROM RECEBIMENTOS_VOLUMES_NF A
+WHERE 
+	A.EMISSAO >= CAST('REPLACE_START_DATE' AS DATE)
+	AND A.EMISSAO < CAST('REPLACE_END_DATE' AS DATE)

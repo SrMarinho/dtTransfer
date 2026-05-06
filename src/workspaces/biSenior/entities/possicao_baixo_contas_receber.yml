@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: possicao_baixo_contas_receber
+target_table: possicao_baixo_contas_receber
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_vencimento
+sql_file: consulta_possicao_baixo_contas_receber.sql
+columns:
+  - datdoc
+  - qtd_extr
+  - valor_extr
+  - qtd_mov
+  - valor_mov
+  - diferenca

@@ -1,0 +1,14 @@
+SELECT
+    ac_provisao_receber_transacao,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    registro_controle,
+    registro_controle_ii,
+    ac_provisao_receber,
+    data,
+    debito,
+    credito
+FROM
+    AC_PROVISOES_RECEBER_TRANSACOES

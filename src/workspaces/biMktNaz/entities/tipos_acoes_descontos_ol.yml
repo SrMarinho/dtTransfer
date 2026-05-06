@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: tipos_acoes_descontos_ol
+target_table: tipos_acoes_descontos_ol
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_tipos_acoes_descontos_ol.sql
+columns:
+  - tipo_acao_desconto
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - descricao

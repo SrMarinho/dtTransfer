@@ -1,0 +1,15 @@
+$schema: ../../../../schemas/entity.json
+name: fgts_sem_rescisoes
+target_table: fgts_sem_rescisoes
+source: Senior
+target: biSenior
+process_type: full
+sql_file: consulta_fgts_sem_rescisoes.sql
+columns:
+  - empresa
+  - matricula
+  - data_vencimento
+  - multa
+  - rescisao
+  - indenizacao
+  - total

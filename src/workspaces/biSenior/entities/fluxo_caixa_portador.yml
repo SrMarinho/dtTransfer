@@ -1,0 +1,47 @@
+$schema: ../../../../schemas/entity.json
+name: fluxo_caixa_portador
+target_table: fluxo_caixa_portador
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: vencimento_original
+sql_file: consulta_fluxo_caixa_portador.sql
+columns:
+  - tipo
+  - empresa
+  - filiaal_epr
+  - filial_sist_origem
+  - nome_filial
+  - data_emissao
+  - vencimento_original
+  - data_provavel_pagt
+  - ultimo_pagt
+  - portador
+  - descricao_portador
+  - carteira
+  - descricao_carteira
+  - cod_cliente
+  - nome_fantasia_cliente
+  - grupo_empresa
+  - nome_grupo_empresa
+  - nota
+  - titulo
+  - tipo_titulo
+  - descricao_tipo_titulo
+  - cod_representante
+  - num_contrato
+  - situacao_titulo
+  - valor_original
+  - valor_aberto
+  - perc_multa
+  - perc_juros
+  - tipo_juros
+  - desconto
+  - valor_liq
+  - transacao_nota_produto
+  - transacao_nota_servico
+  - cfop_nota
+  - descricao_cfop
+  - aplicacao_operacao
+  - transacao_titulo
+  - descricao_transacao_titulo

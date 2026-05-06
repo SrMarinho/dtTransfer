@@ -1,0 +1,23 @@
+SELECT
+    fornecedor_desconto,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    data_hora,
+    usuario_logado,
+    fornecedor,
+    data_ini,
+    data_fim,
+    percentual_desconto,
+    processar,
+    descricao,
+    tipo_fornecedor,
+    guid,
+    ativo,
+    inativar_produtos_fora_mix,
+    marca,
+    data_validade_ini,
+    data_validade_fim
+FROM
+    FORNECEDORES_DESCONTOS

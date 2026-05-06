@@ -1,0 +1,9 @@
+SELECT
+    modalidade_credito,
+    formulario_origem,
+    tab_master_origem,
+    reg_master_origem,
+    reg_log_inclusao,
+    nome_modalidade
+FROM
+    MODALIDADES_CREDITOS

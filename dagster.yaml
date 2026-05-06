@@ -1,0 +1,11 @@
+telemetry:
+  enabled: false
+
+retention:
+  schedule:
+    purge_after_days: 90
+  sensor:
+    purge_after_days: 90
+
+concurrency:
+  default_op_concurrency_limit: 4

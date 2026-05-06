@@ -1,0 +1,25 @@
+$schema: ../../../../schemas/entity.json
+name: vendas_imagem
+target_table: vendas_imagem
+source: PbsNazariaDados
+target: biMktNaz
+process_type: incremental
+incremental_column: movimento
+sql_file: consulta_vendas_imagem.sql
+columns:
+  - nf_faturamento_produto
+  - nf_faturamento
+  - produto
+  - prec_tipo_custo
+  - quantidade_estoque
+  - preco_nf_liquido
+  - valor_desconto_fin_unit
+  - prec_custo
+  - prec_icms_valor
+  - prec_pis_valor
+  - prec_cofins_valor
+  - prec_despesas_st_valor
+  - lucro_liquido
+  - receita_liquida
+  - movimento
+  - margem

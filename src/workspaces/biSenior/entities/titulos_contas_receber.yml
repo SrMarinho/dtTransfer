@@ -1,0 +1,52 @@
+$schema: ../../../../schemas/entity.json
+name: titulos_contas_receber
+target_table: titulos_contas_receber
+source: Senior
+target: biSenior
+process_type: incremental
+incremental_column: data_vencimento
+sql_file: consulta_titulos_contas_receber.sql
+columns:
+  - empresa
+  - filial
+  - numero_titulo
+  - seq_mov
+  - tipo
+  - cliente
+  - nome_cliente
+  - emissao
+  - vencimento
+  - prov_pagamento
+  - ultimo_pagamento
+  - situacao
+  - forma_pagamento
+  - valor_original
+  - valor_aberto
+  - desconto
+  - total
+  - desc_forma_pgto
+  - entrada
+  - vcto_original
+  - modalidade
+  - filial_nfs
+  - serie_nfs
+  - nf_saida
+  - filial_nfentrada
+  - fornecedor_nfentrada
+  - serie_nfentrada
+  - grupo_empresa
+  - outros_descontos
+  - acrescimos
+  - juros_negociado
+  - multa_negociada
+  - descontos_negociados
+  - parcela_cartao
+  - autorizacao_tef
+  - numeracao_tef
+  - transacao
+  - tipo_transacao
+  - descricao
+  - portador
+  - nome_portador
+  - cnpj
+  - data_geracao

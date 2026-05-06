@@ -1,0 +1,47 @@
+SELECT 
+	EXTRACT(DAY FROM DATMOV) AS Dia,
+	EXTRACT(MONTH FROM DATMOV) AS mes,
+	EXTRACT(YEAR FROM DATMOV) AS ano,
+	SUM(TB1.VlrDebito) AS VlrCreditadoBanco,
+	SUM(TB1.VlrCredito) AS VlrBaixado,
+	SUM(TB1.VlrMovTipo) AS Saldo,
+	TB1.HisMov
+FROM (
+SELECT 
+	CodEmp,
+	CODFIL,
+	NumCco,
+	DATMOV,
+	DatCnc,
+	VlrMov,
+	DEBCRE,
+	HisMov,
+	SITMCC,
+	SITAPR,
+	CASE 
+		WHEN DEBCRE = 'D' THEN VlrMov * -1 
+		ELSE 0 
+	END VlrDebito,
+	CASE 
+		WHEN DEBCRE = 'C' THEN VlrMov
+		ELSE 0 
+	END VlrCredito,
+	CASE 
+		WHEN DEBCRE = 'D' THEN VlrMov * -1 
+		ELSE VlrMov 
+	END VlrMovTipo
+	FROM SAPIENS_PROD.E600MCC
+	WHERE  CodEmp = 5
+--	AND DATMOV BETWEEN
+--			TO_DATE(TO_CHAR(ADD_MONTHS(TRUNC(CURRENT_DATE, 'MM'), - 7), 'dd/mm/yyyy'), 'dd/mm/yyyy')
+--		AND TO_DATE(TO_CHAR(TRUNC(CURRENT_DATE, 'MM') - 1, 'dd/mm/yyyy'), 'dd/mm/yyyy')
+	AND DATMOV >= TO_DATE('30/12/2023', 'dd/mm/yyyy')
+	AND NumCco = '65764TRANSIT'
+  AND SITMCC  <> 'I'
+) TB1
+GROUP BY 
+	EXTRACT(DAY FROM DATMOV),
+	EXTRACT(MONTH FROM DATMOV),
+	EXTRACT(YEAR FROM DATMOV),
+	TB1.HisMov
+ORDER BY ano, mes, dia

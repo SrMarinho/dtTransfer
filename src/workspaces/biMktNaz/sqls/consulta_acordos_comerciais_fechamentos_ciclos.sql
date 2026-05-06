@@ -1,0 +1,12 @@
+select
+    acordo_comercial_ciclo
+    ,acordo_comercial
+    ,ciclo
+    ,data_fechamento_inicial
+    ,data_fechamento_final
+    ,formulario_origem_fechamento
+    ,tab_master_origem_fechamento
+    ,reg_master_origem_fechamento
+    ,meta_apuracao
+from
+    acordos_comerciais_fechamentos_ciclos

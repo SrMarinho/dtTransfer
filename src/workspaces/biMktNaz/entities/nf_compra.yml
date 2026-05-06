@@ -1,0 +1,17 @@
+$schema: ../../../../schemas/entity.json
+name: nf_compra
+target_table: nf_compra
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_nf_compra.sql
+columns:
+  - unidade
+  - nf_compra
+  - nf_numero
+  - pedido_compra
+  - entidade
+  - data_emissao
+  - data_entrada
+  - chave_nfe
+  - dias

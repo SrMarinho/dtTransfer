@@ -1,0 +1,14 @@
+$schema: ../../../../schemas/entity.json
+name: modalidades_creditos
+target_table: modalidades_creditos
+source: PbsNazariaDados
+target: biMktNaz
+process_type: full
+sql_file: consulta_modalidades_creditos.sql
+columns:
+  - modalidade_credito
+  - formulario_origem
+  - tab_master_origem
+  - reg_master_origem
+  - reg_log_inclusao
+  - nome_modalidade
