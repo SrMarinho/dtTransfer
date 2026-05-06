@@ -1,239 +1,27 @@
-from dagster import ScheduleDefinition, define_asset_job, AssetSelection
-from orchestration._config import AC_TABLES, ESTOQUE_UNITS
+"""Dagster schedule definitions.
 
-TZ = "America/Fortaleza"
+Override this file to define your own cron schedules.
+Assets are built dynamically from EntityRegistry (see _assets.py).
 
+Usage:
+    from dagster import ScheduleDefinition, define_asset_job, AssetSelection
 
-def _sel(*names):
-    safe = [n.replace("/", "__").replace("-", "_") for n in names]
-    return AssetSelection.assets(*safe)
+    ScheduleDefinition(
+        job=define_asset_job("my_job", selection=AssetSelection.groups("mygroup")),
+        cron_schedule="0 3 * * *",
+        execution_timezone="America/Fortaleza",
+    )
+"""
 
+from dagster import ScheduleDefinition
 
-def _ac_job():
-    return define_asset_job("job_ac_intraday", selection=_sel(*AC_TABLES))
+# ── Example schedule ───────────────────────────────────────────────────────
+# schedules = [
+#     ScheduleDefinition(
+#         job=define_asset_job("job_daily", selection=AssetSelection.groups("myworkspace")),
+#         cron_schedule="0 3 * * *",
+#         execution_timezone="America/Fortaleza",
+#     ),
+# ]
 
-
-def _estoque_job():
-    names = [f"estoque_unit_{u}" for u in ESTOQUE_UNITS]
-    return define_asset_job("job_estoque_3h", selection=_sel(*names))
-
-
-jobs = {
-    "job_produtos_endereco": _sel("biMktNaz/produtos_endereco"),
-    "job_venda_noturno": _sel("biMktNaz/venda__noturno", "biMktNaz/notas_canceladas__noturno"),
-    "job_venda_diurno": _sel("biMktNaz/venda__diurno", "biMktNaz/notas_canceladas__diurno"),
-    "job_pedidos_vendas": _sel("biMktNaz/pedidos_vendas", "biMktNaz/pedidos_vendas_produtos"),
-    "job_tcr_geracao": _sel("biSenior/titulos_contas_receber_por_geracao"),
-    "job_1h": _sel(
-        "biMktNaz/configuracoes_ol", "biMktNaz/configuracoes_ol_marcas",
-        "biMktNaz/configuracoes_ol_excecoes",
-        "biMktNaz/configuracoes_ol_excecoes_clientes",
-        "biMktNaz/configuracoes_ol_excecoes_descontos",
-        "biMktNaz/configuracoes_ol_excecoes_marcas",
-        "biMktNaz/configuracoes_ol_excecoes_ols",
-        "biMktNaz/configuracoes_ol_excecoes_produtos",
-        "biMktNaz/configuracoes_ol_excecoes_unidades",
-        "biMktNaz/grupos_clientes", "biMktNaz/identificadores",
-        "biMktNaz/tipos_acoes_descontos_ol",
-        "biMktNaz/vans_projetos", "biMktNaz/clientes_redes",
-        "biMktNaz/grupos_tributarios_entrada",
-        "biMktNaz/grupos_tributarios_entrada_parametros",
-        "biMktNaz/grupos_tributarios", "biMktNaz/grupos_tributarios_parametros",
-        "biMktNaz/grupos_compras",
-        "biSenior/cfop_fiscal",
-        "biSenior/titulos_contas_pagar", "biSenior/titulos_contas_receber",
-        "biMktNaz/vendas_imagem", "biMktNaz/recebimentos_volumes_nf",
-        "biSenior/demissoes", "biSenior/extratos_bancarios",
-        "biMktNaz/pedidos_vendas_validacoes_produtos",
-        "biMktNaz/grupos_economicos",
-    ),
-    "job_1h30_bisenior": _sel(
-        "biSenior/possicao_baixo_contas_receber", "biSenior/balancete_contabil",
-        "biSenior/titulos_por_portador_cp_cr", "biSenior/conciliacao_bancaria_completa",
-    ),
-    "job_1h31_bisenior": _sel("biSenior/razao_por_fornecedores"),
-    "job_2h": _sel(
-        "biMktNaz/pedidos_compras_produtos",
-        "biMktNaz/gerentes_vendas_procfit",
-        "biMktNaz/restricoes_divisoes_fabricantes",
-        "biMktNaz/restricoes_divisoes_fabricantes_clientes",
-        "biMktNaz/restricoes_divisoes_fabricantes_codigos_divisoes",
-        "biMktNaz/restricoes_divisoes_fabricantes_empresas",
-        "biMktNaz/restricoes_divisoes_fabricantes_municipios",
-        "biMktNaz/restricoes_divisoes_fabricantes_supervisores",
-        "biMktNaz/restricoes_divisoes_fabricantes_uf",
-        "biMktNaz/restricoes_divisoes_fabricantes_vendedores",
-        "biNazaria/produtos", "biNazaria/curva",
-        "biNazaria/estoque_minimo", "biNazaria/demanda",
-        "biSenior/f_folha_visao_contabil", "biSenior/estoque_usu_consumo",
-        "biSenior/titulos_sem_notas__diario",
-        "biSenior/f_titulos_com_notas_servicos__diario",
-        "biSenior/f_titulos_com_notas_produtos__diario",
-        "biSenior/folha_controladoria",
-        "biSenior/plano_contas_contabeis",
-        "biSenior/d_filiais", "biSenior/d_custos", "biSenior/d_historico_filial",
-        "biSenior/d_eventos",
-        "biSenior/f_mapear_contas_lanc_contabil",
-        "biSenior/acompanhamento_solicitacoes_compras",
-        "biSenior/rescisoes__incremental",
-        "biSenior/fgts_sem_rescisoes",
-        "biSenior/conciliacao_bancaria",
-        "biSenior/afastamento_colaboradores", "biSenior/razao_contabil",
-        "biSenior/titulos_receber", "biSenior/titulos_pagar",
-        "biSenior/notas_fiscais_saida", "biSenior/notas_fiscais_entrada",
-        "biSenior/transacoes", "biSenior/clientes",
-        "biSenior/tipos_titulo", "biSenior/filiais",
-        "biSenior/portadores", "biSenior/carteiras_cobranca",
-        "biSenior/grupos_empresa", "biSenior/fornecedores",
-    ),
-    "job_3h_misc": _sel(
-        "biMktNaz/gerentes_vendas_procfit",
-        "biMktNaz/supervisores_vendas_procfit", "biMktNaz/produto_curva",
-        "biMktNaz/temp_grupo_prod",
-        "biMktNaz/pedidos_compras", "biMktNaz/pedidos_compras_encerramento",
-        "biMktNaz/pedidos_compras_encerramento_produtos",
-        "biMktNaz/aprovacoes_receb_volumes", "biMktNaz/paletes_alocacoes",
-        "biMktNaz/restricoes_pedidos_vendas",
-        "biMktNaz/restricoes_pedidos_vendas_clientes",
-        "biMktNaz/restricoes_pedidos_vendas_grupos_produtos",
-        "biMktNaz/restricoes_pedidos_vendas_produtos",
-        "biMktNaz/restricoes_pedidos_vendas_uf",
-        "biMktNaz/condicoes_pagamento",
-        "biMktNaz/apontadores", "biMktNaz/apontadores_tipos",
-        "biMktNaz/apontadores_produtos",
-        "biMktNaz/nf_compra_devolucoes", "biMktNaz/nf_compra_devolucoes_produtos",
-        "biMktNaz/vendas_boletos", "biMktNaz/vendas_parcelas",
-        "biSenior/banco_horas", "biSenior/ajuste_ponto",
-        "biSenior/marcacoes_ponto",
-        "biMktNaz/nf_faturamento_produtos_lote_validade", "biMktNaz/pp_ops",
-        "biMktNaz/base_segregado",
-        "biMktNaz/nota_fiscal",
-        "biMktNaz/acompanhamento_orcamento_compras",
-        "biMktNaz/acordos_comerciais", "biMktNaz/acordos_comerciais_empresas",
-        "biMktNaz/acordos_comerciais_fechamentos_ciclos",
-        "biMktNaz/acordos_comerciais_formas_pagamentos",
-        "biMktNaz/acordos_comerciais_marcas",
-        "biMktNaz/acordo_comercial_status",
-        "biMktNaz/acordos_comeciais_sellout_ol",
-        "biMktNaz/acordos_comerciais_sellouts_ol_produtos",
-        "biMktNaz/sellout_apuracoes", "biMktNaz/sellout_apuracoes_acordos",
-        "biMktNaz/sellout_apuracoes_ciclos",
-        "biMktNaz/sellout_apuracoes_parcelas",
-        "biMktNaz/sellout_apuracoes_produtos",
-        "biMktNaz/sellout_apuracoes_totais",
-        "biMktNaz/sellout_apuracoes_valores",
-        "biMktNaz/clientes_datas",
-    ),
-    "job_4h": _sel(
-        "biMktNaz/metas_vendas", "biMktNaz/metas_vendas_empresas",
-        "biMktNaz/metas_vendas_vendedores",
-        "biMktNaz/laboratorios",
-        "biMktNaz/fornecedores_descontos",
-        "biMktNaz/fornecedores_descontos_empresas",
-        "biMktNaz/fornecedores_descontos_grupos",
-        "biMktNaz/fornecedores_descontos_importacoes",
-        "biMktNaz/fornecedores_descontos_marcas",
-        "biMktNaz/fornecedores_descontos_produtos",
-        "biMktNaz/fornecedores_descontos_secoes",
-        "biMktNaz/vendas_feira",
-        "biSenior/rescisoes__full",
-        "biSenior/f_folha_visao_dp", "biSenior/tempo_selecao",
-        "biSenior/dados_colaboradores",
-        "biMktNaz/wms_follow_separacoes_data_tipo_produtos",
-        "biMktNaz/pedidos_vendas_validacoes_produtos_historicos",
-        "biMktNaz/motivos_validacoes_pedidos_vendas",
-    ),
-    "job_4h15": _sel("biMktNaz/vw_produtos_precos_descontos_compras_produto_empresa_precificac"),
-    "job_4h30": _sel(
-        "biMktNaz/produtos_parametros_empresas",
-        "biMktNaz/produtos_vendas",
-        "biMktNaz/grupos_precos_empresas",
-    ),
-    "job_5h": _sel(
-        "biMktNaz/cliente", "biMktNaz/cliente_vendedor",
-        "biMktNaz/campanhas", "biMktNaz/campanhas_empresas",
-        "biMktNaz/campanhas_participantes",
-        "biMktNaz/vendedores_procfit", "biMktNaz/recebimentos_volumes",
-        "biSenior/titulos_edocs",
-        "biMktNaz/fretes_pagar_periodo_analitico",
-        "biSenior/acompanhamento_solicitacoes_compras_eng_globo",
-        "biMktNaz/espelho",
-    ),
-    "job_6h": _sel("biMktNaz/nf_compra", "biMktNaz/nf_compra_produtos"),
-    "job_12h": _sel(
-        "biMktNaz/campanhas", "biMktNaz/campanhas_empresas",
-        "biMktNaz/campanhas_participantes",
-        "biMktNaz/wms_follow_separacoes_data_tipo_produtos",
-    ),
-    "job_18h": _sel("biMktNaz/wms_follow_separacoes_data_tipo_produtos"),
-}
-
-job_estoque_3h = _estoque_job()
-job_ac_intraday = _ac_job()
-
-_JOB_CRONS = [
-    ("job_produtos_endereco", "0 * * * *"),
-    ("job_1h", "0 1 * * *"),
-    ("job_2h", "0 2 * * *"),
-    ("job_3h_misc", "0 3 * * *"),
-    ("job_4h", "0 4 * * *"),
-    ("job_4h15", "15 4 * * *"),
-    ("job_4h30", "30 4 * * *"),
-    ("job_5h", "0 5 * * *"),
-    ("job_6h", "0 6 * * *"),
-    ("job_12h", "0 12 * * *"),
-    ("job_18h", "0 18 * * *"),
-    ("job_1h30_bisenior", "30 1 * * *"),
-    ("job_1h31_bisenior", "31 1 * * *"),
-]
-
-schedules = [
-    ScheduleDefinition(job=define_asset_job(name, selection=jobs[name]),
-                       cron_schedule=cron, execution_timezone=TZ)
-    for name, cron in _JOB_CRONS
-]
-
-schedules.extend([
-    ScheduleDefinition(job=define_asset_job("job_venda_noturno",
-                                            selection=jobs["job_venda_noturno"]),
-                       cron_schedule="0 0-7/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_venda_noturno_2",
-                                            selection=jobs["job_venda_noturno"]),
-                       cron_schedule="30 1-7/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_venda_diurno",
-                                            selection=jobs["job_venda_diurno"]),
-                       cron_schedule="30 7-23/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_venda_diurno_2",
-                                            selection=jobs["job_venda_diurno"]),
-                       cron_schedule="0 9-23/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_pedidos_vendas",
-                                            selection=jobs["job_pedidos_vendas"]),
-                       cron_schedule="0 0-23/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_pedidos_vendas_2",
-                                            selection=jobs["job_pedidos_vendas"]),
-                       cron_schedule="30 1-23/3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_tcr_geracao",
-                                            selection=jobs["job_tcr_geracao"]),
-                       cron_schedule="0 */3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=job_estoque_3h,
-                       cron_schedule="0 3 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_ac_intraday",
-                                            selection=job_ac_intraday.selection),
-                       cron_schedule="0 0 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_ac_intraday_10",
-                                            selection=job_ac_intraday.selection),
-                       cron_schedule="0 10 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_ac_intraday_13",
-                                            selection=job_ac_intraday.selection),
-                       cron_schedule="0 13 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_ac_intraday_16",
-                                            selection=job_ac_intraday.selection),
-                       cron_schedule="0 16 * * *", execution_timezone=TZ),
-    ScheduleDefinition(job=define_asset_job("job_semanal",
-                                            selection=_sel(
-                                                "biSenior/titulos_sem_notas__semanal",
-                                                "biSenior/f_titulos_com_notas_servicos__semanal",
-                                                "biSenior/f_titulos_com_notas_produtos__semanal",
-                                            )),
-                       cron_schedule="0 3 * * 1", execution_timezone=TZ),
-])
+schedules: list[ScheduleDefinition] = []

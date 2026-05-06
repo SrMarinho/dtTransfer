@@ -1,115 +1,93 @@
-# DataReplicator
+# {{ cookiecutter.project_name }}
 
-ETL engine + Dagster orchestration. Replica SQL Server/Oracle → PostgreSQL. 130+ entidades com batch insert, multithreading e schedules versionadas.
-
-| Origem | Destino | Sistema |
-|--------|---------|---------|
-| SQL Server | PostgreSQL | biMktNaz |
-| Oracle | PostgreSQL | biSenior |
-| SQL Server | PostgreSQL | biNazaria |
-
----
-
-## Setup
-
-```bash
-git clone <url> && cd DataReplicator
-python -m venv .venv && .venv/Scripts/activate
-pip install -r requirements.txt
-cp .env.example .env  # preencher credenciais
-```
-
-→ [Instalação detalhada](docs/user/installation.md)
-
----
-
-## CLI
-
-```bash
-# Carga completa
-python run.py load full --table cliente --truncate
-
-# Incremental
-python run.py load incremental --table venda --days 10 --threads 10
-
-# Mensal
-python run.py load monthly --table titulos_contas_receber --months 13
-
-# Por unidade
-python run.py load unit --table estoque --unit 2
-
-# Diagnostics
-python run.py workspace list
-python run.py entity list
-python run.py workspace validate
-python run.py logs errors
-
-# Migrations
-python run.py migrate upgrade -w biMktNaz
-python run.py migrate status -w biMktNaz
-```
-
-→ [CLI completo](docs/user/cli.md) | [Processos](docs/user/processes.md) | [Workspaces](docs/user/workspaces.md)
-
----
-
-## Dagster Orchestration (novo)
-
-Orquestrador via **Dagster OSS**. Schedules, retry 1-click, backfill, asset catalog, logs em tempo real.
-
-```bash
-# Terminal 1 — daemon (executa schedules)
-$env:DAGSTER_HOME = ".local/dagster"
-dagster-daemon run -w workspace.yaml
-
-# Terminal 2 — webserver (UI)
-dagster-webserver -w workspace.yaml -p 3000
-
-# Materializar manualmente
-dagster asset materialize --select cliente -f orchestration/definitions.py
-
-# Ver schedules
-dagster schedule list -f orchestration/definitions.py
-```
-
-189 assets gerados dinamicamente do EntityRegistry, 27 schedules do crontab, 17 unidades de estoque.
-
-→ [Plano de migração](docs/plans/orchestrator-dagster.md)
-
----
-
-## YAML Workspaces
-
-Workspaces declarativos sem código Python por entidade:
+Declarative ETL engine. Define data pipelines in YAML — no Python per entity.
 
 ```
 src/workspaces/<id>/
   workspace.yml          # metadata, sources, target
-  entities/<name>.yml    # 1 entidade por arquivo
-  sqls/<name>.sql        # query de extração
+  entities/<name>.yml    # 1 entity per file
+  sqls/<name>.sql        # extraction query
   migrations/            # Alembic
 ```
 
-Schema validado via `$schema` → autocomplete no VSCode.
+## Quick Start
 
-→ [Workspaces](docs/user/workspaces.md) | [Schemas JSON](schemas/)
+```bash
+git clone <url> && cd {{ cookiecutter.project_slug }}
+python -m venv .venv && .venv/Scripts/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
 
----
+### Create your first workspace
 
-## Documentação
+```bash
+python run.py workspace new myworkspace --driver postgres
+```
 
-| Tópico | Link |
-|--------|------|
-| Instalação | [installation.md](docs/user/installation.md) |
-| CLI | [cli.md](docs/user/cli.md) |
-| Workspaces YAML | [workspaces.md](docs/user/workspaces.md) |
-| Dagster | [orchestrator-dagster.md](docs/plans/orchestrator-dagster.md) |
-| Deployment | [deployment.md](docs/user/deployment.md) |
-| Architecture | [architecture.md](docs/dev/architecture.md) |
+### Add an entity
 
----
+```bash
+python run.py entity new myworkspace/customers --process incremental
+```
+
+### Run ETL
+
+```bash
+python run.py load full --table myworkspace/customers --truncate
+python run.py load incremental --table myworkspace/orders --days 10 --threads 4
+python run.py load monthly --table myworkspace/reports --months 13
+```
+
+## CLI
+
+| Command | Description |
+|---------|-------------|
+| `workspace list` | List active workspaces |
+| `workspace validate` | Test all DB connections |
+| `workspace new` | Scaffold a new workspace |
+| `entity list` | List registered entities |
+| `entity new` | Scaffold a new entity |
+| `entity validate insert` | Test INSERT on an entity |
+| `load full` | Full truncate + reload |
+| `load incremental` | Incremental by N days |
+| `load monthly` | Incremental by N months |
+| `load unit` | Load by business unit |
+| `migrate upgrade` | Run Alembic migrations |
+| `logs errors` | Inspect error logs |
+
+## Dagster Orchestration
+
+```bash
+dagster-daemon run -w workspace.yaml
+dagster-webserver -w workspace.yaml -p 3000
+```
+
+Assets are built dynamically from registered entities.
+
+## Documentation
+
+| Topic | Link |
+|-------|------|
+| Installation | [docs/user/installation.md](docs/user/installation.md) |
+| CLI | [docs/user/cli.md](docs/user/cli.md) |
+| Workspaces | [docs/user/workspaces.md](docs/user/workspaces.md) |
+| Processes | [docs/user/processes.md](docs/user/processes.md) |
+| Migrations | [docs/user/migrations.md](docs/user/migrations.md) |
+| Deployment | [docs/user/deployment.md](docs/user/deployment.md) |
+| Architecture | [docs/dev/architecture.md](docs/dev/architecture.md) |
+| Creating Entities | [docs/dev/creating-entities.md](docs/dev/creating-entities.md) |
+| Creating Workspaces | [docs/dev/creating-workspaces.md](docs/dev/creating-workspaces.md) |
+| Custom Drivers | [docs/dev/custom-drivers.md](docs/dev/custom-drivers.md) |
+| Custom Processes | [docs/dev/custom-processes.md](docs/dev/custom-processes.md) |
+
+## Supported Drivers
+
+- PostgreSQL
+- SQL Server (pyodbc)
+- Oracle (oracledb)
+- SQLite
 
 ## Stack
 
-- Python 3.9+ · PostgreSQL · SQL Server (pyodbc) · Oracle (oracledb) · SQLite
-- Typer CLI · Dagster 1.12 · Alembic · JSON Schema · Telegram Bot API
+Python 3.9+ · Typer CLI · Dagster · Alembic · JSON Schema · Pydantic

@@ -1,9 +1,0 @@
-select
-    acordo_comercial_sellout_ol
-    ,acordo_comercial
-    ,configuracao_ol
-    ,validade_inicial
-    ,validade_final
-    ,desconto
-from
-	acordos_comeciais_sellout_ol

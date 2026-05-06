@@ -1,0 +1,11 @@
+{
+    "project_name": "ETL Project",
+    "project_slug": "etl_project",
+    "description": "Declarative ETL engine with Dagster orchestration",
+    "author_name": "Your Name",
+    "python_version": "3.9",
+    "version": "0.1.0",
+    "use_dagster": true,
+    "use_telegram": false,
+    "timezone": "America/Fortaleza"
+}

@@ -1,9 +1,0 @@
-SELECT
-	A.RESTRICAO_DIVISAO_FABRICANTE_CLIENTE AS restricao_divisao_fabricante_cliente,
-	A.RESTRICAO_DIVISAO_FABRICANTE AS restricao_divisao_fabricante,
-	A.CODIGO_CLIENTE AS codigo_cliente,
-	A.CODIGO_GRUPO AS codigo_grupo,
-	A.DESCRICAO AS descricao,
-	A.TIPO_RESTRICAO AS tipo_restricao,
-	A.EMPRESA AS empresa
-FROM RESTRICOES_DIVISOES_FABRICANTES_CLIENTES AS A

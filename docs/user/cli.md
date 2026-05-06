@@ -1,134 +1,135 @@
-# Como Usar
+# CLI Reference
 
-## Formato geral
+## Usage
 
 ```bash
-python run.py <comando> [subcomando] [opções]
+python run.py <command> [subcommand] [options]
 ```
 
----
+## Commands
 
-## Comandos disponíveis
-
-### `load` — Executa carga ETL
+### `load` — Run ETL load
 
 ```bash
-# Carga completa (truncate + insert)
-python run.py load full --table cliente --truncate
+# Full load (truncate + insert)
+python run.py load full --table myws/customer --truncate
 
-# Incremental por dias (multithread)
-python run.py load incremental --table venda --days 10 --threads 10
+# Incremental by days (multithreaded)
+python run.py load incremental --table myws/sales --days 10 --threads 10
 
-# Incremental com current-day
-python run.py load incremental --table venda --days 1 --current-day
+# Incremental with current day
+python run.py load incremental --table myws/sales --days 1 --current-day
 
-# Incremental full load (sem loop de datas)
-python run.py load incremental --table venda --full --truncate
+# Full incremental (no date loop)
+python run.py load incremental --table myws/sales --full --truncate
 
-# Mensal
-python run.py load monthly --table titulos_contas_receber --months 13
+# Monthly
+python run.py load monthly --table myws/receivables --months 13
 
-# Mensal — intervalo único
-python run.py load monthly --table balancete_contabil --months 6 --method wholeInterval
+# Monthly — single interval
+python run.py load monthly --table myws/balances --months 6 --method wholeInterval
 
-# Por unidade/CD
-python run.py load unit --table estoque --unit 2
+# By business unit
+python run.py load unit --table myws/inventory --unit 2
 ```
 
-### `workspace` — Gerencia workspaces
+### `workspace` — Manage workspaces
 
 ```bash
-python run.py workspace list                  # listar todos
-python run.py workspace validate              # testar conexoes
-python run.py workspace new local2            # criar novo workspace YAML
+python run.py workspace list              # list all
+python run.py workspace validate          # test connections
+python run.py workspace new local2        # create new YAML workspace
+python run.py workspace delete local2     # soft delete
+python run.py workspace restore local2    # restore from recycle bin
 ```
 
-### `entity` — Gerencia entidades
+### `entity` — Manage entities
 
 ```bash
-python run.py entity list                     # todas (193)
-python run.py entity list -w biSenior         # filtrar por workspace
+python run.py entity list                 # all entities
+python run.py entity list myws            # filter by workspace
+python run.py entity new myws/product     # create new entity
 ```
 
-### `migrate` — Migrations Alembic
+### `migrate` — Alembic migrations
 
 ```bash
-python run.py migrate status -w biMktNaz
-python run.py migrate upgrade -w biMktNaz
-python run.py migrate create -w biMktNaz --autogenerate -m "add coluna cpf"
-python run.py migrate rollback -w biMktNaz --steps 1
+python run.py migrate status -w myws
+python run.py migrate upgrade -w myws
+python run.py migrate create -w myws --autogenerate -m "add cpf column"
+python run.py migrate rollback -w myws --steps 1
+python run.py migrate stamp -w myws 0001
+python run.py migrate validate -w myws
 ```
 
-### `logs` — Inspeciona logs
+### `logs` — Inspect logs
 
 ```bash
-python run.py logs errors                     # erros de hoje
+python run.py logs errors                     # today's errors
 python run.py logs errors --since 10:00 --until 16:00
 python run.py logs errors --detailed
 ```
 
----
-
 ## Dagster Orchestration
 
 ```bash
-# Validar definitions
+# Validate definitions
 dagster definitions validate -f orchestration/definitions.py
 
-# Listar assets (189)
+# List assets
 dagster asset list -f orchestration/definitions.py
 
-# Materializar 1 asset
-dagster asset materialize --select cliente -f orchestration/definitions.py
+# Materialize one asset
+dagster asset materialize --select myws__product -f orchestration/definitions.py
 
 # Schedules
 dagster schedule list -f orchestration/definitions.py
-dagster schedule start job_5h_schedule -f orchestration/definitions.py
+dagster schedule start job_daily_schedule -f orchestration/definitions.py
 
 # UI / Daemon
 dagster-webserver -w workspace.yaml -p 3000
 dagster-daemon run -w workspace.yaml
 ```
 
----
-
-## Referência de parâmetros
+## Parameter Reference
 
 ### `load full`
 
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `--table` / `-t` | *obrigatório* | Nome da entidade |
-| `--truncate` | `False` | Trunca destino antes de inserir |
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--table` / `-t` | *required* | Entity name |
+| `--workspace` / `-w` | None | Workspace id |
+| `--truncate` | `False` | Truncate before insert |
 
 ### `load incremental`
 
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `--table` / `-t` | *obrigatório* | Nome da entidade |
-| `--days` / `-d` | *obrigatório¹* | Dias atrás a sincronizar |
-| `--threads` | `4` | Threads paralelas (1–50) |
-| `--truncate` | `False` | Trunca destino antes de processar |
-| `--current-day` | `False` | Inclui o dia atual |
-| `--full` | `False` | Full load sem filtro de data |
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--table` / `-t` | *required* | Entity name |
+| `--workspace` / `-w` | None | Workspace id |
+| `--days` / `-d` | *required¹* | Days back to sync |
+| `--threads` | `4` | Parallel threads (1-50) |
+| `--truncate` | `False` | Truncate before processing |
+| `--current-day` | `False` | Include today |
+| `--full` | `False` | Full load without date filter |
 
-> ¹ Dispensável quando `--full` é usado.
+> ¹ Not required when `--full` is used.
 
 ### `load monthly`
 
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `--table` / `-t` | *obrigatório* | Nome da entidade |
-| `--months` / `-m` | *obrigatório¹* | Meses atrás a sincronizar |
-| `--method` | `byMonth` | `byMonth` ou `wholeInterval` |
-| `--truncate` | `False` | Trunca destino antes de processar |
-| `--full` | `False` | Full load sem filtro de data |
-
-> ¹ Dispensável quando `--full` é usado.
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--table` / `-t` | *required* | Entity name |
+| `--workspace` / `-w` | None | Workspace id |
+| `--months` / `-m` | *required¹* | Months back to sync |
+| `--method` | `byMonth` | `byMonth` or `wholeInterval` |
+| `--truncate` | `False` | Truncate before processing |
+| `--full` | `False` | Full load without date filter |
 
 ### `load unit`
 
-| Parâmetro | Padrão | Descrição |
-|-----------|--------|-----------|
-| `--table` / `-t` | *obrigatório* | Nome da entidade |
-| `--unit` / `-u` | *obrigatório* | ID da unidade/CD |
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--table` / `-t` | *required* | Entity name |
+| `--workspace` / `-w` | None | Workspace id |
+| `--unit` / `-u` | *required* | Business unit / CD id |

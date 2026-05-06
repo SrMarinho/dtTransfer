@@ -1,42 +1,37 @@
-# Deployment & Agendamentos
+# Deployment & Scheduling
 
-## Deploy em Produção
+## Production Deploy
 
 ```bash
-cd /opt/nzretlconnect/biMktNaz
+cd /opt/myapp
 git pull origin main
-source bimktnaz/bin/activate
+source .venv/bin/activate
 pip install -r requirements.txt
 
-# Aplicar migrations pendentes
-python run.py migrate upgrade -w biMktNaz
-python run.py migrate upgrade -w biSenior
-python run.py migrate upgrade -w biNazaria
+# Apply pending migrations
+python run.py migrate upgrade -w myws
 
-# Validar conexões
+# Validate connections
 python run.py workspace validate
 ```
 
----
-
-## Dagster (novo orquestrador)
+## Dagster (Orchestrator)
 
 ### Systemd services
 
 ```ini
 # /etc/systemd/system/dagster-daemon.service
 [Unit]
-Description=Dagster Daemon — DataReplicator ETL
+Description=Dagster Daemon — ETL
 After=network.target
 
 [Service]
-User=nzretlconnect
-WorkingDirectory=/opt/nzretlconnect/biMktNaz
-Environment=DAGSTER_HOME=/opt/nzretlconnect/biMktNaz/.local/dagster
-Environment=LD_LIBRARY_PATH=/opt/oracle/instantclient_21_12
+User=myuser
+WorkingDirectory=/opt/myapp
+Environment=DAGSTER_HOME=/opt/myapp/.local/dagster
 Environment=TZ=America/Fortaleza
-EnvironmentFile=/opt/nzretlconnect/biMktNaz/.env
-ExecStart=/opt/nzretlconnect/biMktNaz/bimktnaz/bin/dagster-daemon run -w workspace.yaml
+EnvironmentFile=/opt/myapp/.env
+ExecStart=/opt/myapp/.venv/bin/dagster-daemon run -w workspace.yaml
 Restart=on-failure
 RestartSec=15
 
@@ -45,105 +40,91 @@ WantedBy=multi-user.target
 ```
 
 ```bash
+sudo systemctl enable dagster-daemon
 sudo systemctl start dagster-daemon
-sudo systemctl start dagster-webserver   # opcional (apenas UI)
 ```
 
-### Deploy completo com Dagster
+### Full deploy with Dagster
 
 ```bash
 git pull origin main
 pip install -r requirements.txt
-python run.py migrate upgrade -w biMktNaz
-sudo systemctl restart dagster-daemon dagster-webserver
-# Verificar: dagster definitions validate -f orchestration/definitions.py
+python run.py migrate upgrade -w myws
+sudo systemctl restart dagster-daemon
 ```
 
-→ [Plano de migração completo](docs/plans/orchestrator-dagster.md)
-
----
-
-## Agendamentos (crontab — legado)
-
-Agendamentos completos em `docs/agendamentos_ETL.txt`. Timezone: `America/Fortaleza`.
+## Scheduling (crontab)
 
 ```cron
 CRON_TZ=America/Fortaleza
-APP=/opt/nzretlconnect/biMktNaz
-PY=$APP/bimktnaz/bin/python
+APP=/opt/myapp
+PY=$APP/.venv/bin/python
 
-# Dimensões — 5h
-0 5 * * * source ~/.bashrc && cd $APP && $PY run.py load full --table cliente --truncate
+# Dimensions — daily
+0 5 * * * cd $APP && $PY run.py load full --table myws/product --truncate
 
-# Transacional — a cada 3h
-0 0-7/3 * * * source ~/.bashrc && cd $APP && $PY run.py load incremental --table venda --days 10 --threads 10
+# Transactional — every 3h
+0 0-7/3 * * * cd $APP && $PY run.py load incremental --table myws/sales --days 10 --threads 10
 
-# Histórico mensal — 1h
-0 1 * * * source ~/.bashrc && cd $APP && $PY run.py load monthly --table titulos_contas_receber --months 13
+# Monthly history
+0 1 * * * cd $APP && $PY run.py load monthly --table myws/receivables --months 13
 
-# Monitoramento — a cada 30 min
-*/30 * * * * source ~/.bashrc && cd $APP && $PY run.py logs errors
+# Monitoring — every 30 min
+*/30 * * * * cd $APP && $PY run.py logs errors
 ```
-
----
 
 ## Migrations
 
-Toda mudança de schema deve ser via migration — nunca diretamente no banco.
+All schema changes must go through migrations — never directly on the database.
 
 ```bash
-# Ver estado
-python run.py migrate status -w biMktNaz
+# Check status
+python run.py migrate status -w myws
 
-# Criar (auto-detect)
-python run.py migrate create -w biMktNaz --autogenerate -m "descricao"
+# Create (auto-detect)
+python run.py migrate create -w myws --autogenerate -m "description"
 
-# Aplicar
-python run.py migrate upgrade -w biMktNaz
+# Apply
+python run.py migrate upgrade -w myws
 
-# Desfazer
-python run.py migrate rollback -w biMktNaz --steps 1
+# Rollback
+python run.py migrate rollback -w myws --steps 1
 ```
 
----
-
-## Monitoramento
+## Monitoring
 
 ```bash
-# Logs em tempo real
-tail -f logs/2026/04/20260430.log
+# Live logs
+tail -f logs/$(date +%Y/%m)/$(date +%Y%m%d).log
 
-# Erros do dia
+# Errors
 python run.py logs errors
 
-# Últimas execuções bem-sucedidas
-grep "finalizado" logs/2026/04/20260430.log | tail -10
+# Recent successful runs
+grep "finalizado" logs/$(date +%Y/%m)/$(date +%Y%m%d).log | tail -10
 ```
 
-Erros enviados ao Telegram se `TELEGRAM_BOT_TOKEN` configurado.
-
----
+Errors are sent to Telegram if `TELEGRAM_BOT_TOKEN` is configured.
 
 ## Troubleshooting
 
-### `.env` não carregado
+### `.env` not loaded
 
-Use `EnvironmentFile` no systemd ou `source ~/.bashrc` no cron.
+Use `EnvironmentFile` in systemd or `source` in crontab.
 
-### Dagster daemon parou
+### Dagster daemon stopped
 
 ```bash
 sudo systemctl status dagster-daemon
 journalctl -u dagster-daemon -f
-# Health check automático via cron a cada 10 min
 ```
 
-### Tuning de threads
+### Thread tuning
 
 ```bash
-# Aumentar se CPU subutilizada
-python run.py load incremental --table venda --days 10 --threads 15
+# Increase if CPU is underutilized
+python run.py load incremental --table sales --days 10 --threads 15
 
-# Diminuir se contenção no banco
-python run.py load incremental --table venda --days 10 --threads 5
+# Decrease if DB contention
+python run.py load incremental --table sales --days 10 --threads 5
 ```

@@ -1,6 +1,6 @@
-# Criar uma entity
+# Creating an Entity
 
-Entity = uma tabela do pipeline. 1 YAML + 1 SQL.
+An entity maps to one pipeline table: 1 YAML + 1 SQL.
 
 ## Scaffold
 

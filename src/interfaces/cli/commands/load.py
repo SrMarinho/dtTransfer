@@ -8,7 +8,7 @@ from src.core.logger.run_context import set_run_hash
 from src.core.logger.logging import logger
 from src.interfaces.cli.validators import validate_table
 
-app = typer.Typer(help="Executa processos ETL")
+app = typer.Typer(help="Run ETL processes")
 
 
 def _resolve_table(table: str, workspace: Optional[str]) -> str:
@@ -31,28 +31,28 @@ def _run_process(process_name: str, table: str, params: dict, workspace: Optiona
 
 @app.command("full")
 def load_full(
-    table: Annotated[str, typer.Option("--table", "-t", help="Nome da tabela/entidade")],
+    table: Annotated[str, typer.Option("--table", "-t", help="Table/entity name")],
     workspace: Annotated[Optional[str], typer.Option("--workspace", "-w", help="Workspace id")] = None,
-    truncate: Annotated[bool, typer.Option("--truncate", help="Truncar tabela destino antes de inserir")] = False,
+    truncate: Annotated[bool, typer.Option("--truncate", help="Truncate table before insert")] = False,
 ):
-    """Sincronizacao completa de tabela (truncate + load)."""
+    """Full table sync (truncate + load)."""
     params = {"truncate": truncate}
     _run_process("full", table, params, workspace)
 
 
 @app.command("incremental")
 def load_incremental(
-    table: Annotated[str, typer.Option("--table", "-t", help="Nome da tabela/entidade")],
+    table: Annotated[str, typer.Option("--table", "-t", help="Table/entity name")],
     workspace: Annotated[Optional[str], typer.Option("--workspace", "-w", help="Workspace id")] = None,
-    days: Annotated[Optional[int], typer.Option("--days", "-d", help="Quantidade de dias atras", min=1)] = None,
-    threads: Annotated[int, typer.Option("--threads", help="Numero de threads paralelas", min=1, max=50)] = 4,
-    truncate: Annotated[bool, typer.Option("--truncate", help="Truncar tabela destino")] = False,
-    current_day: Annotated[bool, typer.Option("--current-day", help="Incluir o dia atual na sincronizacao")] = False,
-    full: Annotated[bool, typer.Option("--full", help="Full load sem filtro de data (ignora --days)")] = False,
+    days: Annotated[Optional[int], typer.Option("--days", "-d", help="Number of days back", min=1)] = None,
+    threads: Annotated[int, typer.Option("--threads", help="Parallel threads", min=1, max=50)] = 4,
+    truncate: Annotated[bool, typer.Option("--truncate", help="Truncate destination table")] = False,
+    current_day: Annotated[bool, typer.Option("--current-day", help="Include current day")] = False,
+    full: Annotated[bool, typer.Option("--full", help="Full load without date filter")] = False,
 ):
-    """Sincronizacao incremental pelos ultimos N dias (multithreading). Use --full para carga completa."""
+    """Incremental sync for last N days (multithreaded). Use --full for complete load."""
     if not full and days is None:
-        raise typer.BadParameter("--days e obrigatorio quando --full nao e usado.")
+        raise typer.BadParameter("--days is required when --full is not used.")
     params = {
         "days": days,
         "threads": threads,
@@ -65,16 +65,16 @@ def load_incremental(
 
 @app.command("monthly")
 def load_monthly(
-    table: Annotated[str, typer.Option("--table", "-t", help="Nome da tabela/entidade")],
+    table: Annotated[str, typer.Option("--table", "-t", help="Table/entity name")],
     workspace: Annotated[Optional[str], typer.Option("--workspace", "-w", help="Workspace id")] = None,
-    months: Annotated[Optional[int], typer.Option("--months", "-m", help="Quantidade de meses atras", min=1)] = None,
-    method: Annotated[str, typer.Option("--method", help="Metodo: byMonth ou wholeInterval")] = "byMonth",
-    truncate: Annotated[bool, typer.Option("--truncate", help="Truncar tabela destino")] = False,
-    full: Annotated[bool, typer.Option("--full", help="Full load sem filtro de data (ignora --months)")] = False,
+    months: Annotated[Optional[int], typer.Option("--months", "-m", help="Number of months back", min=1)] = None,
+    method: Annotated[str, typer.Option("--method", help="Method: byMonth or wholeInterval")] = "byMonth",
+    truncate: Annotated[bool, typer.Option("--truncate", help="Truncate destination table")] = False,
+    full: Annotated[bool, typer.Option("--full", help="Full load without date filter")] = False,
 ):
-    """Sincronizacao incremental pelos ultimos N meses. Use --full para carga completa."""
+    """Incremental sync for last N months. Use --full for complete load."""
     if not full and months is None:
-        raise typer.BadParameter("--months e obrigatorio quando --full nao e usado.")
+        raise typer.BadParameter("--months is required when --full is not used.")
     params = {
         "months": months,
         "method": method,
@@ -86,10 +86,10 @@ def load_monthly(
 
 @app.command("unit")
 def load_unit(
-    table: Annotated[str, typer.Option("--table", "-t", help="Nome da tabela/entidade")],
+    table: Annotated[str, typer.Option("--table", "-t", help="Table/entity name")],
     workspace: Annotated[Optional[str], typer.Option("--workspace", "-w", help="Workspace id")] = None,
-    unit: Annotated[int, typer.Option("--unit", "-u", help="ID da unidade/CD")] = 0,
+    unit: Annotated[int, typer.Option("--unit", "-u", help="Business unit / CD id")] = 0,
 ):
-    """Sincronizacao de dados para uma unidade especifica."""
+    """Sync data for a specific business unit."""
     params = {"unit": unit}
     _run_process("unit", table, params, workspace)

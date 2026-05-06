@@ -1,53 +1,53 @@
-# Quickstart — 5 minutos
+# Quickstart — 5 minutes
 
-Da clonagem ao primeiro `load` rodando.
+From clone to first `load` running.
 
 ## 1. Setup
 
 ```bash
-git clone <url> && cd biMktNaz
+git clone <url> && cd <project>
 python -m venv .venv && .venv/Scripts/activate
 pip install -r requirements.txt
-cp .env.example .env  # preencher credenciais (ou só DB_MEUWS_DATABASE para SQLite)
+cp .env.example .env  # edit credentials (or just DB_EXAMPLE_SQLITE_* for SQLite)
 ```
 
-## 2. Criar workspace
+## 2. Create a workspace
 
 ```bash
-python run.py workspace new meuws --driver sqlite --env-prefix DB_MEUWS
+python run.py workspace new myws --driver sqlite --env-prefix DB_MYWS
 ```
 
-Cria `src/workspaces/meuws/` com:
+Creates `src/workspaces/myws/` with:
 
 ```
 workspace.yml          # metadata
-entities/              # 1 YAML por entidade
-sqls/                  # queries SQL
+entities/              # 1 YAML per entity
+sqls/                  # SQL queries
 migrations/            # Alembic
 ```
 
-## 3. Criar entity
+## 3. Create an entity
 
 ```bash
-python run.py entity new meuws/produto --process full
+python run.py entity new myws/product --process full
 ```
 
-Edite `src/workspaces/meuws/entities/produto.yml` ajustando `columns:` e `src/workspaces/meuws/sqls/consulta_produto.sql` com sua query.
+Edit `src/workspaces/myws/entities/product.yml` (adjust `columns:`) and `src/workspaces/myws/sqls/consulta_product.sql` (your extraction query).
 
-## 4. Rodar migration
+## 4. Run migration
 
-Crie tabela em `migrations/versions/`:
+Create the table via Alembic:
 
 ```bash
-python run.py migrate create -w meuws -m "create produto"
-# edita o arquivo gerado em src/workspaces/meuws/migrations/versions/
-python run.py migrate upgrade -w meuws
+python run.py migrate create -w myws -m "create product"
+# edit the generated file in src/workspaces/myws/migrations/versions/
+python run.py migrate upgrade -w myws
 ```
 
-## 5. Executar load
+## 5. Execute load
 
 ```bash
-python run.py load full --table meuws/produto --truncate
+python run.py load full --table myws/product --truncate
 ```
 
-Pronto. Próximo: [workspaces.md](workspaces.md) para detalhes do YAML, [migrations.md](migrations.md) para Alembic.
+Done. Next: [workspaces.md](workspaces.md) for YAML details, [migrations.md](migrations.md) for Alembic.

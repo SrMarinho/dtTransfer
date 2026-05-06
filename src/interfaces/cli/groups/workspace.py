@@ -13,20 +13,20 @@ from src.engine.workspace.recycle_bin import (
 )
 
 
-app = typer.Typer(help="Gerencia workspaces (list, validate, new, delete, restore)")
+app = typer.Typer(help="Manage workspaces (list, validate, new, delete, restore)")
 
 
 @app.command("list")
 def workspace_list(
-    deleted: Annotated[bool, typer.Option("--deleted", help="Lista workspaces deletados")] = False,
+    deleted: Annotated[bool, typer.Option("--deleted", help="List deleted workspaces")] = False,
 ):
-    """Lista workspaces ativos ou deletados (--deleted)."""
+    """List active or deleted workspaces (--deleted)."""
     if deleted:
         items = list_deleted_workspaces()
         if not items:
-            typer.secho("Nenhum workspace na lixeira.", fg=typer.colors.YELLOW)
+            typer.secho("No workspaces in recycle bin.", fg=typer.colors.YELLOW)
             return
-        typer.secho(f"Workspaces deletados ({len(items)}):", fg=typer.colors.GREEN, bold=True)
+        typer.secho(f"Deleted workspaces ({len(items)}):", fg=typer.colors.GREEN, bold=True)
         for item in items:
             dt = item["deleted_at"][:19] if item["deleted_at"] else item["ts"]
             typer.echo(f"  {item['id']:<20}  {dt}  {item['path']}")
@@ -35,7 +35,7 @@ def workspace_list(
     bootstrap()
     items = WorkspaceRegistry().list()
     if not items:
-        typer.secho("Nenhum workspace registrado.", fg=typer.colors.YELLOW)
+        typer.secho("No workspaces registered.", fg=typer.colors.YELLOW)
         return
     typer.secho(f"Workspaces ({len(items)}):", fg=typer.colors.GREEN, bold=True)
     for ws in items:
@@ -44,7 +44,7 @@ def workspace_list(
 
 @app.command("validate")
 def workspace_validate():
-    """Testa conexao com todos os bancos legacy + workspaces YAML."""
+    """Test connections for all workspaces (YAML + legacy)."""
     from src.factories.database_factory import DatabaseFactory, Database
 
     bootstrap()
@@ -98,59 +98,59 @@ def workspace_validate():
 
 @app.command("new")
 def workspace_new(
-    workspace_id: Annotated[str, typer.Argument(help="Id do workspace (slug)")],
-    driver: Annotated[str, typer.Option("--driver", help="Driver do target")] = "sqlite",
-    env_prefix: Annotated[str, typer.Option("--env-prefix", help="Prefixo das env vars")] = None,
+    workspace_id: Annotated[str, typer.Argument(help="Workspace id (slug)")],
+    driver: Annotated[str, typer.Option("--driver", help="Target database driver")] = "sqlite",
+    env_prefix: Annotated[str, typer.Option("--env-prefix", help="Environment variable prefix")] = None,
 ):
-    """Cria estrutura de workspace YAML em src/workspaces/<id>/."""
+    """Create YAML workspace structure at src/workspaces/<id>/."""
     from src.engine.scaffold import create_workspace
     path = create_workspace(workspace_id, driver=driver, env_prefix=env_prefix)
-    typer.secho(f"Workspace criado: {path}", fg=typer.colors.GREEN)
+    typer.secho(f"Workspace created: {path}", fg=typer.colors.GREEN)
     typer.echo("  workspace.yml")
     typer.echo("  entities/")
     typer.echo("  sqls/")
     typer.echo("  migrations/")
     typer.echo("")
-    typer.echo(f"Próximo: python run.py entity new {workspace_id}/<nome>")
+    typer.echo(f"Next: python run.py entity new {workspace_id}/<name>")
 
 
 @app.command("delete")
 def workspace_delete(
-    workspace_id: Annotated[str, typer.Argument(help="Id do workspace")],
-    hard: Annotated[bool, typer.Option("--hard", help="Remove permanentemente")] = False,
+    workspace_id: Annotated[str, typer.Argument(help="Workspace id")],
+    hard: Annotated[bool, typer.Option("--hard", help="Permanently remove")] = False,
 ):
-    """Deleta um workspace (soft delete: move para .local/recycle_bin/)."""
+    """Delete workspace (soft delete: moves to .local/recycle_bin/)."""
     from src.factories.entity_registry import EntityRegistry
 
     bootstrap()
     try:
         ws = WorkspaceRegistry().get(workspace_id)
     except Exception:
-        typer.secho(f"Workspace '{workspace_id}' não encontrado.", fg=typer.colors.RED, err=True)
+        typer.secho(f"Workspace '{workspace_id}' not found.", fg=typer.colors.RED, err=True)
         raise typer.Exit(1)
 
     if hard:
         hard_delete_workspace(ws)
         WorkspaceRegistry().remove(workspace_id)
-        typer.secho(f"Workspace '{workspace_id}' removido permanentemente.", fg=typer.colors.GREEN)
+        typer.secho(f"Workspace '{workspace_id}' permanently removed.", fg=typer.colors.GREEN)
     else:
         dest = soft_delete_workspace(ws)
         WorkspaceRegistry().remove(workspace_id)
         EntityRegistry.remove_entity_prefix(workspace_id)
         typer.secho(
-            f"Workspace '{workspace_id}' movido para {dest}",
+            f"Workspace '{workspace_id}' moved to {dest}",
             fg=typer.colors.GREEN,
         )
-        typer.echo("  Use --hard para remover permanentemente.")
-        typer.echo(f"  Use run.py workspace restore {workspace_id} para recuperar.")
+        typer.echo("  Use --hard to permanently remove.")
+        typer.echo(f"  Use run.py workspace restore {workspace_id} to recover.")
 
 
 @app.command("restore")
 def workspace_restore(
-    workspace_id: Annotated[str, typer.Argument(help="Id do workspace")],
-    ts: Annotated[str, typer.Option("--ts", help="Timestamp específico (YYYYMMDD_HHMMSS)")] = None,
+    workspace_id: Annotated[str, typer.Argument(help="Workspace id")],
+    ts: Annotated[str, typer.Option("--ts", help="Specific timestamp (YYYYMMDD_HHMMSS)")] = None,
 ):
-    """Restaura um workspace deletado da lixeira."""
+    """Restore a deleted workspace from the recycle bin."""
     try:
         dest = restore_workspace(workspace_id, timestamp=ts)
     except FileNotFoundError as e:
@@ -159,7 +159,7 @@ def workspace_restore(
     except FileExistsError as e:
         typer.secho(str(e), fg=typer.colors.RED, err=True)
         raise typer.Exit(1)
-    typer.secho(f"Workspace '{workspace_id}' restaurado para {dest}", fg=typer.colors.GREEN)
+    typer.secho(f"Workspace '{workspace_id}' restored to {dest}", fg=typer.colors.GREEN)
 
 
 

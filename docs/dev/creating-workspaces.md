@@ -1,6 +1,6 @@
-# Criar um workspace
+# Creating a Workspace
 
-Workspace = unidade isolada de pipeline ETL: target DB, sources, entities, migrations.
+A workspace is an isolated ETL pipeline unit: target DB, sources, entities, migrations.
 
 ## Scaffold
 

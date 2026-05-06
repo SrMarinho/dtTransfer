@@ -1,4 +1,0 @@
-SELECT
-    CODGRE AS grupo_empresa_id,
-    NOMGRE AS nome
-FROM SAPIENS_PROD.E069GRE

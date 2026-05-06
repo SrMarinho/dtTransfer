@@ -13,7 +13,7 @@ from src.engine.workspace.migrations import (
 from src.engine.workspace.registry import WorkspaceNotFoundError, WorkspaceRegistry
 
 
-app = typer.Typer(help="Gerencia migrations de schema (Alembic) por workspace")
+app = typer.Typer(help="Manage schema migrations (Alembic) per workspace")
 
 
 def _resolve_workspace(workspace: str):
@@ -28,9 +28,9 @@ def _resolve_workspace(workspace: str):
 @app.command("upgrade")
 def migrate_upgrade(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
-    revision: Annotated[str, typer.Option("--revision", help="Revisão alvo")] = "head",
+    revision: Annotated[str, typer.Option("--revision", help="Target revision")] = "head",
 ):
-    """Aplica migrations pendentes (default: head)."""
+    """Apply pending migrations (default: head)."""
     ws = _resolve_workspace(workspace)
     run_alembic(ws, "upgrade", revision)
 
@@ -39,7 +39,7 @@ def migrate_upgrade(
 def migrate_status(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
 ):
-    """Mostra revisão atual e última disponível."""
+    """Show current and latest available revision."""
     ws = _resolve_workspace(workspace)
     typer.echo(f"workspace: {ws.id}")
     typer.echo(f"current:   {current_head(ws)}")
@@ -50,9 +50,9 @@ def migrate_status(
 @app.command("rollback")
 def migrate_rollback(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
-    steps: Annotated[int, typer.Option("--steps", help="Quantos migrations desfazer")] = 1,
+    steps: Annotated[int, typer.Option("--steps", help="Number of migrations to revert")] = 1,
 ):
-    """Desfaz os últimos N migrations."""
+    """Roll back last N migrations."""
     ws = _resolve_workspace(workspace)
     run_alembic(ws, "downgrade", f"-{steps}")
 
@@ -60,9 +60,9 @@ def migrate_rollback(
 @app.command("stamp")
 def migrate_stamp(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
-    revision: Annotated[str, typer.Argument(help="Revisão para marcar (ex: head)")] = "head",
+    revision: Annotated[str, typer.Argument(help="Revision to stamp (e.g. head)")] = "head",
 ):
-    """Marca revisão como aplicada sem rodar SQL."""
+    """Stamp revision as applied without running SQL."""
     ws = _resolve_workspace(workspace)
     run_alembic(ws, "stamp", revision)
 
@@ -70,11 +70,11 @@ def migrate_stamp(
 @app.command("create")
 def migrate_create(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
-    message: Annotated[str, typer.Option("--message", "-m", help="Mensagem da migration")] = None,
-    autogenerate: Annotated[bool, typer.Option("--autogenerate", help="Detectar mudanças comparando com DB")] = False,
-    sql: Annotated[bool, typer.Option("--sql", help="Apenas gerar SQL, não aplicar")] = False,
+    message: Annotated[str, typer.Option("--message", "-m", help="Migration message")] = None,
+    autogenerate: Annotated[bool, typer.Option("--autogenerate", help="Detect schema changes by comparing with DB")] = False,
+    sql: Annotated[bool, typer.Option("--sql", help="Generate SQL only, do not apply")] = False,
 ):
-    """Cria nova migration. Use --autogenerate para detectar mudanças no schema."""
+    """Create a new migration. Use --autogenerate to detect schema changes."""
     ws = _resolve_workspace(workspace)
     opts = {}
     if message:
@@ -90,7 +90,7 @@ def migrate_create(
 def migrate_validate(
     workspace: Annotated[str, typer.Option("--workspace", "-w", help="Workspace id")],
 ):
-    """Falha se DB não estiver no head atual."""
+    """Fail if DB is not at the current head."""
     ws = _resolve_workspace(workspace)
     try:
         validate_head(ws)

@@ -1,4 +1,0 @@
-SELECT
-    CODTPT AS tipo_titulo_id,
-    DESTPT AS descricao
-FROM SAPIENS_PROD.E002TPT

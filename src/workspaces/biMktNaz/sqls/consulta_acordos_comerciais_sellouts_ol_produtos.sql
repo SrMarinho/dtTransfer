@@ -1,9 +1,0 @@
-select
-    acordo_comercial_sellout_ol_produto
-    ,acordo_comercial
-    ,configuracao_ol
-    ,produto
-    ,desconto_industria
-    ,porcentagem_verba
-from
-	acordos_comerciais_sellouts_ol_produtos

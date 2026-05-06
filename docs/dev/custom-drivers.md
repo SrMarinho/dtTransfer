@@ -1,6 +1,6 @@
-# Driver custom
+# Custom Driver
 
-Adicione suporte a um banco novo (DuckDB, ClickHouse, MongoDB) sem editar o core.
+Add support for a new database (DuckDB, ClickHouse, MongoDB) without editing core.
 
 ## API
 

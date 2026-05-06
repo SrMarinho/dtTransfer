@@ -1,4 +1,4 @@
-# Contribuir
+# Contributing
 
 ## Estrutura do repositório
 

@@ -38,4 +38,4 @@ def run_etl(context, table, process="full", truncate=False, days=None, threads=N
     if result.stderr:
         context.log.warning(result.stderr.strip())
     if result.returncode != 0:
-        raise Exception(f"ETL falhou (exit {result.returncode}): {result.stderr[:500]}")
+        raise Exception(f"ETL failed (exit {result.returncode}): {result.stderr[:500]}")

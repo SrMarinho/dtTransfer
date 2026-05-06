@@ -3,9 +3,24 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "data_replicator"
-version = "1.0.0"
-description = "DataReplicator ETL"
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.description }}"
+authors = [
+    { name = "{{ cookiecutter.author_name }}" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/{{ cookiecutter.project_slug }}"
+Repository = "https://github.com/your-org/{{ cookiecutter.project_slug }}"
 
 [tool.setuptools.packages.find]
 where = ["src"]

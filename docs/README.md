@@ -1,53 +1,44 @@
-# DataReplicator — Documentação
+# Documentation
 
-Engine ETL declarativa com orquestração Dagster.
+Declarative ETL engine with Dagster orchestration.
 
-## Para usuários
+## For Users
 
-| Tópico | Arquivo |
-|--------|---------|
-| Instalação e .env | [user/installation.md](user/installation.md) |
+| Topic | File |
+|-------|------|
+| Installation & .env | [user/installation.md](user/installation.md) |
 | Quickstart 5 min | [user/quickstart.md](user/quickstart.md) |
-| Referência CLI | [user/cli.md](user/cli.md) |
-| Workspaces YAML | [user/workspaces.md](user/workspaces.md) |
+| CLI Reference | [user/cli.md](user/cli.md) |
+| YAML Workspaces | [user/workspaces.md](user/workspaces.md) |
+| ETL Processes | [user/processes.md](user/processes.md) |
+| Migrations | [user/migrations.md](user/migrations.md) |
 | Deployment | [user/deployment.md](user/deployment.md) |
-| Monitoramento | [user/monitoring.md](user/monitoring.md) |
 | Troubleshooting | [user/troubleshooting.md](user/troubleshooting.md) |
 
-## Para desenvolvedores
+## For Developers
 
-| Tópico | Arquivo |
-|--------|---------|
-| Arquitetura | [dev/architecture.md](dev/architecture.md) |
-| Criar workspace | [dev/creating-workspaces.md](dev/creating-workspaces.md) |
-| Criar entity | [dev/creating-entities.md](dev/creating-entities.md) |
-| Testes | [dev/testing.md](dev/testing.md) |
-| Contribuir | [dev/contributing.md](dev/contributing.md) |
-
-## Orquestração
-
-| Tópico | Arquivo |
-|--------|---------|
-| Plano de migração Dagster | [plans/orchestrator-dagster.md](plans/orchestrator-dagster.md) |
-| Roadmap de melhorias | [plans/roadmap.md](plans/roadmap.md) |
-| Cron de produção | [agendamentos_ETL.txt](agendamentos_ETL.txt) |
+| Topic | File |
+|-------|------|
+| Architecture | [dev/architecture.md](dev/architecture.md) |
+| Creating Workspaces | [dev/creating-workspaces.md](dev/creating-workspaces.md) |
+| Creating Entities | [dev/creating-entities.md](dev/creating-entities.md) |
+| Custom Drivers | [dev/custom-drivers.md](dev/custom-drivers.md) |
+| Custom Processes | [dev/custom-processes.md](dev/custom-processes.md) |
+| Testing | [dev/testing.md](dev/testing.md) |
+| Contributing | [dev/contributing.md](dev/contributing.md) |
 
 ## Schemas
 
-| Schema | Arquivo |
-|--------|---------|
+| Schema | File |
+|--------|------|
 | workspace.yml | [schemas/workspace.json](../schemas/workspace.json) |
 | entities/*.yml | [schemas/entity.json](../schemas/entity.json) |
 
-## Referência
+## Reference
 
-| Tópico | Arquivo |
-|--------|---------|
-| API: Process | [reference/process.md](reference/process.md) |
-| API: Driver | [reference/driver.md](reference/driver.md) |
-
-## Legado
-
-| Tópico | Arquivo |
-|--------|---------|
-| Entidades Python | [legacy/legacy-systems.md](legacy/legacy-systems.md) |
+| Topic | File |
+|-------|------|
+| Process API | [reference/process.md](reference/process.md) |
+| Driver API | [reference/driver.md](reference/driver.md) |
+| Entity YAML | [reference/entity.md](reference/entity.md) |
+| Workspace YAML | [reference/workspace-yaml.md](reference/workspace-yaml.md) |

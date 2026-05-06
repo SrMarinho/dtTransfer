@@ -7,5 +7,5 @@ process_type: incremental
 sql_file: sample.sql
 columns:
   - id
-  - nome
-  - criado_em
+  - name
+  - created_at

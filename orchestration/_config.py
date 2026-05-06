@@ -1,75 +1,48 @@
-TABLE_PARAMS = {
-    "biMktNaz/venda__noturno": {"table": "biMktNaz/venda", "process": "incremental", "days": 10, "threads": 10},
-    "biMktNaz/venda__diurno": {"table": "biMktNaz/venda", "process": "incremental", "days": 1, "current_day": True},
-    "biMktNaz/notas_canceladas__noturno": {"table": "biMktNaz/notas_canceladas", "process": "incremental", "days": 10, "threads": 10},
-    "biMktNaz/notas_canceladas__diurno": {"table": "biMktNaz/notas_canceladas", "process": "incremental", "days": 1, "current_day": True},
-    "biSenior/rescisoes__incremental": {"table": "biSenior/rescisoes", "process": "incremental", "days": 2},
-    "biSenior/rescisoes__full": {"table": "biSenior/rescisoes", "process": "full", "truncate": True},
-    "biSenior/titulos_sem_notas__diario": {"table": "biSenior/titulos_sem_notas", "process": "incremental", "days": 2},
-    "biSenior/titulos_sem_notas__semanal": {"table": "biSenior/titulos_sem_notas", "process": "incremental", "days": 30},
-    "biSenior/f_titulos_com_notas_servicos__diario": {"table": "biSenior/f_titulos_com_notas_servicos", "process": "incremental", "days": 2},
-    "biSenior/f_titulos_com_notas_servicos__semanal": {"table": "biSenior/f_titulos_com_notas_servicos", "process": "incremental", "days": 30},
-    "biSenior/f_titulos_com_notas_produtos__diario": {"table": "biSenior/f_titulos_com_notas_produtos", "process": "incremental", "days": 2},
-    "biSenior/f_titulos_com_notas_produtos__semanal": {"table": "biSenior/f_titulos_com_notas_produtos", "process": "incremental", "days": 30},
-    "biMktNaz/recebimentos_volumes": {"process": "incremental", "days": 10},
-    "biSenior/titulos_edocs": {"process": "incremental", "days": 10, "current_day": True},
-    "biMktNaz/fretes_pagar_periodo_analitico": {"process": "incremental", "days": 1},
-    "biSenior/f_folha_visao_contabil": {"process": "incremental", "days": 90},
-    "biSenior/estoque_usu_consumo": {"process": "incremental", "days": 2},
-    "biSenior/folha_controladoria": {"process": "incremental", "days": 2},
-    "biSenior/acompanhamento_solicitacoes_compras": {"process": "incremental", "days": 7},
-    "biSenior/afastamento_colaboradores": {"process": "incremental", "days": 30},
-    "biSenior/razao_contabil": {"process": "incremental", "days": 30},
-    "biMktNaz/nf_faturamento_produtos_lote_validade": {"process": "incremental", "days": 10},
-    "biMktNaz/pp_ops": {"process": "incremental", "days": 31, "truncate": True},
-    "biMktNaz/base_segregado": {"process": "incremental", "days": 1, "truncate": True},
-    "biMktNaz/nota_fiscal": {"process": "incremental", "days": 11, "current_day": True},
-    "biSenior/titulos_contas_pagar": {"process": "incremental", "days": 732},
-    "biSenior/demissoes": {"process": "incremental", "days": 60},
-    "biSenior/extratos_bancarios": {"process": "incremental", "days": 30},
-    "biSenior/titulos_contas_receber_por_geracao": {"process": "incremental", "days": 1, "current_day": True},
-    "biMktNaz/pedidos_vendas": {"process": "incremental", "days": 11, "current_day": True},
-    "biMktNaz/pedidos_vendas_produtos": {"process": "incremental", "days": 10, "current_day": True, "truncate": True},
-    "biMktNaz/recebimentos_volumes_nf": {"process": "monthly", "months": 4},
-    "biMktNaz/vendas_imagem": {"process": "monthly", "months": 6},
-    "biSenior/titulos_contas_receber": {"process": "monthly", "months": 13},
-    "biSenior/f_mapear_contas_lanc_contabil": {"process": "monthly", "months": 12},
-    "biMktNaz/acompanhamento_orcamento_compras": {"process": "monthly", "months": 12},
-    "biSenior/titulos_receber": {"process": "incremental", "days": 366},
-    "biSenior/titulos_pagar": {"process": "incremental", "days": 366},
-    "biSenior/notas_fiscais_saida": {"process": "incremental", "days": 366},
-    "biSenior/notas_fiscais_entrada": {"process": "incremental", "days": 366},
-    "biSenior/titulos_por_portador_cp_cr": {"process": "incremental", "days": 366},
-    "biSenior/conciliacao_bancaria_completa": {"process": "incremental", "days": 366},
-    "biSenior/possicao_baixo_contas_receber": {"process": "monthly", "months": 24},
-    "biSenior/balancete_contabil": {"process": "monthly", "months": 12},
-    "biSenior/razao_por_fornecedores": {"process": "monthly", "months": 3},
-    "biNazaria/curva": {"process": "full"},
-    "biNazaria/estoque_minimo": {"process": "full"},
-    "biNazaria/demanda": {"process": "full"},
-    "biSenior/plano_contas_contabeis": {"process": "full"},
-}
+"""Entity configuration for Dagster asset building.
 
-VARIANT_PARENTS = {
-    "biMktNaz/venda", "biMktNaz/notas_canceladas", "biSenior/rescisoes",
-    "biSenior/titulos_sem_notas", "biSenior/f_titulos_com_notas_servicos",
-    "biSenior/f_titulos_com_notas_produtos",
-}
+Override this file to configure custom process params per entity.
+By default, process params are read from the entity's YAML spec.
+"""
 
-AC_TABLES = [
-    "biMktNaz/ac_encontros_contas", "biMktNaz/ac_encontros_contas_notas_debitos",
-    "biMktNaz/ac_provisoes_receber", "biMktNaz/ac_provisoes_receber_saldo",
-    "biMktNaz/ac_provisoes_receber_transacoes", "biMktNaz/ac_recebimentos",
-    "biMktNaz/ac_recebimentos_manuais", "biMktNaz/ac_recebimentos_saldo",
-    "biMktNaz/ac_recebimentos_transacoes", "biMktNaz/aprovacoes",
-    "biMktNaz/aprovacoes_apuracoes", "biMktNaz/apuracoes_antecipacoes_icms",
-    "biMktNaz/apuracoes_sellin_bonificados", "biMktNaz/desconto_adicional_apuracoes",
-    "biMktNaz/estoques_excedentes_apuracoes", "biMktNaz/grupos_economicos_contas",
-    "biMktNaz/modalidades_acordos_comerciais", "biMktNaz/modalidades_creditos",
-    "biMktNaz/objetos_controle", "biMktNaz/rebaixas_apuracoes_ciclos",
-    "biMktNaz/rebate_apuracoes", "biMktNaz/remanejamentos_cds_apuracoes",
-    "biMktNaz/sellin_apuracoes", "biMktNaz/sellin_avulsos_apuracoes",
-    "biMktNaz/tipos_acordo_comercial",
-]
+from src.factories.entity_registry import EntityRegistry
 
-ESTOQUE_UNITS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19]
+
+def get_process_params(entity_key: str) -> dict:
+    """Return ETL process params for a given entity key (workspace/name).
+
+    Priority:
+    1. Entity YAML spec (process_type, incremental_column)
+    2. Sensible defaults based on process_type
+
+    Override TABLE_PARAMS dict below for fine-grained control.
+    """
+    base = {"truncate": True}
+
+    try:
+        instance = EntityRegistry.getInstance(entity_key, {})
+        ptype = getattr(instance, "process_type", "full") or "full"
+    except Exception:
+        ptype = "full"
+
+    base["process"] = ptype
+
+    if ptype == "incremental":
+        base.setdefault("days", 1)
+        base.setdefault("threads", 4)
+        base.setdefault("current_day", False)
+    elif ptype == "monthly":
+        base.setdefault("months", 1)
+        base.setdefault("method", "byMonth")
+    elif ptype == "full":
+        base.setdefault("truncate", True)
+
+    return base
+
+
+# ── Override table params ─────────────────────────────────────────────────
+# Uncomment and customize for your specific tables:
+# TABLE_PARAMS = {
+#     "myworkspace/orders": {"process": "incremental", "days": 10, "threads": 8},
+#     "myworkspace/history": {"process": "monthly", "months": 13},
+# }
+TABLE_PARAMS: dict = {}

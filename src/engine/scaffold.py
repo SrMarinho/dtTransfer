@@ -35,16 +35,16 @@ process_type: {process}
 sql_file: consulta_{name}.sql
 columns:
   - id
-  - nome
+  - name
 """
 
 
 _SQL_TEMPLATE = """\
--- Extração para a entidade {name}
--- Use REPLACE_START_DATE / REPLACE_END_DATE para incremental.
+-- Extraction for entity {name}
+-- Use REPLACE_START_DATE / REPLACE_END_DATE for incremental queries.
 SELECT
     id,
-    nome
+    name
 FROM {name}
 WHERE 1=1
 """

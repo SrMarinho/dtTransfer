@@ -1,8 +1,0 @@
-SELECT
-	1 as id,
-	A.RESTRICAO_DIVISAO_FABRICANTE_UF AS restricao_divisao_fabricante_uf,
-	A.RESTRICAO_DIVISAO_FABRICANTE AS restricao_divisao_fabricante,
-	A.ESTADO AS estado,
-	A.TIPO_RESTRICAO AS tipo_restricao,
-	A.EMPRESA AS empresa
-FROM RESTRICOES_DIVISOES_FABRICANTES_UF AS A

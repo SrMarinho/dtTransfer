@@ -1,8 +1,8 @@
-"""DataReplicator CLI entry point.
+"""ETL engine CLI entry point.
 
 Command structure (kubectl-style subcommand groups):
-    workspace list|validate|new
-    entity    list|new
+    workspace list|validate|new|delete|restore
+    entity    list|new|delete|restore|validate
     migrate   upgrade|status|validate|create|stamp|rollback
     load      full|incremental|monthly|unit
     logs      errors
@@ -26,13 +26,13 @@ from src.interfaces.cli.commands.load import app as load_app
 from src.interfaces.cli.commands.migrate import app as migrate_app
 
 
-app = typer.Typer(help="DataReplicator — engine ETL declarativa", no_args_is_help=True)
+app = typer.Typer(help="Declarative ETL engine", no_args_is_help=True)
 
-app.add_typer(workspace_app, name="workspace", help="Gerencia workspaces (list, validate, new)")
-app.add_typer(entity_app, name="entity", help="Gerencia entidades (list, new)")
-app.add_typer(migrate_app, name="migrate", help="Migrations Alembic por workspace")
-app.add_typer(load_app, name="load", help="Executa processos ETL (full, incremental, monthly, unit)")
-app.add_typer(logs_app, name="logs", help="Inspeciona logs (errors)")
+app.add_typer(workspace_app, name="workspace", help="Manage workspaces (list, validate, new, delete, restore)")
+app.add_typer(entity_app, name="entity", help="Manage entities (list, new, delete, restore, validate)")
+app.add_typer(migrate_app, name="migrate", help="Alembic migrations per workspace")
+app.add_typer(load_app, name="load", help="Run ETL processes (full, incremental, monthly, unit)")
+app.add_typer(logs_app, name="logs", help="Inspect logs (errors)")
 
 if __name__ == "__main__":
     app()

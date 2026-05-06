@@ -1,24 +1,24 @@
 # Workspaces
 
-App = engine genérico. Workspace = bundle declarativo (sources + target + entidades + SQLs + migrations) que descreve um fluxo de replicação. Engine não conhece nenhum workspace específico — descobre em runtime.
+App is a generic engine. A workspace is a declarative bundle (sources + target + entities + SQLs + migrations) describing a replication flow. The engine discovers workspaces at runtime.
 
-## Tipos de workspace
+## Workspace types
 
-| Tipo | Como define entidades | Quando usar |
+| Type | How entities are defined | When to use |
 |---|---|---|
-| `yaml` | YAML declarativo em `entities/*.yml` | Novos workspaces. Sem código Python por entidade. |
-| `python` | Subclasses `Table` em `src/systems/<...>` | Legados (`biSenior`, `biMktNaz`, `biNazaria`). Removível. |
+| `yaml` | Declarative YAML in `entities/*.yml` | New workspaces. No Python per entity. |
+| `python` | `Table` subclasses in `src/systems/<...>` | Legacy (removed in this template). |
 
-## Localização
+## Location
 
-Engine descobre workspaces em duas pastas:
+Engine discovers workspaces from two directories:
 
-1. **Built-in**: `src/workspaces/<id>/` (versionado em git).
-2. **Externo**: `$WORKSPACES_DIR/<id>/` (volume mount, sem rebuild).
+1. **Built-in**: `src/workspaces/<id>/` (versioned in git).
+2. **External**: `$WORKSPACES_DIR/<id>/` (volume mount, no rebuild).
 
-Built-in tem precedência em conflito de id. Pasta sem `workspace.yml` ou `__init__.py` é ignorada.
+Built-in takes precedence on id conflict. Directories without `workspace.yml` are ignored.
 
-## Estrutura de um workspace YAML
+## YAML workspace structure
 
 ```
 src/workspaces/<id>/
@@ -49,9 +49,9 @@ sources:
     env_prefix: DB_EXAMPLE_SOURCE_POSTGRES
 ```
 
-`env_prefix` aponta pras vars `<PREFIX>_HOST/_PORT/_DATABASE/_USERNAME/_PASSWORD` (Oracle também usa `_SERVICE_NAME` e `_ENCODING`).
+`env_prefix` points to `<PREFIX>_HOST/_PORT/_DATABASE/_USERNAME/_PASSWORD` (Oracle also uses `_SERVICE_NAME` and `_ENCODING`).
 
-Drivers suportados: `postgres`, `sqlserver`, `oracle`, `sqlite`, `fake`.
+Supported drivers: `postgres`, `sqlserver`, `oracle`, `sqlite`, `fake`.
 
 ### `entities/<name>.yml`
 
@@ -80,14 +80,12 @@ python run.py migrate validate -w <id>
 
 ## Migrations
 
-Cada workspace tem suas próprias migrations Alembic isoladas em `<root>/migrations/versions/`. Aplicação não roda upgrade automático — falha no startup se DB estiver atrás. Workflow:
+Each workspace has its own isolated Alembic migrations in `<root>/migrations/versions/`. The app validates head at startup via `migrate validate`. Workflow:
 
-1. Dev → adiciona migration localmente, roda `migrate upgrade --workspace x`.
-2. Homo/prod → durante deploy, antes de subir app, rodar `migrate upgrade`.
-3. App valida head no startup via `migrate validate`.
+1. Dev → add migration locally, run `migrate upgrade --workspace x`.
+2. Staging/prod → during deploy, run `migrate upgrade` before starting the app.
+3. App validates head at startup via `migrate validate`.
 
-## Workspace exemplo
+## Example workspace
 
-`src/workspaces/example/` é um template SQLite minimal. Use como base.
-
-> Para migração de entidades legacy, veja [legacy-systems.md](../legacy/legacy-systems.md).
+`src/workspaces/example/` is a minimal SQLite template. Use it as a starting point.

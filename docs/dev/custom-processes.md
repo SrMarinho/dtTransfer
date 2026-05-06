@@ -1,6 +1,6 @@
-# Process custom
+# Custom Process
 
-Built-in: `full`, `incremental`, `monthly`, `unit` (ver [user/processes.md](../user/processes.md)). Adicione um tipo novo (CDC, snapshot diário, streaming) sem editar o core.
+Built-in: `full`, `incremental`, `monthly`, `unit` (see [user/processes.md](../user/processes.md)). Add a new type (CDC, daily snapshot, streaming) without editing core.
 
 ## API
 

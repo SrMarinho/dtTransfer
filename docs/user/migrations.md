@@ -37,7 +37,7 @@ src/workspaces/meuws/
       0001_initial.py
 ```
 
-Workspaces Python legacy (`biMktNaz`, `biSenior`, `biNazaria`) ainda não possuem migrations — usam o sistema antigo de `createTable()` inline. Ao converter para YAML, o scaffold inclui migrations.
+Every workspace has its own isolated Alembic migrations. Legacy Python workspaces (removed in this template) used inline `createTable()` — YAML workspaces use Alembic.
 
 ---
 

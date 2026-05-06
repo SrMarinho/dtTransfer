@@ -1,7 +1,0 @@
-SELECT
-	A.RESTRICAO_PEDIDO_VENDA_GRUPO_PRODUTO AS restricao_pedido_venda_grupo_produto,
-	A.RESTRICAO_PEDIDO_VENDA AS restricao_pedido_venda,
-	A.GRUPO_PRODUTO AS grupo_produto,
-	A.TIPO_RESTRICAO AS tipo_restricao
-FROM
-	RESTRICOES_PEDIDOS_VENDAS_GRUPOS_PRODUTOS A

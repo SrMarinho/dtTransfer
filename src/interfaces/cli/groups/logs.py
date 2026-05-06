@@ -14,7 +14,7 @@ from src.core.logger.telegram_handler import send_telegram
 
 load_dotenv()
 
-app = typer.Typer(help="Inspeciona logs (errors)")
+app = typer.Typer(help="Inspect logs (errors)")
 
 
 def _parse_dt(date_str: str, time_str: str) -> datetime:
@@ -23,13 +23,13 @@ def _parse_dt(date_str: str, time_str: str) -> datetime:
 
 @app.command("errors")
 def logs_errors(
-    date: Annotated[str, typer.Option("--date", help="Data YYYY-MM-DD")] = None,
-    days_ago: Annotated[int, typer.Option("--days-ago", help="Quantos dias atras")] = None,
-    since: Annotated[str, typer.Option("--since", help="Hora inicio HH:MM")] = None,
-    until: Annotated[str, typer.Option("--until", help="Hora fim HH:MM")] = None,
-    detailed: Annotated[bool, typer.Option("--detailed", help="Mensagens completas")] = False,
+    date: Annotated[str, typer.Option("--date", help="Date YYYY-MM-DD")] = None,
+    days_ago: Annotated[int, typer.Option("--days-ago", help="Days ago")] = None,
+    since: Annotated[str, typer.Option("--since", help="Start time HH:MM")] = None,
+    until: Annotated[str, typer.Option("--until", help="End time HH:MM")] = None,
+    detailed: Annotated[bool, typer.Option("--detailed", help="Show full messages")] = False,
 ):
-    """Verifica erros nos logs."""
+    """Check errors in logs."""
     if date:
         dt = datetime.strptime(date, "%Y-%m-%d")
     elif days_ago is not None:
@@ -59,7 +59,7 @@ def logs_errors(
         since_s = since or "00:00"
         until_s = until or dt.strftime("%H:%M")
         typer.secho(
-            f"[{dt.strftime('%d/%m/%Y')} {since_s}->{until_s}] Nenhum erro encontrado.",
+            f"[{dt.strftime('%d/%m/%Y')} {since_s}->{until_s}] No errors found.",
             fg=typer.colors.GREEN,
         )
         return
